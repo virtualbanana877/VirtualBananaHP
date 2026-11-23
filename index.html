@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>バーチャルバナナ｜声真似Vtuber 公式サイト</title>
-<meta name="description" content="声真似レパートリー300超えのVtuber。2018年デビュー。声真似・パロディ動画、ボイス提供、動画編集、Webゲーム制作のご相談も受付中。">
+<meta name="description" content="声真似レパートリー300超えのVtuber。2018年デビュー。声真似・パロディ動画、ボイス提供、動画編集、Webゲーム・Webサイト制作のご相談も受付中。">
 <meta property="og:title" content="バーチャルバナナ｜声真似Vtuber 公式サイト">
 <meta property="og:site_name" content="バーチャルバナナ">
 <meta name="twitter:title" content="バーチャルバナナ｜声真似Vtuber 公式サイト">
@@ -115,6 +115,12 @@ nav a{text-decoration:none}nav a:hover{text-decoration:underline}
 .intro small{display:inline-block;background:var(--banana);border-radius:999px;padding:0 12px;font-weight:900;font-size:13px}
 .intro p{font-weight:700;font-size:18px;line-height:1.6;margin:8px 0 18px;max-width:22em}
 @media(max-width:620px){.intro{grid-template-columns:1fr;justify-items:center;text-align:center}.intro iframe{width:min(260px,100%)}}
+.pl{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:14px;margin-bottom:30px}
+.plc{display:block;text-decoration:none;background:var(--banana);border:3px solid var(--ink);border-radius:var(--r);padding:14px 18px;box-shadow:0 4px 0 var(--ink);transition:transform .15s}
+.plc:hover{transform:translateY(-3px)}
+.plc strong{display:block;font-size:18px;line-height:1.4}
+.plc small{font-weight:700;opacity:.75}
+#about .gal figure{background:var(--white)}
 /* services */
 .cream{background:var(--cream)}
 .svc{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:0;border:3px solid var(--ink);border-radius:var(--r);overflow:hidden;background:var(--white)}
@@ -201,7 +207,8 @@ footer{background:var(--ink);color:var(--white);padding:28px 20px calc(28px + en
     <iframe src="https://www.youtube.com/embed/_4Xt-d4_Eec" title="バーチャルバナナ 自己紹介" loading="lazy" allow="accelerometer; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen referrerpolicy="strict-origin-when-cross-origin"></iframe>
     <div><small>最新の自己紹介</small><p>はじめての方は、まずこの1本から。声真似とキャラクターの雰囲気がわかります。</p><a class="btn" href="https://www.youtube.com/shorts/_4Xt-d4_Eec" target="_blank" rel="noopener">YouTubeで開く</a></div>
   </div>
-  <p class="lead">声真似、パロディ、オリジナル曲。気になったものから見てください。</p>
+  <p class="lead">声真似、パロディ、オリジナル曲。気になったものから見てください。ジャンルごとの再生リストもあります。</p>
+  <div class="pl"><a class="plc" href="https://www.youtube.com/playlist?list=PL3gFxXuE5n5-PvnewDowQEjVqiP4A9YY5" target="_blank" rel="noopener"><strong>声真似講座</strong><small>再生リストを開く</small></a><a class="plc" href="https://www.youtube.com/playlist?list=PL3gFxXuE5n59yglV73pzzHqhX0lLzI1vo" target="_blank" rel="noopener"><strong>オリジナル曲</strong><small>再生リストを開く</small></a><a class="plc" href="https://www.youtube.com/playlist?list=PL3gFxXuE5n5-pdZG9F5msX2iDPGbYEPEs" target="_blank" rel="noopener"><strong>パロディ</strong><small>再生リストを開く</small></a><a class="plc" href="https://www.youtube.com/playlist?list=PL3gFxXuE5n58jAKFwu13jQtDQ5MzE4AYv" target="_blank" rel="noopener"><strong>バナナアート</strong><small>再生リストを開く</small></a></div>
   <div class="vgrid" id="vgrid"></div>
 </div></section>
 
@@ -222,14 +229,24 @@ footer{background:var(--ink);color:var(--white);padding:28px 20px calc(28px + en
   </div>
   <div class="svc">
     <div><h3>声真似・ボイス提供</h3><p>SEやジングルなどのボイス収録、キャラクターボイスの制作。</p></div>
-    <div><h3>動画の企画・脚本・編集</h3><p>パロディ動画やYouTube講座動画を、企画から編集まで一人で作ります。</p></div>
-    <div><h3>Webゲーム・ツール制作</h3><p>スマホで遊べるブラウザゲームと便利ツールを制作。インストール不要です。</p></div>
-    <div><h3>イラスト・バナナアート</h3><p>バナナモチーフの画像や、SNS用の素材づくり。</p></div>
+    <div><h3>動画の企画・脚本・編集</h3><p>パロディ動画やYouTube講座動画を、企画から編集まで一人で作ります。Vtuberさん向けCM動画の制作実績があります（案件名は非公開）。</p></div>
+    <div><h3>Webゲーム・Webサイト・ツール制作</h3><p>スマホで遊べるブラウザゲーム、便利ツール、Webサイトを制作します。</p></div>
+    <div><h3>バナナアート</h3><p>バナナを題材にしたアート作品の制作。<a href="https://www.youtube.com/playlist?list=PL3gFxXuE5n58jAKFwu13jQtDQ5MzE4AYv" target="_blank" rel="noopener">作品を再生リストで見る</a></p></div>
   </div>
   <ul class="works" id="works"></ul>
 </div></section>
 
-<section id="about"><div class="wrap">
+<section id="project"><div class="wrap">
+  <h2>バーチャルバナナプロジェクト</h2>
+  <p class="lead">声と映像の制作を担当するプロデューサーを中心に、家族で続けているプロジェクトです。</p>
+  <figure class="fig-fam"><a href="images/project-family.png" target="_blank" rel="noopener"><img src="images/project-family.png" alt="バーチャルバナナプロジェクトの体制図：プロデューサー（声・映像制作担当、活動は基本ワンオペ）、妻（バーチャルバナナのデザイン原案）、息子（子バナナ）我が家の宝" width="1600" height="900" loading="lazy"></a></figure>
+  <div class="gal pgal">
+    <figure><a href="images/project-characters.jpg" target="_blank" rel="noopener"><img src="images/project-characters.jpg" alt="プロデューサが担当するバーチャルキャラクター一覧：バーチャルバナナ、芭蕉宮香、バナナ農家のおじさん、活動初期バナナ ほか" width="1600" height="900" loading="lazy"></a><figcaption>プロデューサが担当するバーチャルキャラクター（タップで拡大）</figcaption></figure>
+    <figure><a href="images/project-credits.jpg" target="_blank" rel="noopener"><img src="images/project-credits.jpg" alt="キャラクターデザインのクレジット：英央様、マコミック様、吸血鬼様" width="1600" height="900" loading="lazy"></a><figcaption>キャラクターデザインのクレジット（タップで拡大）</figcaption></figure>
+  </div>
+</div></section>
+
+<section id="about" class="cream"><div class="wrap">
   <h2>キャラクターと歩み</h2>
   <div class="chars">
     <div class="char">
@@ -250,16 +267,6 @@ footer{background:var(--ink);color:var(--white);padding:28px 20px calc(28px + en
     <p><b id="years"></b>2018年3月、Vtuberとして活動開始</p>
     <p><b>2021</b>以降、動画投稿を中心に活動中</p>
     <p><b>今</b>YouTube、TikTok、Xで声真似とパロディを投稿。Webゲームも制作</p>
-  </div>
-</div></section>
-
-<section id="project" class="cream"><div class="wrap">
-  <h2>バーチャルバナナプロジェクト</h2>
-  <p class="lead">声と映像の制作を担当するプロデューサーを中心に、家族で続けているプロジェクトです。</p>
-  <figure class="fig-fam"><a href="images/project-family.png" target="_blank" rel="noopener"><img src="images/project-family.png" alt="バーチャルバナナプロジェクトの体制図：プロデューサー（声・映像制作担当、活動は基本ワンオペ）、妻（バーチャルバナナのデザイン原案）、息子（子バナナ）我が家の宝" width="1600" height="900" loading="lazy"></a></figure>
-  <div class="gal pgal">
-    <figure><a href="images/project-characters.jpg" target="_blank" rel="noopener"><img src="images/project-characters.jpg" alt="プロデューサが担当するバーチャルキャラクター一覧：バーチャルバナナ、芭蕉宮香、バナナ農家のおじさん、活動初期バナナ ほか" width="1600" height="900" loading="lazy"></a><figcaption>プロデューサが担当するバーチャルキャラクター（タップで拡大）</figcaption></figure>
-    <figure><a href="images/project-credits.jpg" target="_blank" rel="noopener"><img src="images/project-credits.jpg" alt="キャラクターデザインのクレジット：英央様、マコミック様、吸血鬼様" width="1600" height="900" loading="lazy"></a><figcaption>キャラクターデザインのクレジット（タップで拡大）</figcaption></figure>
   </div>
 </div></section>
 
