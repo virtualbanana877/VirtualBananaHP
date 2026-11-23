@@ -21,6 +21,7 @@
 <style>
 :root{--banana:#FFD83D;--ink:#1B1A17;--cream:#FFF6CF;--green:#4F6B1F;--brown:#7A4E17;--white:#fff;--r:22px}
 *{box-sizing:border-box;margin:0}
+img{max-width:100%;height:auto}
 html{scroll-behavior:smooth}
 body{font-family:'Zen Maru Gothic',sans-serif;color:var(--ink);background:var(--white);line-height:1.8;font-size:16px;padding-bottom:env(safe-area-inset-bottom)}
 a{color:inherit}
@@ -108,6 +109,11 @@ nav a{text-decoration:none}nav a:hover{text-decoration:underline}
 .ach .c{font-size:12px;font-weight:900;background:var(--banana);border:2px solid var(--ink);border-radius:999px;text-align:center;padding:0 6px}
 .ach .t{font-weight:700;line-height:1.5}
 @media(max-width:600px){.ach a{grid-template-columns:auto 1fr}.ach .t{grid-column:1/-1}}
+.intro{display:grid;grid-template-columns:auto 1fr;gap:28px;align-items:center;margin-bottom:36px}
+.intro iframe{width:260px;aspect-ratio:9/16;border:3px solid var(--ink);border-radius:var(--r);box-shadow:0 5px 0 var(--ink);background:var(--cream)}
+.intro small{display:inline-block;background:var(--banana);border-radius:999px;padding:0 12px;font-weight:900;font-size:13px}
+.intro p{font-weight:700;font-size:18px;line-height:1.6;margin:8px 0 18px;max-width:22em}
+@media(max-width:620px){.intro{grid-template-columns:1fr;justify-items:center;text-align:center}.intro iframe{width:min(260px,100%)}}
 /* services */
 .cream{background:var(--cream)}
 .svc{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:0;border:3px solid var(--ink);border-radius:var(--r);overflow:hidden;background:var(--white)}
@@ -130,6 +136,7 @@ nav a{text-decoration:none}nav a:hover{text-decoration:underline}
 .gal{margin-top:40px;display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:24px}
 .gal figure{border:3px solid var(--ink);border-radius:var(--r);overflow:hidden;background:var(--cream);box-shadow:0 5px 0 var(--ink)}
 .gal img{width:100%;height:auto;display:block}
+.gal figure.tall img{width:auto;max-height:520px;margin:0 auto;padding:12px 0}
 .gal figcaption{padding:10px 16px;font-weight:700;border-top:3px solid var(--ink);background:var(--white);font-size:14px}
 .hist{margin-top:44px;border-left:5px solid var(--banana);padding-left:22px;display:grid;gap:14px;max-width:640px}
 .hist b{font-family:'Dela Gothic One';font-weight:400;margin-right:10px}
@@ -183,7 +190,7 @@ footer{background:var(--ink);color:var(--white);padding:28px 20px calc(28px + en
 </div></header>
 
 <div class="guide"><div class="wrap">
-  <a class="gcard" href="#videos"><small>はじめて見る方へ</small><strong>まずは代表動画から。声真似・パロディ・オリジナル曲</strong></a>
+  <a class="gcard" href="#videos"><small>はじめて見る方へ</small><strong>まずは自己紹介と代表動画から。声真似・パロディ・オリジナル曲</strong></a>
   <a class="gcard" href="#achv"><small>企業・制作のご依頼の方へ</small><strong>受賞・CM放映・メディア掲載の実績と、できること</strong></a>
 </div></div>
 
@@ -192,13 +199,17 @@ footer{background:var(--ink);color:var(--white);padding:28px 20px calc(28px + en
 
 <section id="videos"><div class="wrap">
   <h2>まずはこの動画から</h2>
+  <div class="intro">
+    <iframe src="https://www.youtube.com/embed/_4Xt-d4_Eec" title="バーチャルバナナ 自己紹介" loading="lazy" allow="accelerometer; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen referrerpolicy="strict-origin-when-cross-origin"></iframe>
+    <div><small>最新の自己紹介</small><p>はじめての方は、まずこの1本から。声真似とキャラクターの雰囲気がわかります。</p><a class="btn" href="https://www.youtube.com/shorts/_4Xt-d4_Eec" target="_blank" rel="noopener">YouTubeで開く</a></div>
+  </div>
   <p class="lead">声真似、パロディ、オリジナル曲。気になったものから見てください。</p>
   <div class="vgrid" id="vgrid"></div>
 </div></section>
 
 <section id="achv"><div class="wrap">
   <h2>受賞・出演・メディア実績</h2>
-  <p class="lead">すべて証拠リンク付きです。タップすると当時の記事や配信、投稿に飛べます。</p>
+  <p class="lead">各項目から、当時の記事・配信・投稿を見られます。</p>
   <div class="hl" id="hl"></div>
   <div class="tabs" id="tabs" role="group" aria-label="実績の絞り込み"></div>
   <ul class="ach" id="ach"></ul>
@@ -209,7 +220,7 @@ footer{background:var(--ink);color:var(--white);padding:28px 20px calc(28px + en
   <div class="why">
     <div><b>声真似300超え</b><p>多彩なレパートリーで、パロディ動画やボイス制作に対応します。</p></div>
     <div><b>企画から制作まで一人で完結</b><p>声と映像の制作を担当し、活動は基本ワンオペ。やり取りがシンプルです。</p></div>
-    <div><b>2018年から続く実績</b><p>受賞、CM放映、メディア掲載。すべて証拠リンクで確認できます。</p></div>
+    <div><b>2018年から続く実績</b><p>受賞、CM放映、メディア掲載。当時の記事や配信にリンクしています。</p></div>
   </div>
   <div class="svc">
     <div><h3>声真似・ボイス提供</h3><p>SEやジングルなどのボイス収録、キャラクターボイスの制作。</p></div>
@@ -234,6 +245,7 @@ footer{background:var(--ink);color:var(--white);padding:28px 20px calc(28px + en
   </div>
   <div class="gal">
     <figure><img src="images/evolution.png" alt="バナナの写真から3Dモデル、現在のデザインへの進化" width="1280" height="720" loading="lazy"><figcaption>バーチャルバナナの進化（旧→新）</figcaption></figure>
+    <figure class="tall"><img src="images/model3d.png" alt="バーチャルバナナの3Dモデル（正面）" width="392" height="1100" loading="lazy"><figcaption>3Dモデル</figcaption></figure>
     <figure><a href="images/sanmen.png" target="_blank" rel="noopener"><img src="images/sanmen.png" alt="バーチャルバナナの三面図（正面・側面・背面）" width="1600" height="1208" loading="lazy"></a><figcaption>三面図（タップで拡大）</figcaption></figure>
   </div>
   <div class="hist">
