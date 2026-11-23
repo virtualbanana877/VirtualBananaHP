@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>バーチャルバナナ｜声真似Vtuber 公式サイト</title>
+<meta name="description" content="声真似レパートリー300超えのVtuber。2018年デビュー。声真似・パロディ動画、ボイス提供、動画編集、Webゲーム制作のご相談も受付中。">
+<meta property="og:title" content="バーチャルバナナ｜声真似Vtuber 公式サイト">
+<meta property="og:site_name" content="バーチャルバナナ">
+<meta name="twitter:title" content="バーチャルバナナ｜声真似Vtuber 公式サイト">
+<meta property="og:type" content="website">
+<meta property="og:image" content="https://virtualbanana877.github.io/VirtualBananaHP/images/ogp.png">
+<meta name="twitter:image" content="https://virtualbanana877.github.io/VirtualBananaHP/images/ogp.png">
+<meta property="og:description" content="声真似レパートリー300超えのVtuber。動画・ボイス・ゲーム制作。">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" type="image/png" href="images/icon.png">
+<link rel="apple-touch-icon" href="images/apple-touch-icon.png"><text y='.9em' font-size='90'>🍌</text></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Dela+Gothic+One&family=Zen+Maru+Gothic:wght@400;500;700;900&display=swap" rel="stylesheet">
+<style>
+:root{--banana:#FFD83D;--ink:#1B1A17;--cream:#FFF6CF;--green:#4F6B1F;--brown:#7A4E17;--white:#fff;--r:22px}
+*{box-sizing:border-box;margin:0}
+html{scroll-behavior:smooth}
+body{font-family:'Zen Maru Gothic',sans-serif;color:var(--ink);background:var(--white);line-height:1.8;font-size:16px;padding-bottom:env(safe-area-inset-bottom)}
+a{color:inherit}
+:focus-visible{outline:3px solid var(--ink);outline-offset:3px}
+h1,h2{font-family:'Dela Gothic One',sans-serif;font-weight:400;line-height:1.15;letter-spacing:.01em}
+.wrap{max-width:1040px;margin:0 auto;padding:0 20px}
+section{padding:72px 0}
+h2{font-size:clamp(26px,5vw,38px);margin-bottom:28px}
+.lead{max-width:34em;margin-bottom:28px}
+
+/* nav */
+nav{position:sticky;top:0;z-index:10;background:var(--banana);border-bottom:3px solid var(--ink);padding-top:env(safe-area-inset-top)}
+nav .wrap{display:flex;gap:6px 18px;align-items:center;justify-content:space-between;flex-wrap:wrap;padding-top:10px;padding-bottom:10px}
+nav b{font-family:'Dela Gothic One';font-weight:400}
+.brand{display:flex;align-items:center;gap:10px}
+.brand img{border-radius:50%;border:2px solid var(--ink);display:block}
+nav ul{list-style:none;display:flex;gap:16px;padding:0;font-weight:700;font-size:14px;flex-wrap:wrap}
+nav a{text-decoration:none}nav a:hover{text-decoration:underline}
+
+/* hero */
+.hero{background:var(--banana);padding:48px 0 0;overflow:hidden}
+.hero .wrap{display:grid;grid-template-columns:1.1fr .9fr;gap:20px;align-items:end}
+.hero h1{font-size:clamp(46px,10.5vw,104px);margin-bottom:18px}
+.hero p.tag{font-size:clamp(17px,2.6vw,22px);font-weight:700;max-width:21em;margin-bottom:24px}
+.hero img{width:100%;max-width:430px;justify-self:center;display:block;filter:drop-shadow(0 10px 0 rgba(27,26,23,.12))}
+.btns{display:flex;flex-wrap:wrap;gap:12px;margin-bottom:44px}
+.btn{display:inline-block;padding:13px 24px;border:3px solid var(--ink);border-radius:999px;font-weight:900;text-decoration:none;background:var(--white);transition:transform .15s,box-shadow .15s;box-shadow:0 4px 0 var(--ink)}
+.btn.dark{background:var(--ink);color:var(--banana)}
+.btn:hover{transform:translateY(-2px);box-shadow:0 6px 0 var(--ink)}
+.btn:active{transform:translateY(3px);box-shadow:0 1px 0 var(--ink)}
+@media(max-width:760px){.hero .wrap{grid-template-columns:1fr}.hero img{max-width:300px;order:-1}.hero{padding-top:28px}.btns{margin-bottom:28px}}
+
+.cta{background:var(--ink);color:var(--banana);padding:6px 16px;border-radius:999px}
+.himg{position:relative;justify-self:center;width:100%;max-width:430px}
+.himg img{max-width:100%}
+.badge{position:absolute;left:-6px;bottom:18%;width:112px;height:112px;border-radius:50%;background:var(--ink);color:var(--banana);display:grid;place-content:center;text-align:center;font-family:'Dela Gothic One';line-height:1.15;transform:rotate(-10deg);border:4px solid var(--white)}
+.badge b{font-weight:400;font-size:30px;display:block}.badge span{font-size:12px}
+@media(max-width:760px){.himg{max-width:300px;order:-1}.badge{width:92px;height:92px;left:0}.badge b{font-size:24px}}
+.guide{background:var(--cream);padding:32px 0;border-bottom:3px solid var(--ink)}
+.guide .wrap{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:18px}
+.gcard{display:block;text-decoration:none;background:var(--white);border:3px solid var(--ink);border-radius:var(--r);padding:18px 22px;box-shadow:0 5px 0 var(--ink);transition:transform .15s}
+.gcard:hover{transform:translateY(-3px)}
+.gcard small{display:block;font-weight:900;color:var(--brown)}
+.gcard strong{display:block;font-size:19px;line-height:1.4}
+.hl{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:16px;margin-bottom:34px}
+.hlc{display:block;text-decoration:none;background:var(--ink);color:var(--white);border-radius:var(--r);padding:20px 22px;transition:transform .15s}
+.hlc:hover{transform:translateY(-3px)}
+.hlc .c{background:var(--banana);color:var(--ink);font-size:12px;font-weight:900;border-radius:999px;padding:0 10px}
+.hlc time{font-family:'Dela Gothic One';color:var(--banana);margin-left:8px}
+.hlc strong{display:block;font-size:18px;line-height:1.5;margin:8px 0 6px}
+.hlc small{opacity:.7}
+.why{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:18px;margin-bottom:30px}
+.why div{background:var(--banana);border:3px solid var(--ink);border-radius:var(--r);padding:18px 22px}
+.why b{font-family:'Dela Gothic One';font-weight:400;font-size:19px;display:block;line-height:1.4}
+.why p{font-size:14.5px;margin-top:4px}
+.hid{color:var(--white);margin-top:36px;font-size:14.5px}
+.hid::selection,.hid *::selection{background:var(--ink);color:var(--banana)}
+/* stats */
+.stats{background:var(--ink);color:var(--white);padding:0}
+.stats .wrap{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:0}
+.stat{padding:26px 18px;border-left:2px solid #3a382f}
+.stat:first-child{border-left:0}
+.stat strong{display:block;font-family:'Dela Gothic One';font-weight:400;font-size:clamp(30px,5vw,44px);color:var(--banana);line-height:1.1}
+.stat span{font-size:13px;opacity:.85}
+.note{font-size:12px;opacity:.65;padding:0 20px 14px;max-width:1040px;margin:0 auto;color:#fff;background:var(--ink)}
+
+/* videos */
+.vgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:20px}
+.v{display:block;text-decoration:none;border:3px solid var(--ink);border-radius:var(--r);overflow:hidden;background:var(--white);box-shadow:0 5px 0 var(--ink);transition:transform .15s}
+.v:hover{transform:translateY(-3px)}
+.v img{width:100%;aspect-ratio:16/9;object-fit:cover;display:block;background:var(--cream)}
+.v div{padding:12px 16px 14px}
+.v small{display:inline-block;background:var(--banana);border-radius:999px;padding:0 10px;font-weight:700;font-size:12px;margin-bottom:4px}
+.v p{font-weight:700;line-height:1.5;font-size:15px}
+
+/* achievements */
+.tabs{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:22px}
+.tabs button{font:inherit;font-weight:700;padding:7px 16px;border:3px solid var(--ink);border-radius:999px;background:var(--white);cursor:pointer}
+.tabs button[aria-pressed=true]{background:var(--ink);color:var(--banana)}
+.ach{list-style:none;padding:0;border-top:3px solid var(--ink)}
+.ach li{border-bottom:2px solid var(--ink);padding:0}
+.ach a{display:grid;grid-template-columns:104px 84px 1fr;gap:6px 16px;align-items:baseline;padding:14px 6px;text-decoration:none}
+.ach a:hover{background:var(--cream)}
+.ach time{font-family:'Dela Gothic One';font-size:14px}
+.ach .c{font-size:12px;font-weight:900;background:var(--banana);border:2px solid var(--ink);border-radius:999px;text-align:center;padding:0 6px}
+.ach .t{font-weight:700;line-height:1.5}
+@media(max-width:600px){.ach a{grid-template-columns:auto 1fr}.ach .t{grid-column:1/-1}}
+/* services */
+.cream{background:var(--cream)}
+.svc{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:0;border:3px solid var(--ink);border-radius:var(--r);overflow:hidden;background:var(--white)}
+.svc div{padding:22px 22px 24px;border-left:3px solid var(--ink)}
+.svc div:first-child{border-left:0}
+.svc h3{font-size:19px;margin-bottom:6px}
+.svc p{font-size:14.5px}
+@media(max-width:560px){.svc div{border-left:0;border-top:3px solid var(--ink)}.svc div:first-child{border-top:0}}
+.works{margin-top:26px;display:grid;gap:10px}
+.works li{list-style:none;background:var(--white);border:3px solid var(--ink);border-radius:14px;padding:12px 18px;font-weight:700}
+.works li small{font-weight:400;display:block}
+.works:empty{display:none}
+
+/* characters / history */
+.chars{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:24px}
+.char{display:grid;grid-template-columns:130px 1fr;gap:18px;align-items:start}
+.char img{width:130px;border-radius:var(--r);background:var(--banana);border:3px solid var(--ink)}
+.char h3{font-size:20px}
+.char p{font-size:14.5px}
+.gal{margin-top:40px;display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:24px}
+.gal figure{border:3px solid var(--ink);border-radius:var(--r);overflow:hidden;background:var(--cream);box-shadow:0 5px 0 var(--ink)}
+.gal img{width:100%;height:auto;display:block}
+.gal figcaption{padding:10px 16px;font-weight:700;border-top:3px solid var(--ink);background:var(--white);font-size:14px}
+.hist{margin-top:44px;border-left:5px solid var(--banana);padding-left:22px;display:grid;gap:14px;max-width:640px}
+.hist b{font-family:'Dela Gothic One';font-weight:400;margin-right:10px}
+
+/* project */
+.fam{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:18px;margin-bottom:36px}
+.fam div{background:var(--white);border:3px solid var(--ink);border-radius:var(--r);padding:20px 22px;box-shadow:0 5px 0 var(--ink)}
+.fam h3{font-size:20px;line-height:1.3}
+.fam .r{font-weight:900;color:var(--brown);margin-top:2px}
+.fam p{font-size:14.5px;margin-top:4px}
+.pgal{margin-top:0}
+.pgal figure{background:var(--white)}
+/* games */
+.games{background:var(--banana);border-top:3px solid var(--ink);border-bottom:3px solid var(--ink)}
+.games .wrap{display:grid;grid-template-columns:1fr auto;gap:24px;align-items:center}
+.games h2{margin-bottom:10px}
+@media(max-width:700px){.games .wrap{grid-template-columns:1fr}}
+
+/* links */
+.links{display:flex;flex-wrap:wrap;gap:10px}
+.links a{padding:9px 18px;border:3px solid var(--ink);border-radius:999px;font-weight:700;text-decoration:none;background:var(--white)}
+.links a:hover{background:var(--banana)}
+details{margin-top:32px;border:3px solid var(--ink);border-radius:var(--r);padding:14px 20px;background:var(--white)}
+summary{cursor:pointer;font-weight:900}
+details p{margin-top:10px;font-size:14.5px}
+footer{background:var(--ink);color:var(--white);padding:28px 20px calc(28px + env(safe-area-inset-bottom));text-align:center;font-size:13px}
+
+@media(prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto!important}}
+</style>
+</head>
+<body>
+
+<nav><div class="wrap">
+  <b class="brand"><img src="images/icon.png" alt="" width="32" height="32">バーチャルバナナ</b>
+  <ul>
+    <li><a href="#videos">動画</a></li><li><a href="#achv">実績</a></li><li><a href="#work">お仕事</a></li><li><a href="#about">キャラ</a></li><li><a href="#games">ゲーム</a></li><li><a class="cta" href="#contact">お仕事の相談</a></li>
+  </ul>
+</div></nav>
+
+<header class="hero"><div class="wrap">
+  <div>
+    <h1>バーチャル<br>バナナ</h1>
+    <p class="tag">声真似レパートリー300超え。2018年から続けるVtuberが、企画・声・映像・ゲームまで一人で作ります。</p>
+    <div class="btns">
+      <a class="btn dark" href="https://www.youtube.com/@VirtualBa7" target="_blank" rel="noopener">YouTubeで動画を見る</a>
+      <a class="btn" href="https://www.tiktok.com/@virtualba7" target="_blank" rel="noopener">TikTok</a>
+      <a class="btn" href="#contact">お仕事の相談</a>
+    </div>
+  </div>
+  <div class="himg"><img src="images/hero.png" alt="バーチャルバナナのキャラクター" width="430" height="430"><div class="badge" aria-hidden="true"><b id="badgeyr"></b><span>活動歴</span></div></div>
+</div></header>
+
+<div class="guide"><div class="wrap">
+  <a class="gcard" href="#videos"><small>はじめて見る方へ</small><strong>まずは代表動画から。声真似・パロディ・オリジナル曲</strong></a>
+  <a class="gcard" href="#achv"><small>企業・制作のご依頼の方へ</small><strong>受賞・CM放映・メディア掲載の実績と、できること</strong></a>
+</div></div>
+
+<div class="stats"><div class="wrap" id="stats"></div></div>
+<p class="note" id="statnote"></p>
+
+<section id="videos"><div class="wrap">
+  <h2>まずはこの動画から</h2>
+  <p class="lead">声真似、パロディ、オリジナル曲。気になったものから見てください。</p>
+  <div class="vgrid" id="vgrid"></div>
+</div></section>
+
+<section id="achv"><div class="wrap">
+  <h2>受賞・出演・メディア実績</h2>
+  <p class="lead">すべて証拠リンク付きです。タップすると当時の記事や配信、投稿に飛べます。</p>
+  <div class="hl" id="hl"></div>
+  <div class="tabs" id="tabs" role="group" aria-label="実績の絞り込み"></div>
+  <ul class="ach" id="ach"></ul>
+</div></section>
+
+<section id="work" class="cream"><div class="wrap">
+  <h2>お仕事でできること</h2>
+  <div class="why">
+    <div><b>声真似300超え</b><p>多彩なレパートリーで、パロディ動画やボイス制作に対応します。</p></div>
+    <div><b>企画から制作まで一人で完結</b><p>声と映像の制作を担当し、活動は基本ワンオペ。やり取りがシンプルです。</p></div>
+    <div><b>2018年から続く実績</b><p>受賞、CM放映、メディア掲載。すべて証拠リンクで確認できます。</p></div>
+  </div>
+  <div class="svc">
+    <div><h3>声真似・ボイス提供</h3><p>SEやジングルなどのボイス収録、キャラクターボイスの制作。</p></div>
+    <div><h3>動画の企画・脚本・編集</h3><p>パロディ動画やYouTube講座動画を、企画から編集まで一人で作ります。</p></div>
+    <div><h3>Webゲーム・ツール制作</h3><p>スマホで遊べるブラウザゲームと便利ツールを制作。インストール不要です。</p></div>
+    <div><h3>イラスト・バナナアート</h3><p>バナナモチーフの画像や、SNS用の素材づくり。</p></div>
+  </div>
+  <ul class="works" id="works"></ul>
+</div></section>
+
+<section id="about"><div class="wrap">
+  <h2>キャラクターと歩み</h2>
+  <div class="chars">
+    <div class="char">
+      <img src="images/banana.png" alt="バーチャルバナナ" width="130" height="130" loading="lazy">
+      <div><h3>バーチャルバナナ</h3><p>バナナだから8～7歳。身長138cm（可変）。誕生日は8月7日、B型の男の娘です。声真似とパロディ動画を投稿しています。</p></div>
+    </div>
+    <div class="char">
+      <img src="images/kaoru.png" alt="芭蕉宮香" width="130" height="130" loading="lazy">
+      <div><h3>芭蕉宮香（ばしょうみや かおる）</h3><p>20歳、168cm。バナナくんの相方として、たまに動画に出ます。自チャンネルではシチュエーションボイスも投稿。</p></div>
+    </div>
+  </div>
+  <div class="gal">
+    <figure><img src="images/evolution.png" alt="バナナの写真から3Dモデル、現在のデザインへの進化" width="1280" height="720" loading="lazy"><figcaption>バーチャルバナナの進化（旧→新）</figcaption></figure>
+    <figure><a href="images/sanmen.png" target="_blank" rel="noopener"><img src="images/sanmen.png" alt="バーチャルバナナの三面図（正面・側面・背面）" width="1600" height="1208" loading="lazy"></a><figcaption>三面図（タップで拡大）</figcaption></figure>
+  </div>
+  <div class="hist">
+    <p><b id="years"></b>2018年3月、Vtuberとして活動開始</p>
+    <p><b>2021</b>以降、動画投稿を中心に活動中</p>
+    <p><b>今</b>YouTube、TikTok、Xで声真似とパロディを投稿。Webゲームも制作</p>
+  </div>
+</div></section>
+
+<section id="project" class="cream"><div class="wrap">
+  <h2>バーチャルバナナプロジェクト</h2>
+  <p class="lead">声と映像の制作を担当するプロデューサーを中心に、家族で続けているプロジェクトです。</p>
+  <div class="fam">
+    <div><h3>プロデューサー</h3><p class="r">声／映像制作担当</p><p>活動は基本ワンオペ</p></div>
+    <div><h3>妻</h3><p class="r">デザイン原案</p><p>バーチャルバナナのデザイン原案</p></div>
+    <div><h3>息子（子バナナ）</h3><p>我が家の宝</p></div>
+  </div>
+  <div class="gal pgal">
+    <figure><a href="images/project-characters.jpg" target="_blank" rel="noopener"><img src="images/project-characters.jpg" alt="プロデューサが担当するバーチャルキャラクター一覧：バーチャルバナナ、芭蕉宮香、バナナ農家のおじさん、活動初期バナナ ほか" width="1600" height="900" loading="lazy"></a><figcaption>プロデューサが担当するバーチャルキャラクター（タップで拡大）</figcaption></figure>
+    <figure><a href="images/project-credits.jpg" target="_blank" rel="noopener"><img src="images/project-credits.jpg" alt="キャラクターデザインのクレジット：英央様、マコミック様、吸血鬼様" width="1600" height="900" loading="lazy"></a><figcaption>キャラクターデザインのクレジット（タップで拡大）</figcaption></figure>
+  </div>
+</div></section>
+
+<section class="games" id="games"><div class="wrap">
+  <div>
+    <h2>作ったゲームで遊べます</h2>
+    <p>スマホですぐ遊べるブラウザゲーム8本と、便利ツール。タップするだけで始められます。</p>
+  </div>
+  <a class="btn dark" href="https://virtualbanana877.github.io/VirtualBananaArcade/">ゲーム屋台で遊ぶ</a>
+</div></section>
+
+<section id="contact"><div class="wrap">
+  <h2>お仕事のご相談・リンク</h2>
+  <p class="lead">ボイス提供、動画制作、ゲーム制作などのご相談は、X（旧Twitter）のDMからお気軽にどうぞ。ご依頼内容・納期・ご予算の目安を添えていただくとスムーズです。</p>
+  <div class="btns"><a class="btn dark" id="dm" href="https://x.com/VirtualBa7" target="_blank" rel="noopener">XのDMで相談する</a><a class="btn" href="https://www.foriio.com/virtualbanana/" target="_blank" rel="noopener">ポートフォリオを見る</a></div>
+  <div class="links">
+    <a href="https://www.youtube.com/@VirtualBa7" target="_blank" rel="noopener">YouTube</a>
+    <a href="https://x.com/VirtualBa7" target="_blank" rel="noopener">X</a>
+    <a href="https://www.tiktok.com/@virtualba7" target="_blank" rel="noopener">TikTok</a>
+    <a href="https://www.nicovideo.jp/user/85528988" target="_blank" rel="noopener">ニコニコ</a>
+    <a href="https://virtualbanana.booth.pm/" target="_blank" rel="noopener">BOOTH（グッズ）</a>
+    <a href="https://fanicon.net/fancommunities/3033" target="_blank" rel="noopener">fanicon（ファンコミュニティ）</a>
+    <a href="https://note.com/virtualba7" target="_blank" rel="noopener">note</a>
+  </div>
+  <div class="hid">
+    <p><b>二次創作のガイドライン</b></p>
+    <p>削除依頼をされた際に対応してくれる方であれば、二次創作は基本的に問題ありません。二次創作であることは明記してください。</p>
+    <p>R指定作品は、投稿場所の規約と見る人への配慮をお願いします。イラスト、MAD動画（音声を使用したものも含む）も問題ありません。報告も不要です。二次創作をした時点で、以上に同意したものとみなします。</p>
+    <p>ハッシュタグ: #バーチャルバナナ ／ イラスト: #バーチャルバナナ農園</p>
+    <p>R-18イラスト: #夜のバーチャルバナナ農園</p>
+  </div>
+</div></section>
+
+<footer>© 2018– バーチャルバナナ</footer>
+
+<script>
+/* ========== ここだけ編集すればOK ========== */
+const CONFIG = {
+  ytKey: "AIzaSyCk4G7a21N1xPVonXuJH_DrquW5PeP8bsU",                         // YouTube Data API v3 のキー（空なら下の手入力値を使用）
+  xUserId: "",                       // XのユーザーID（数字）。入れるとDMの作成画面に直接飛びます。空ならプロフィールに飛びます
+  ytChannelId: "UCF-VYfBjb7uupcdELrrB58A",
+  debut: "2018-03",
+  // 手入力の数字（nullなら非表示）。YouTubeはキーを入れると自動取得されます
+  manual: { ytSubs: "6,000+", ytViews: null, tiktok: "4,500+", x: "11,000+" },  // 暫定のぼかし値。数字でも文字列でもOK
+  extraStats: [                      // 好きなだけ追加（受賞・CM・掲載の件数は実績リストから自動計算）
+    { n: "300+", l: "声真似レパートリー" }
+  ],
+  achievements: [
+    { d:"2026-08-29", s:1, c:"受賞", t:"メタコミアワード 2026「ショート動画コンテスト」受賞", u:"https://metacomi.net/contests/award.html" },
+    { d:"2025-03-08", s:1, c:"受賞", t:"BlitzMe 第40回 毎週賞レース 1位", u:"https://x.com/BlitzMeOfficial/status/1898345722459906089" },
+    { d:"2024-08-17", c:"出演", t:"そらのうえショッピングモールミュージック夏フェス 出演", u:"https://x.com/VirtualBa7/status/1822141255452606912" },
+    { d:"2024-01-23", c:"出演", t:"あつまれ！ばーちゃる！Vol.14 ゲームコーナー出演", u:"https://live.nicovideo.jp/watch/lv343621239" },
+    { d:"2023-12-12", c:"受賞", t:"あつまればーちゃる祭 2023秋 動画投稿祭 スタッフイチオシ賞", u:"https://live.nicovideo.jp/watch/lv343421323" },
+    { d:"2023-10-29", s:1, c:"CM放映", t:"3D LIVE『東雲めぐのすーぱーはっぴーふりーだむ！』でCM放映", u:"https://www.youtube.com/watch?v=PsNPq-pA9UQ" },
+    { d:"2023-08-15", c:"出演", t:"あつまれ！ばーちゃる！Vol.9 ゲームコーナー出演", u:"https://live.nicovideo.jp/watch/lv341929390" },
+    { d:"2023-06-24", c:"CM放映", t:"イベント中にCM放映", u:"https://www.stream-ticket.com/events/detail/941.html" },
+    { d:"2023-04-28", l:"2023.04.28–05.14", c:"CM放映", t:"イベント期間中にCM放映", u:"https://x.com/gamebarGlueck/status/1635942457853739012" },
+    { d:"2022-06-25", c:"CM放映", t:"インサイド「ちゃんずの家らじ！」でCM放映", u:"https://www.youtube.com/watch?v=Y6LaziRBQcI" },
+    { d:"2021-12-21", c:"出演", t:"VTuberを発掘せよ3 出演", u:"https://www.youtube.com/live/TvkQu-AUgeI" },
+    { d:"2021-06-13", c:"メディア", t:"MoguraVR の週間VTuberまとめで紹介", u:"https://www.moguravr.com/vtuber-weekly-21-6-2/" },
+    { d:"2021-05-05", c:"CM放映", t:"ぽんぽこ24 Vol.5 でCM放映", u:"https://www.youtube.com/live/UTiu6-_G9fE?t=6645" },
+    { d:"2019-08-15", c:"CM放映", t:"ぽんぽこ24 Vol.3 でCM放映", u:"https://www.youtube.com/live/HRO5Ntjf8RQ?t=21508" },
+    { d:"2019-08-11", c:"メディア", t:"MoguraVR の週間VTuberまとめで紹介", u:"https://www.moguravr.com/vtuber-weekly-19-8-2/" },
+    { d:"2019-05-12", c:"CM放映", t:"CMが放映", u:"https://x.com/VirtualBa7/status/1127484931288883200" },
+    { d:"2018-12-02", c:"メディア", t:"VTuber Post で紹介", u:"https://vtuber-post.com/news/1244" },
+    { d:"2018-10-12", c:"メディア", t:"panora で紹介", u:"https://panora.tokyo/76707/" }
+  ],
+  // お仕事実績。空のままなら表示されません
+  works: [
+    // { title: "◯◯様 SEボイス収録", note: "2025年" },
+  ],
+  videos: [
+    { id: "akBp5lKW7ho", tag: "パロディ", title: "ピンを抜くゲーム広告のパロディ" },
+    { id: "W8eW7kEE-LQ", tag: "パロディ", title: "Youtubeでよく見る漫画の広告" },
+    { id: "xpB0ZNW6l3w", tag: "オリジナル曲", title: "オリジナル曲" },
+    { id: "N8p06Cq7fqs", tag: "講座", title: "講座動画" },
+    { id: "PwBh4UhAnnU", tag: "ピックアップ", title: "バーチャルバナナの動画" }
+  ]
+};
+/* ========================================== */
+
+const fmt = n => typeof n === "string" ? n : n >= 10000 ? (n/10000).toFixed(n>=100000?0:1).replace(/\.0$/,'') + "万" : n.toLocaleString("ja-JP");
+const $ = s => document.querySelector(s);
+
+// 活動年数
+(function(){
+  const [y,m] = CONFIG.debut.split("-").map(Number), now = new Date();
+  let yrs = now.getFullYear() - y - (now.getMonth()+1 < m ? 1 : 0);
+  $("#years").textContent = yrs + "年目"; $("#badgeyr").textContent = yrs + "年";
+})();
+
+// 動画
+$("#vgrid").innerHTML = CONFIG.videos.map(v =>
+  `<a class="v" href="https://www.youtube.com/watch?v=${v.id}" target="_blank" rel="noopener">
+     <img src="https://i.ytimg.com/vi/${v.id}/hqdefault.jpg" alt="" loading="lazy">
+     <div><small>${v.tag}</small><p>${v.title}</p></div></a>`).join("");
+
+// 実績
+$("#works").innerHTML = CONFIG.works.map(w =>
+  `<li>${w.title}${w.note ? `<small>${w.note}</small>` : ""}</li>`).join("");
+
+// 数字
+async function loadStats(){
+  const m = {...CONFIG.manual};
+  let live = false;
+  if (CONFIG.ytKey) {
+    try {
+      const r = await fetch(`https://www.googleapis.com/youtube/v3/channels?part=statistics&id=${CONFIG.ytChannelId}&key=${CONFIG.ytKey}`);
+      const s = (await r.json()).items?.[0]?.statistics;
+      if (s) { if (!s.hiddenSubscriberCount) m.ytSubs = +s.subscriberCount; m.ytViews = +s.viewCount; live = true; }
+    } catch(e) { /* 失敗時は手入力値を表示 */ }
+  }
+  const items = [];
+  if (m.ytSubs != null)  items.push({ n: fmt(m.ytSubs),  l: "YouTube登録者" });
+  if (m.ytViews != null) items.push({ n: fmt(m.ytViews), l: "YouTube総再生数" });
+  if (m.tiktok != null)  items.push({ n: fmt(m.tiktok),  l: "TikTokフォロワー" });
+  if (m.x != null)       items.push({ n: fmt(m.x),       l: "Xフォロワー" });
+  items.push(...CONFIG.extraStats);
+  const cnt = c => CONFIG.achievements.filter(a => a.c === c).length;
+  items.push({ n: cnt("受賞") + "回", l: "受賞・入賞" }, { n: cnt("CM放映") + "回", l: "CM放映" }, { n: cnt("メディア") + "件", l: "メディア掲載" });
+  $("#stats").innerHTML = items.map(i => `<div class="stat"><strong>${i.n}</strong><span>${i.l}</span></div>`).join("");
+  $("#statnote").textContent = live ? "YouTubeの数字はページを開いた時点の最新値です。" : "";
+}
+loadStats();
+$("#dm").href = CONFIG.xUserId ? `https://x.com/messages/compose?recipient_id=${CONFIG.xUserId}` : "https://x.com/VirtualBa7";
+
+// 実績リスト（絞り込み付き）
+(function(){
+  const list = CONFIG.achievements.slice().sort((a,b) => b.d.localeCompare(a.d));
+  $("#hl").innerHTML = list.filter(a => a.s).map(a => `<a class="hlc" href="${a.u}" target="_blank" rel="noopener"><span class="c">${a.c}</span><time datetime="${a.d}">${a.d.slice(0,4)}</time><strong>${a.t}</strong><small>リンクを開く</small></a>`).join("");
+  const cats = ["すべて", ...new Set(list.map(a => a.c))];
+  let cur = "すべて";
+  const draw = () => {
+    $("#tabs").innerHTML = cats.map(c => `<button type="button" aria-pressed="${c===cur}" data-c="${c}">${c}</button>`).join("");
+    $("#ach").innerHTML = list.filter(a => cur === "すべて" || a.c === cur).map(a =>
+      `<li><a href="${a.u}" target="_blank" rel="noopener"><time datetime="${a.d}">${a.l || a.d.replace(/-/g,".")}</time><span class="c">${a.c}</span><span class="t">${a.t}</span></a></li>`).join("");
+  };
+  $("#tabs").addEventListener("click", e => { const b = e.target.closest("button"); if (b) { cur = b.dataset.c; draw(); } });
+  draw();
+})();
+</script>
+</body>
+</html>
