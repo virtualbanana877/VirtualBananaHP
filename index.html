@@ -4,14 +4,14 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>バーチャルバナナ｜声真似Vtuber 公式サイト</title>
-<meta name="description" content="声真似・パロディ動画を軸に、バナナアート、オリジナル曲、Webゲーム・Webサイト制作まで幅広く手がけるVTuber。ボイス提供や動画制作のご相談も受け付けています。">
+<meta name="description" content="300以上の声真似＆パロディを毎日投稿する、バナナ系マルチVTuber。動画制作・オリジナル曲・Webゲーム・サイト制作まで幅広く手がけています。">
 <meta property="og:title" content="バーチャルバナナ｜声真似Vtuber 公式サイト">
 <meta property="og:site_name" content="バーチャルバナナ">
 <meta name="twitter:title" content="バーチャルバナナ｜声真似Vtuber 公式サイト">
 <meta property="og:type" content="website">
 <meta property="og:image" content="https://virtualbanana877.github.io/VirtualBananaHP/images/ogp.png">
 <meta name="twitter:image" content="https://virtualbanana877.github.io/VirtualBananaHP/images/ogp.png">
-<meta property="og:description" content="声真似・パロディ動画を軸に、バナナアート、オリジナル曲、Webゲーム・Webサイト制作まで幅広く手がけるVTuber。">
+<meta property="og:description" content="300以上の声真似＆パロディを毎日投稿する、バナナ系マルチVTuber。動画・オリジナル曲・Webゲーム制作まで幅広く対応。">
 <meta name="twitter:card" content="summary_large_image">
 <link rel="icon" type="image/png" href="images/icon.png">
 <link rel="apple-touch-icon" href="images/apple-touch-icon.png">
@@ -45,11 +45,12 @@ nav a{text-decoration:none}nav a:hover{text-decoration:underline}
 .hero{background:var(--banana);padding:48px 0 0;overflow:hidden}
 .hero .wrap{display:grid;grid-template-columns:1.1fr .9fr;gap:20px;align-items:end}
 .hero h1{font-size:clamp(46px,10.5vw,104px);margin-bottom:18px}
-.hero p.tag{font-size:clamp(17px,2.6vw,22px);font-weight:700;max-width:21em;margin-bottom:24px}
+.hero p.tag{font-size:clamp(17px,2.6vw,22px);font-weight:700;max-width:24em;margin-bottom:24px}
 .hero img{width:100%;max-width:430px;justify-self:center;display:block;filter:drop-shadow(0 10px 0 rgba(27,26,23,.12))}
 .btns{display:flex;flex-wrap:wrap;gap:12px;margin-bottom:44px}
-.btn{display:inline-block;padding:13px 24px;border:3px solid var(--ink);border-radius:999px;font-weight:900;text-decoration:none;background:var(--white);transition:transform .15s,box-shadow .15s;box-shadow:0 4px 0 var(--ink)}
+.btn{display:inline-block;padding:13px 24px;border:3px solid var(--ink);border-radius:999px;font-weight:900;text-decoration:none;background:var(--white);transition:transform .15s,box-shadow .15s;box-shadow:0 4px 0 var(--ink);cursor:pointer;font-family:inherit;font-size:15px}
 .btn.dark{background:var(--ink);color:var(--banana)}
+.btn.sm{padding:9px 18px;font-size:14px}
 .btn:hover{transform:translateY(-2px);box-shadow:0 6px 0 var(--ink)}
 .btn:active{transform:translateY(3px);box-shadow:0 1px 0 var(--ink)}
 @media(max-width:760px){.hero .wrap{grid-template-columns:1fr}.hero img{max-width:300px;order:-1}.hero{padding-top:28px}.btns{margin-bottom:28px}}
@@ -57,21 +58,15 @@ nav a{text-decoration:none}nav a:hover{text-decoration:underline}
 .cta{background:var(--ink);color:var(--banana);padding:6px 16px;border-radius:999px}
 .himg{position:relative;justify-self:center;width:100%;max-width:430px}
 .himg img{max-width:100%}
-.nums{display:flex;flex-wrap:wrap;gap:10px;margin:0 0 24px}
-.num{background:var(--ink);color:var(--white);border-radius:18px;padding:10px 18px 8px}
-.num b{display:block;font-family:'Dela Gothic One';font-weight:400;font-size:clamp(30px,6vw,46px);line-height:1.1;color:var(--banana)}
-.num span{font-size:12px;font-weight:700}
-.num.sm{background:var(--white);color:var(--ink);border:3px solid var(--ink)}
-.num.sm b{font-size:clamp(22px,4vw,30px);color:var(--ink)}
-.badge{display:none;position:absolute;left:-6px;bottom:18%;width:112px;height:112px;border-radius:50%;background:var(--ink);color:var(--banana);display:grid;place-content:center;text-align:center;font-family:'Dela Gothic One';line-height:1.15;transform:rotate(-10deg);border:4px solid var(--white)}
-.badge b{font-weight:400;font-size:30px;display:block}.badge span{font-size:12px}
-@media(max-width:760px){.himg{max-width:300px;order:-1}.badge{width:92px;height:92px;left:0}.badge b{font-size:24px}}
+@media(max-width:760px){.himg{max-width:300px;order:-1}}
+
 .guide{background:var(--cream);padding:32px 0;border-bottom:3px solid var(--ink)}
 .guide .wrap{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:18px}
 .gcard{display:block;text-decoration:none;background:var(--white);border:3px solid var(--ink);border-radius:var(--r);padding:18px 22px;box-shadow:0 5px 0 var(--ink);transition:transform .15s}
 .gcard:hover{transform:translateY(-3px)}
 .gcard small{display:block;font-weight:900;color:var(--brown)}
 .gcard strong{display:block;font-size:19px;line-height:1.4}
+
 .hl{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:16px;margin-bottom:34px}
 .hlc{display:block;text-decoration:none;background:var(--ink);color:var(--white);border-radius:var(--r);padding:20px 22px;transition:transform .15s}
 .hlc:hover{transform:translateY(-3px)}
@@ -79,12 +74,16 @@ nav a{text-decoration:none}nav a:hover{text-decoration:underline}
 .hlc time{font-family:'Dela Gothic One';color:var(--banana);margin-left:8px}
 .hlc strong{display:block;font-size:18px;line-height:1.5;margin:8px 0 6px}
 .hlc small{opacity:.7}
+
 .why{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:18px;margin-bottom:30px}
 .why div{background:var(--banana);border:3px solid var(--ink);border-radius:var(--r);padding:18px 22px}
 .why b{font-family:'Dela Gothic One';font-weight:400;font-size:19px;display:block;line-height:1.4}
 .why p{font-size:14.5px;margin-top:4px}
-.hid{color:var(--white);margin-top:36px;font-size:14.5px}
+
+/* 隠し文字（仕様維持） */
+.hid{color:var(--white);margin-top:14px;font-size:14.5px}
 .hid::selection,.hid *::selection{background:var(--ink);color:var(--banana)}
+
 /* stats */
 .stats{background:var(--ink);color:var(--white);padding:0}
 .stats .wrap{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:0}
@@ -123,30 +122,35 @@ nav a{text-decoration:none}nav a:hover{text-decoration:underline}
 .ach time{font-family:'Dela Gothic One';font-size:14px}
 .ach .c{font-size:12px;font-weight:900;background:var(--banana);border:2px solid var(--ink);border-radius:999px;text-align:center;padding:0 6px}
 .ach .t{font-weight:700;line-height:1.5}
+.more-wrap{margin-top:18px;text-align:center}
 @media(max-width:600px){.ach a{grid-template-columns:auto 1fr}.ach .t{grid-column:1/-1}}
+
 .intro{display:grid;grid-template-columns:auto 1fr;gap:28px;align-items:center;margin-bottom:36px}
 .intro iframe{width:260px;aspect-ratio:9/16;border:3px solid var(--ink);border-radius:var(--r);box-shadow:0 5px 0 var(--ink);background:var(--cream)}
 .intro small{display:inline-block;background:var(--banana);border-radius:999px;padding:0 12px;font-weight:900;font-size:13px}
 .intro p{font-weight:700;font-size:18px;line-height:1.6;margin:8px 0 18px;max-width:22em}
 @media(max-width:620px){.intro{grid-template-columns:1fr;justify-items:center;text-align:center}.intro iframe{width:min(260px,100%)}}
+
 .pl{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:14px;margin-bottom:30px}
 .plc{display:block;text-decoration:none;background:var(--banana);border:3px solid var(--ink);border-radius:var(--r);padding:14px 18px;box-shadow:0 4px 0 var(--ink);transition:transform .15s}
 .plc:hover{transform:translateY(-3px)}
 .plc strong{display:block;font-size:18px;line-height:1.4}
 .plc small{font-weight:700;opacity:.75}
-#about .gal figure{background:var(--white)}
+
 #streak{padding-bottom:24px}
 .streakbox{display:grid;grid-template-columns:auto 1fr;gap:10px 32px;align-items:center;border:3px solid var(--ink);border-radius:var(--r);padding:26px 30px;background:var(--banana);box-shadow:0 5px 0 var(--ink);margin-bottom:30px}
 .streakbox .n{font-family:'Dela Gothic One';font-size:clamp(24px,5vw,48px);line-height:1.1;white-space:nowrap}
 .streakbox p{font-weight:700;font-size:17px;line-height:1.7}
 .streakbox p+p{font-weight:500;font-size:15px}
 @media(max-width:620px){.streakbox{grid-template-columns:1fr;padding:22px}}
+
 .hits{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:16px}
 .hit{display:block;text-decoration:none;background:var(--ink);color:var(--white);border-radius:var(--r);padding:18px 22px;transition:transform .15s}
 .hit:hover{transform:translateY(-3px)}
 .hit small{background:var(--banana);color:var(--ink);font-weight:900;font-size:12px;border-radius:999px;padding:0 10px}
 .hit strong{display:block;font-family:'Dela Gothic One';font-weight:400;font-size:22px;color:var(--banana);margin:8px 0 2px}
 .hit span{font-size:13px;opacity:.8}
+
 .acts{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:16px}
 .act{background:var(--white);border:3px solid var(--ink);border-radius:var(--r);padding:18px 20px 16px}
 .act h3{font-size:18px;line-height:1.4}
@@ -154,14 +158,9 @@ nav a{text-decoration:none}nav a:hover{text-decoration:underline}
 .act a{font-weight:700;font-size:14px}
 .ok{display:inline-block;background:var(--banana);border:2px solid var(--ink);border-radius:999px;font-size:11px;font-weight:900;padding:0 10px;margin-top:8px}
 .why a{font-weight:700}
+
 /* services */
 .cream{background:var(--cream)}
-.svc{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:0;border:3px solid var(--ink);border-radius:var(--r);overflow:hidden;background:var(--white)}
-.svc div{padding:22px 22px 24px;border-left:3px solid var(--ink)}
-.svc div:first-child{border-left:0}
-.svc h3{font-size:19px;margin-bottom:6px}
-.svc p{font-size:14.5px}
-@media(max-width:560px){.svc div{border-left:0;border-top:3px solid var(--ink)}.svc div:first-child{border-top:0}}
 .works{margin-top:26px;display:grid;gap:10px}
 .works li{list-style:none;background:var(--white);border:3px solid var(--ink);border-radius:14px;padding:12px 18px;font-weight:700}
 .works li small{font-weight:400;display:block}
@@ -173,32 +172,39 @@ nav a{text-decoration:none}nav a:hover{text-decoration:underline}
 .char img{width:130px;border-radius:var(--r);background:var(--banana);border:3px solid var(--ink)}
 .char h3{font-size:20px}
 .char p{font-size:14.5px}
-.gal{margin-top:40px;display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:24px}
-.gal figure{border:3px solid var(--ink);border-radius:var(--r);overflow:hidden;background:var(--cream);box-shadow:0 5px 0 var(--ink)}
-.gal img{width:100%;height:auto;display:block}
-.gal figure.tall img{width:auto;max-height:520px;margin:0 auto;padding:12px 0}
-.gal figcaption{padding:10px 16px;font-weight:700;border-top:3px solid var(--ink);background:var(--white);font-size:14px}
-.hist{margin-top:44px;border-left:5px solid var(--banana);padding-left:22px;display:grid;gap:14px;max-width:640px}
+
+.gal-box{margin-top:36px}
+.gal-tabs{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:16px}
+.gal-tabs button{font:inherit;font-weight:700;padding:7px 16px;border:3px solid var(--ink);border-radius:999px;background:var(--white);cursor:pointer}
+.gal-tabs button[aria-selected=true]{background:var(--ink);color:var(--banana)}
+.gal-panel figure{max-width:760px;border:3px solid var(--ink);border-radius:var(--r);overflow:hidden;background:var(--white);box-shadow:0 5px 0 var(--ink)}
+.gal-panel img{width:100%;height:auto;display:block}
+.gal-panel figure.tall img{width:auto;max-width:100%;max-height:520px;margin:0 auto;padding:12px 0}
+.gal-panel figcaption{padding:10px 16px;font-weight:700;border-top:3px solid var(--ink);background:var(--white);font-size:14px}
+
+.hist{margin-top:40px;border-left:5px solid var(--banana);padding-left:22px;display:grid;gap:14px;max-width:640px}
 .hist b{font-family:'Dela Gothic One';font-weight:400;margin-right:10px}
 
 /* project */
 .fig-fam{max-width:780px;margin:0 auto 36px;border:3px solid var(--ink);border-radius:var(--r);overflow:hidden;background:var(--white);box-shadow:0 5px 0 var(--ink)}
 .fig-fam img{display:block;width:100%}
-.pgal{margin-top:0}
-.pgal figure{background:var(--white)}
+.pgal{margin-top:0;display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:24px}
+.pgal figure{border:3px solid var(--ink);border-radius:var(--r);overflow:hidden;background:var(--white);box-shadow:0 5px 0 var(--ink)}
+.pgal img{width:100%;height:auto;display:block}
+.pgal figcaption{padding:10px 16px;font-weight:700;border-top:3px solid var(--ink);background:var(--white);font-size:14px}
+
 /* games */
 .games{background:var(--banana);border-top:3px solid var(--ink);border-bottom:3px solid var(--ink)}
 .games .wrap{display:grid;grid-template-columns:1fr auto;gap:24px;align-items:center}
 .games h2{margin-bottom:10px}
 @media(max-width:700px){.games .wrap{grid-template-columns:1fr}}
 
-/* links */
+/* links & details */
 .links{display:flex;flex-wrap:wrap;gap:10px}
 .links a{padding:9px 18px;border:3px solid var(--ink);border-radius:999px;font-weight:700;text-decoration:none;background:var(--white)}
 .links a:hover{background:var(--banana)}
-details{margin-top:32px;border:3px solid var(--ink);border-radius:var(--r);padding:14px 20px;background:var(--white)}
+details{margin-top:28px;border:3px solid var(--ink);border-radius:var(--r);padding:14px 20px;background:var(--white)}
 summary{cursor:pointer;font-weight:900}
-details p{margin-top:10px;font-size:14.5px}
 footer{background:var(--ink);color:var(--white);padding:28px 20px calc(28px + env(safe-area-inset-bottom));text-align:center;font-size:13px}
 
 @media(prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto!important}}
@@ -216,7 +222,7 @@ footer{background:var(--ink);color:var(--white);padding:28px 20px calc(28px + en
 <header class="hero"><div class="wrap">
   <div>
     <h1>バーチャル<br>バナナ</h1>
-    <p class="tag">2018年に活動を開始。声真似・パロディを軸に、動画制作・バナナアート・オリジナル曲・Webゲームやサイト制作まで幅広く手がけるVTuberです。</p>
+    <p class="tag">300以上の声真似＆パロディを毎日投稿する、バナナ系マルチVTuber。動画・オリジナル曲・Webゲーム制作まで、ぜんぶひとりで楽しんでいます。</p>
     <div class="btns">
       <a class="btn dark" href="https://www.youtube.com/@VirtualBa7" target="_blank" rel="noopener">YouTubeで動画を見る</a>
       <a class="btn" href="https://www.tiktok.com/@virtualba7" target="_blank" rel="noopener">TikTok</a>
@@ -261,6 +267,7 @@ footer{background:var(--ink);color:var(--white);padding:28px 20px calc(28px + en
   <div class="hl" id="hl"></div>
   <div class="tabs" id="tabs" role="group" aria-label="実績の絞り込み"></div>
   <ul class="ach" id="ach"></ul>
+  <div class="more-wrap" id="achMoreWrap"></div>
 </div></section>
 
 <section id="work" class="cream"><div class="wrap">
@@ -288,7 +295,7 @@ footer{background:var(--ink);color:var(--white);padding:28px 20px calc(28px + en
   <h2>バーチャルバナナプロジェクト</h2>
   <p class="lead">声と映像の制作を担当するプロデューサーを中心に、家族で動かしているプロジェクトです。</p>
   <figure class="fig-fam"><a href="images/project-family.png" target="_blank" rel="noopener"><img src="images/project-family.png" alt="バーチャルバナナプロジェクトの体制図：プロデューサー（声・映像制作担当、活動は基本ワンオペ）、妻（バーチャルバナナのデザイン原案）、息子（子バナナ）我が家の宝" width="1600" height="900" loading="lazy"></a></figure>
-  <div class="gal pgal">
+  <div class="pgal">
     <figure><a href="images/project-characters.jpg" target="_blank" rel="noopener"><img src="images/project-characters.jpg" alt="プロデューサが担当するバーチャルキャラクター一覧：バーチャルバナナ、芭蕉宮香、バナナ農家のおじさん、活動初期バナナ ほか" width="1600" height="900" loading="lazy"></a><figcaption>プロデューサが担当するバーチャルキャラクター（タップで拡大）</figcaption></figure>
     <figure><a href="images/project-credits.jpg" target="_blank" rel="noopener"><img src="images/project-credits.jpg" alt="キャラクターデザインのクレジット：英央様、マコミック様、吸血鬼様" width="1600" height="900" loading="lazy"></a><figcaption>キャラクターデザインのクレジット（タップで拡大）</figcaption></figure>
   </div>
@@ -306,11 +313,29 @@ footer{background:var(--ink);color:var(--white);padding:28px 20px calc(28px + en
       <div><h3>芭蕉宮香（ばしょうみや かおる）</h3><p>20歳、168cm。バナナくんの相方として、たまに動画に出ます。自チャンネルではシチュエーションボイスも投稿。</p></div>
     </div>
   </div>
-  <div class="gal">
-    <figure><img src="images/evolution.png" alt="バナナの写真から3Dモデル、現在のデザインへの進化" width="1280" height="720" loading="lazy"><figcaption>バーチャルバナナの進化（旧→新）</figcaption></figure>
-    <figure class="tall"><img src="images/model3d.png" alt="バーチャルバナナの3Dモデル（正面）" width="392" height="1100" loading="lazy"><figcaption>3Dモデル</figcaption></figure>
-    <figure><a href="images/sanmen.png" target="_blank" rel="noopener"><img src="images/sanmen.png" alt="バーチャルバナナの三面図（正面・側面・背面）" width="1600" height="1208" loading="lazy"></a><figcaption>三面図（タップで拡大）</figcaption></figure>
+
+  <div class="gal-box">
+    <div class="gal-tabs" role="tablist" aria-label="キャラクタービジュアル切り替え">
+      <button type="button" role="tab" aria-selected="true" data-gal="evolution">進化（旧→新）</button>
+      <button type="button" role="tab" aria-selected="false" data-gal="model3d">3Dモデル</button>
+      <button type="button" role="tab" aria-selected="false" data-gal="sanmen">三面図</button>
+    </div>
+    <div class="gal-panel" id="galPanel">
+      <figure id="fig-evolution">
+        <img src="images/evolution.png" alt="バナナの写真から3Dモデル、現在のデザインへの進化" width="1280" height="720" loading="lazy">
+        <figcaption>バーチャルバナナの進化（旧→新）</figcaption>
+      </figure>
+      <figure class="tall" id="fig-model3d" hidden>
+        <img src="images/model3d.png" alt="バーチャルバナナの3Dモデル（正面）" width="392" height="1100" loading="lazy">
+        <figcaption>3Dモデル</figcaption>
+      </figure>
+      <figure id="fig-sanmen" hidden>
+        <a href="images/sanmen.png" target="_blank" rel="noopener"><img src="images/sanmen.png" alt="バーチャルバナナの三面図（正面・側面・背面）" width="1600" height="1208" loading="lazy"></a>
+        <figcaption>三面図（タップで拡大）</figcaption>
+      </figure>
+    </div>
   </div>
+
   <div class="hist">
     <p><b>2018.03</b>Vtuberとして活動開始</p>
     <p><b>2023.02</b>毎日ショート動画の投稿を開始</p>
@@ -339,13 +364,17 @@ footer{background:var(--ink);color:var(--white);padding:28px 20px calc(28px + en
     <a href="https://fanicon.net/fancommunities/3033" target="_blank" rel="noopener">fanicon（ファンコミュニティ）</a>
     <a href="https://note.com/virtualba7" target="_blank" rel="noopener">note</a>
   </div>
-  <div class="hid">
-    <p><b>二次創作のガイドライン</b></p>
-    <p>削除依頼をされた際に対応してくれる方であれば、二次創作は基本的に問題ありません。二次創作であることは明記してください。</p>
-    <p>R指定作品は、投稿場所の規約と見る人への配慮をお願いします。イラスト、MAD動画（音声を使用したものも含む）も問題ありません。報告も不要です。二次創作をした時点で、以上に同意したものとみなします。</p>
-    <p>ハッシュタグ: #バーチャルバナナ ／ イラスト: #バーチャルバナナ農園</p>
-    <p>R-18イラスト: #夜のバーチャルバナナ農園</p>
-  </div>
+
+  <details>
+    <summary>二次創作のガイドライン</summary>
+    <div class="hid">
+      <p><b>二次創作のガイドライン</b></p>
+      <p>削除依頼をされた際に対応してくれる方であれば、二次創作は基本的に問題ありません。二次創作であることは明記してください。</p>
+      <p>R指定作品は、投稿場所の規約と見る人への配慮をお願いします。イラスト、MAD動画（音声を使用したものも含む）も問題ありません。報告も不要です。二次創作をした時点で、以上に同意したものとみなします。</p>
+      <p>ハッシュタグ: #バーチャルバナナ ／ イラスト: #バーチャルバナナ農園</p>
+      <p>R-18イラスト: #夜のバーチャルバナナ農園</p>
+    </div>
+  </details>
 </div></section>
 
 <footer>© 2018– バーチャルバナナ</footer>
@@ -353,20 +382,19 @@ footer{background:var(--ink);color:var(--white);padding:28px 20px calc(28px + en
 <script>
 /* ========== ここだけ編集すればOK ========== */
 const CONFIG = {
-  ytKey: "AIzaSyCk4G7a21N1xPVonXuJH_DrquW5PeP8bsU",                         // YouTube Data API v3 のキー（空なら下の手入力値を使用）
-  xUserId: "",                       // XのユーザーID（数字）。入れるとDMの作成画面に直接飛びます。空ならプロフィールに飛びます
+  ytKey: "AIzaSyCk4G7a21N1xPVonXuJH_DrquW5PeP8bsU",
+  xUserId: "",
   ytChannelId: "UCF-VYfBjb7uupcdELrrB58A",
   debut: "2018-03",
-  // 手入力の数字（nullなら非表示）。YouTubeはキーを入れると自動取得されます
-  manual: { ytSubs: "6,341", ytViews: "369万", tiktok: "4,610", x: "11,800" },  // YouTubeはAPI取得に失敗した時の予備値。TikTok・Xは手入力（更新したら下の日付も変更）
+  manual: { ytSubs: "6,341", ytViews: "369万", tiktok: "4,610", x: "11,800" },
   manualAsOf: "2026年11月",
-  extraStats: [                      // トップの数字エリア上段。hot:true は強調表示
+  extraStats: [
     { n: "300+",   l: "声真似レパートリー" },
     { n: "1,300+", l: "毎日ショート動画投稿", hot: true },
     { n: "2018",   l: "VTuber活動開始" }
   ],
-  streak: { since: "2023-02-25" },                 // 毎日ショート動画投稿の開始日（画面の数字は固定の「1,300+」。日数の自動計算は使っていません）
-  tiktokHits: [                                    // views に "12万" のように入れると再生数も表示、note で一言追加
+  streak: { since: "2023-02-25" },
+  tiktokHits: [
     { url: "https://www.tiktok.com/@virtualba7/video/7642997380358606101", date: "2026-05-23", views: null, note: "" },
     { url: "https://www.tiktok.com/@virtualba7/video/7593501218035666197", date: "2026-01-10", views: null, note: "" },
     { url: "https://www.tiktok.com/@virtualba7/video/7582886528498535701", date: "2025-12-12", views: null, note: "" }
@@ -391,10 +419,7 @@ const CONFIG = {
     { d:"2018-12-02", c:"メディア", t:"VTuber Post で紹介", u:"https://vtuber-post.com/news/1244" },
     { d:"2018-10-12", c:"メディア", t:"panora で紹介", u:"https://panora.tokyo/76707/" }
   ],
-  // お仕事実績。空のままなら表示されません
-  works: [
-    // { title: "◯◯様 SEボイス収録", note: "2025年" },
-  ],
+  works: [],
   videos: [
     { id: "akBp5lKW7ho", tag: "パロディ", title: "ピンを抜くゲーム広告のパロディ" },
     { id: "W8eW7kEE-LQ", tag: "パロディ", title: "Youtubeでよく見る漫画の広告" },
@@ -408,10 +433,8 @@ const CONFIG = {
 const fmt = n => typeof n === "string" ? n : n >= 10000 ? (n/10000).toFixed(n>=100000?0:1).replace(/\.0$/,'') + "万" : n.toLocaleString("ja-JP");
 const $ = s => document.querySelector(s);
 
-
 // 連続投稿
 (function(){
-  const st = CONFIG.streak;
   $("#hits").innerHTML = CONFIG.tiktokHits.map(h => `<a class="hit" href="${h.url}" target="_blank" rel="noopener"><small>TikTok</small><strong>${h.views ? fmt(h.views) + "回再生" : "伸びた動画"}</strong><span>${h.date.replace(/-/g,".")}${h.note ? " ｜ " + h.note : ""}</span></a>`).join("");
 })();
 
@@ -421,7 +444,7 @@ $("#vgrid").innerHTML = CONFIG.videos.map(v =>
      <img src="https://i.ytimg.com/vi/${v.id}/hqdefault.jpg" alt="" loading="lazy">
      <div><small>${v.tag}</small><p>${v.title}</p></div></a>`).join("");
 
-// 実績
+// 仕事実績
 $("#works").innerHTML = CONFIG.works.map(w =>
   `<li>${w.title}${w.note ? `<small>${w.note}</small>` : ""}</li>`).join("");
 
@@ -442,7 +465,6 @@ function renderStats(m, live){
   $("#statnote").textContent = notes.join(" ");
 }
 
-// YouTube Data API。成功時だけ {subs, views} を返し、失敗・異常値は null（＝手入力の予備値のまま表示）
 async function fetchYouTube(){
   if (!CONFIG.ytKey) return null;
   const ctl = new AbortController();
@@ -466,26 +488,71 @@ async function fetchYouTube(){
   }
 }
 
-renderStats(CONFIG.manual, false);               // まず予備値で即表示（APIを待たない）
+renderStats(CONFIG.manual, false);
 fetchYouTube().then(yt => {
   if (!yt) return;
   renderStats({ ...CONFIG.manual, ytSubs: yt.subs != null ? yt.subs : CONFIG.manual.ytSubs, ytViews: yt.views }, true);
 }).catch(e => console.warn(e));
 $("#dm").href = CONFIG.xUserId ? `https://x.com/messages/compose?recipient_id=${CONFIG.xUserId}` : "https://x.com/VirtualBa7";
 
-// 実績リスト（絞り込み付き）
+// 実績リスト（初期6件＋もっと見る対応）
 (function(){
+  const INITIAL_LIMIT = 6;
   const list = CONFIG.achievements.slice().sort((a,b) => b.d.localeCompare(a.d));
   $("#hl").innerHTML = list.filter(a => a.s).map(a => `<a class="hlc" href="${a.u}" target="_blank" rel="noopener"><span class="c">${a.c}</span><time datetime="${a.d}">${a.d.slice(0,4)}</time><strong>${a.t}</strong><small>リンクを開く</small></a>`).join("");
   const cats = ["すべて", ...new Set(list.map(a => a.c))];
   let cur = "すべて";
+  let showAll = false;
+
   const draw = () => {
     $("#tabs").innerHTML = cats.map(c => `<button type="button" aria-pressed="${c===cur}" data-c="${c}">${c}</button>`).join("");
-    $("#ach").innerHTML = list.filter(a => cur === "すべて" || a.c === cur).map(a =>
+    const filtered = list.filter(a => cur === "すべて" || a.c === cur);
+    const visible = showAll ? filtered : filtered.slice(0, INITIAL_LIMIT);
+    $("#ach").innerHTML = visible.map(a =>
       `<li><a href="${a.u}" target="_blank" rel="noopener"><time datetime="${a.d}">${a.l || a.d.replace(/-/g,".")}</time><span class="c">${a.c}</span><span class="t">${a.t}</span></a></li>`).join("");
+
+    if (filtered.length > INITIAL_LIMIT) {
+      $("#achMoreWrap").innerHTML = `<button type="button" class="btn sm" id="toggleAchMore">${showAll ? "折りたたむ" : `すべての実績を見る（全${filtered.length}件）`}</button>`;
+    } else {
+      $("#achMoreWrap").innerHTML = "";
+    }
   };
-  $("#tabs").addEventListener("click", e => { const b = e.target.closest("button"); if (b) { cur = b.dataset.c; draw(); } });
+
+  $("#tabs").addEventListener("click", e => {
+    const b = e.target.closest("button");
+    if (!b) return;
+    cur = b.dataset.c;
+    showAll = false;
+    draw();
+  });
+
+  $("#achMoreWrap").addEventListener("click", e => {
+    if (e.target.closest("#toggleAchMore")) {
+      showAll = !showAll;
+      draw();
+    }
+  });
+
   draw();
+})();
+
+// キャラクタービジュアル切り替えタブ（進化 / 3Dモデル / 三面図）
+(function(){
+  const tabs = document.querySelectorAll(".gal-tabs button");
+  const figs = {
+    evolution: $("#fig-evolution"),
+    model3d: $("#fig-model3d"),
+    sanmen: $("#fig-sanmen")
+  };
+  tabs.forEach(btn => {
+    btn.addEventListener("click", () => {
+      const target = btn.dataset.gal;
+      tabs.forEach(b => b.setAttribute("aria-selected", String(b === btn)));
+      Object.entries(figs).forEach(([key, el]) => {
+        if (el) el.hidden = (key !== target);
+      });
+    });
+  });
 })();
 </script>
 </body>
