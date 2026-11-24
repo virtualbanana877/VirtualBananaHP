@@ -92,7 +92,7 @@ export default function Character() {
           <ul className="tags">
             <li><small>ハッシュタグ</small>#バーチャルバナナ</li>
             <li><small>イラスト</small>#バーチャルバナナ農園</li>
-            <li><small>R-18イラスト</small>#夜のバーチャルバナナ農園</li>
+            <li><small><font color="#FFFFFF">R-18イラスト</font></small><font color="#FFFFFF">#夜のバーチャルバナナ農園</font></li>
           </ul>
         </div>
       </section>
