@@ -72,13 +72,7 @@ nav a{text-decoration:none}nav a:hover{text-decoration:underline}
 .gcard:hover{transform:translateY(-3px)}
 .gcard small{display:block;font-weight:900;color:var(--brown)}
 .gcard strong{display:block;font-size:19px;line-height:1.4}
-.hl{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:16px;margin-bottom:34px}
-.hlc{display:block;text-decoration:none;background:var(--ink);color:var(--white);border-radius:var(--r);padding:20px 22px;transition:transform .15s}
-.hlc:hover{transform:translateY(-3px)}
-.hlc .c{background:var(--banana);color:var(--ink);font-size:12px;font-weight:900;border-radius:999px;padding:0 10px}
-.hlc time{font-family:'Dela Gothic One';color:var(--banana);margin-left:8px}
-.hlc strong{display:block;font-size:18px;line-height:1.5;margin:8px 0 6px}
-.hlc small{opacity:.7}
+
 .hid{color:var(--white);margin-top:36px;font-size:14.5px}
 .hid::selection,.hid *::selection{background:var(--ink);color:var(--banana)}
 /* stats */
@@ -101,25 +95,21 @@ nav a{text-decoration:none}nav a:hover{text-decoration:underline}
 
 /* videos */
 .vgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:20px}
+@media(max-width:620px){.vgrid{grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}.v{border-radius:16px}.v .vt{padding:8px 10px 10px}.v p{font-size:13px}}
 .v{display:block;text-decoration:none;border:3px solid var(--ink);border-radius:var(--r);overflow:hidden;background:var(--white);box-shadow:0 5px 0 var(--ink);transition:transform .15s}
 .v:hover{transform:translateY(-3px)}
-.v img{width:100%;aspect-ratio:16/9;object-fit:cover;display:block;background:var(--cream)}
-.v div{padding:12px 16px 14px}
+.v .thumb{position:relative;aspect-ratio:16/9;background:var(--cream);overflow:hidden}
+.v .thumb img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block}
+.v .ph{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;padding:10px;text-align:center;font-weight:700;font-size:13px;line-height:1.4}
+.v .vt{padding:12px 16px 14px}
 .v small{display:inline-block;background:var(--banana);border-radius:999px;padding:0 10px;font-weight:700;font-size:12px;margin-bottom:4px}
 .v p{font-weight:700;line-height:1.5;font-size:15px}
 
 /* achievements */
-.tabs{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:22px}
-.tabs button{font:inherit;font-weight:700;padding:7px 16px;border:3px solid var(--ink);border-radius:999px;background:var(--white);cursor:pointer}
-.tabs button[aria-pressed=true]{background:var(--ink);color:var(--banana)}
-.ach{list-style:none;padding:0;border-top:3px solid var(--ink)}
-.ach li{border-bottom:2px solid var(--ink);padding:0}
-.ach a{display:grid;grid-template-columns:104px 84px 1fr;gap:6px 16px;align-items:baseline;padding:14px 6px;text-decoration:none}
-.ach a:hover{background:var(--cream)}
-.ach time{font-family:'Dela Gothic One';font-size:14px}
-.ach .c{font-size:12px;font-weight:900;background:var(--banana);border:2px solid var(--ink);border-radius:999px;text-align:center;padding:0 6px}
-.ach .t{font-weight:700;line-height:1.5}
-@media(max-width:600px){.ach a{grid-template-columns:auto 1fr}.ach .t{grid-column:1/-1}}
+.tabs{position:relative;display:flex;flex-wrap:nowrap;gap:8px;overflow-x:auto;margin-bottom:18px;padding:2px 2px 8px;scroll-snap-type:x proximity;-webkit-overflow-scrolling:touch;scrollbar-width:thin}
+.tabs button{flex:0 0 auto;scroll-snap-align:center;min-height:44px;font:inherit;font-weight:700;padding:8px 18px;border:3px solid var(--ink);border-radius:999px;background:var(--white);cursor:pointer}
+.tabs button[aria-selected=true]{background:var(--ink);color:var(--banana)}
+.tabs button[aria-selected=false]:hover{background:var(--banana)}
 .intro{display:grid;grid-template-columns:auto 1fr;gap:28px;align-items:center;margin-bottom:36px}
 .intro iframe{width:260px;aspect-ratio:9/16;border:3px solid var(--ink);border-radius:var(--r);box-shadow:0 5px 0 var(--ink);background:var(--cream)}
 .intro small{display:inline-block;background:var(--banana);border-radius:999px;padding:0 12px;font-weight:900;font-size:13px}
@@ -144,6 +134,23 @@ nav a{text-decoration:none}nav a:hover{text-decoration:underline}
 .act a{font-weight:700;font-size:14px}
 .ok{display:inline-block;background:var(--banana);border:2px solid var(--ink);border-radius:999px;font-size:11px;font-weight:900;padding:0 10px;margin-top:8px}
 h3.sub{font-family:'Dela Gothic One';font-weight:400;font-size:22px;line-height:1.3;margin:44px 0 16px}
+/* achievements: cards */
+#achv{overflow-anchor:none}
+.ach{list-style:none;padding:0;margin:0;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+.ach li{display:flex}
+.ach a{display:flex;flex-direction:column;gap:8px;flex:1;min-height:112px;text-decoration:none;background:var(--white);border:3px solid var(--ink);border-radius:16px;padding:12px 14px;box-shadow:0 4px 0 var(--ink);transition:transform .15s}
+.ach a:hover{transform:translateY(-2px)}
+.ach .top{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.ach time{font-family:'Dela Gothic One';font-size:13px}
+.ach .c{font-size:11px;font-weight:900;background:var(--banana);color:var(--ink);border:2px solid var(--ink);border-radius:999px;padding:0 8px}
+.ach .t{font-weight:700;line-height:1.5;font-size:14px}
+.ach li.star a{background:var(--ink);color:var(--white)}
+.ach li.star time{color:var(--banana)}
+.vh{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+#achmore{margin-top:12px}
+.more{text-align:center;margin-top:20px}
+@media(max-width:900px){.ach{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:620px){.ach{gap:10px}.ach a{padding:10px 12px;min-height:104px}.ach .t{font-size:13px}}
 /* services */
 .cream{background:var(--cream)}
 .svc{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:0;border:3px solid var(--ink);border-radius:var(--r);overflow:hidden;background:var(--white)}
@@ -232,7 +239,8 @@ footer{background:var(--ink);color:var(--white);padding:28px 20px calc(28px + en
   </div>
   <p class="lead">声真似、パロディ、オリジナル曲。気になったものから見てください。ジャンルごとの再生リストもあります。</p>
   <div class="pl"><a class="plc" href="https://www.youtube.com/playlist?list=PL3gFxXuE5n5-PvnewDowQEjVqiP4A9YY5" target="_blank" rel="noopener"><strong>声真似講座</strong><small>再生リストを開く</small></a><a class="plc" href="https://www.youtube.com/playlist?list=PL3gFxXuE5n59yglV73pzzHqhX0lLzI1vo" target="_blank" rel="noopener"><strong>オリジナル曲</strong><small>再生リストを開く</small></a><a class="plc" href="https://www.youtube.com/playlist?list=PL3gFxXuE5n5-pdZG9F5msX2iDPGbYEPEs" target="_blank" rel="noopener"><strong>パロディ</strong><small>再生リストを開く</small></a><a class="plc" href="https://www.youtube.com/playlist?list=PL3gFxXuE5n58jAKFwu13jQtDQ5MzE4AYv" target="_blank" rel="noopener"><strong>バナナアート</strong><small>再生リストを開く</small></a></div>
-  <div class="vgrid" id="vgrid"></div>
+  <div class="tabs" id="vtabs" role="tablist" aria-label="動画のジャンル"></div>
+  <div id="vpanel" role="tabpanel"><div class="vgrid" id="vgrid"></div></div>
   <h3 class="sub">TikTokで伸びた動画</h3>
   <div class="hits" id="hits"></div>
 </div></section>
@@ -240,10 +248,9 @@ footer{background:var(--ink);color:var(--white);padding:28px 20px calc(28px + en
 <section id="achv"><div class="wrap">
   <h2>受賞・出演・メディア実績</h2>
   <p class="lead">各項目から、当時の記事・配信・投稿を見られます。</p>
-  <div class="hl" id="hl"></div>
-  <h3 class="sub">ほかの実績</h3>
-  <div class="tabs" id="tabs" role="group" aria-label="実績の絞り込み"></div>
   <ul class="ach" id="ach"></ul>
+  <div id="achmore" hidden><ul class="ach" id="achrest"></ul></div>
+  <div class="more"><button type="button" class="btn" id="achbtn" aria-expanded="false" aria-controls="achmore" hidden>過去の実績も見る</button></div>
 </div></section>
 
 <section id="work" class="cream"><div class="wrap">
@@ -369,6 +376,7 @@ const CONFIG = {
   works: [
     // { title: "◯◯様 SEボイス収録", note: "2025年" },
   ],
+  videoGenres: ["パロディ","オリジナル曲","講座"],   // 動画タブの種類。videos の tag がこれ以外なら「その他」。rec:false を付けた動画だけ「おすすめ」から外れます
   videos: [
     { id: "akBp5lKW7ho", tag: "パロディ", title: "ピンを抜くゲーム広告のパロディ" },
     { id: "W8eW7kEE-LQ", tag: "パロディ", title: "Youtubeでよく見る漫画の広告" },
@@ -388,11 +396,46 @@ const $ = s => document.querySelector(s);
   $("#hits").innerHTML = CONFIG.tiktokHits.map(h => `<a class="hit" href="${h.url}" target="_blank" rel="noopener"><small>TikTok</small><strong>${h.views ? fmt(h.views) + "回再生" : "伸びた動画"}</strong><span>${h.date.replace(/-/g,".")}${h.note ? " ｜ " + h.note : ""}</span></a>`).join("");
 })();
 
-// 動画
-$("#vgrid").innerHTML = CONFIG.videos.map(v =>
-  `<a class="v" href="https://www.youtube.com/watch?v=${v.id}" target="_blank" rel="noopener">
-     <img src="https://i.ytimg.com/vi/${v.id}/hqdefault.jpg" alt="" loading="lazy">
-     <div><small>${v.tag}</small><p>${v.title}</p></div></a>`).join("");
+// タブ共通（WAI-ARIA tabs / 矢印・Home・Endキー対応）
+function initTabs(list, panel, labels, render){
+  list.innerHTML = labels.map((l, i) => `<button type="button" role="tab" id="${list.id}-${i}" aria-selected="false" aria-controls="${panel.id}" tabindex="-1">${l}</button>`).join("");
+  const tabs = [...list.querySelectorAll('[role="tab"]')];
+  const select = (i, focus) => {
+    tabs.forEach((t, k) => { t.setAttribute("aria-selected", k === i); t.tabIndex = k === i ? 0 : -1; });
+    panel.setAttribute("aria-labelledby", tabs[i].id);
+    render(labels[i]);
+    const t = tabs[i];
+    if (list.scrollTo) list.scrollTo({ left: Math.max(0, t.offsetLeft - (list.clientWidth - t.offsetWidth) / 2), behavior: "smooth" });
+    if (focus) t.focus({ preventScroll: true });
+  };
+  list.addEventListener("click", e => { const b = e.target.closest('[role="tab"]'); if (b) select(tabs.indexOf(b)); });
+  list.addEventListener("keydown", e => {
+    const cur = tabs.indexOf(document.activeElement); if (cur < 0) return;
+    let n = null;
+    if (e.key === "ArrowRight") n = (cur + 1) % tabs.length;
+    else if (e.key === "ArrowLeft") n = (cur - 1 + tabs.length) % tabs.length;
+    else if (e.key === "Home") n = 0;
+    else if (e.key === "End") n = tabs.length - 1;
+    if (n !== null) { e.preventDefault(); select(n, true); }
+  });
+  select(0);
+}
+
+// 動画（ジャンル別タブ）
+(function(){
+  const vids = CONFIG.videos, genres = CONFIG.videoGenres, grid = $("#vgrid");
+  const groups = { "おすすめ": vids.filter(v => v.rec !== false) };
+  genres.forEach(g => { groups[g] = vids.filter(v => v.tag === g); });
+  groups["その他"] = vids.filter(v => !genres.includes(v.tag));
+  const labels = Object.keys(groups).filter(k => groups[k].length);
+  const SIZES = ["hqdefault", "mqdefault", "0"];                       // 読み込めなければ次の画像、全部だめならタイトル表示
+  const thumb = (id, i) => `https://i.ytimg.com/vi/${id}/${SIZES[i]}.jpg`;
+  const card = v => `<a class="v" href="https://www.youtube.com/watch?v=${v.id}" target="_blank" rel="noopener"><div class="thumb"><span class="ph" aria-hidden="true">${v.title}</span><img src="${thumb(v.id, 0)}" data-id="${v.id}" data-i="0" alt="" width="480" height="360" loading="lazy"></div><div class="vt"><small>${v.tag}</small><p>${v.title}</p></div></a>`;
+  const next = img => { const i = +img.dataset.i + 1; if (i < SIZES.length) { img.dataset.i = i; img.src = thumb(img.dataset.id, i); } else img.remove(); };
+  grid.addEventListener("error", e => { if (e.target.tagName === "IMG") next(e.target); }, true);
+  grid.addEventListener("load", e => { const im = e.target; if (im.tagName === "IMG" && im.naturalWidth && im.naturalWidth <= 120) next(im); }, true);
+  if (labels.length) initTabs($("#vtabs"), $("#vpanel"), labels, l => { grid.innerHTML = groups[l].map(card).join(""); });
+})();
 
 // 実績
 $("#works").innerHTML = CONFIG.works.map(w =>
@@ -446,20 +489,25 @@ fetchYouTube().then(yt => {
 }).catch(e => console.warn(e));
 $("#dm").href = CONFIG.xUserId ? `https://x.com/messages/compose?recipient_id=${CONFIG.xUserId}` : "https://x.com/VirtualBa7";
 
-// 実績リスト（絞り込み付き）
+// 実績（日付の新しい順。最新4件を表示し、残りは展開）
 (function(){
+  const LIMIT = 4;
   const list = CONFIG.achievements.slice().sort((a,b) => b.d.localeCompare(a.d));
-  $("#hl").innerHTML = list.filter(a => a.s).map(a => `<a class="hlc" href="${a.u}" target="_blank" rel="noopener"><span class="c">${a.c}</span><time datetime="${a.d}">${a.d.slice(0,4)}</time><strong>${a.t}</strong><small>リンクを開く</small></a>`).join("");
-  const rest = list.filter(a => !a.s);
-  const cats = ["すべて", ...new Set(rest.map(a => a.c))];
-  let cur = "すべて";
-  const draw = () => {
-    $("#tabs").innerHTML = cats.map(c => `<button type="button" aria-pressed="${c===cur}" data-c="${c}">${c}</button>`).join("");
-    $("#ach").innerHTML = rest.filter(a => cur === "すべて" || a.c === cur).map(a =>
-      `<li><a href="${a.u}" target="_blank" rel="noopener"><time datetime="${a.d}">${a.l || a.d.replace(/-/g,".")}</time><span class="c">${a.c}</span><span class="t">${a.t}</span></a></li>`).join("");
-  };
-  $("#tabs").addEventListener("click", e => { const b = e.target.closest("button"); if (b) { cur = b.dataset.c; draw(); } });
-  draw();
+  const card = a => `<li${a.s ? ' class="star"' : ""}><a href="${a.u}" target="_blank" rel="noopener"><span class="top"><time datetime="${a.d}">${a.l || a.d.replace(/-/g,".")}</time><span class="c">${a.c}</span></span><span class="t">${a.t}</span>${a.s ? '<span class="vh">主な実績</span>' : ""}</a></li>`;
+  $("#ach").innerHTML = list.slice(0, LIMIT).map(card).join("");
+  const rest = list.slice(LIMIT);
+  if (!rest.length) return;                       // 4件以下なら展開ボタンは出さない
+  const btn = $("#achbtn"), more = $("#achmore");
+  $("#achrest").innerHTML = rest.map(card).join("");
+  btn.hidden = false;
+  btn.addEventListener("click", () => {
+    const open = btn.getAttribute("aria-expanded") === "true";
+    const before = btn.getBoundingClientRect().top;
+    more.hidden = open;
+    btn.setAttribute("aria-expanded", String(!open));
+    btn.textContent = open ? "過去の実績も見る" : "閉じる";
+    if (open) { const d = btn.getBoundingClientRect().top - before; if (d) window.scrollBy(0, d); }   // 閉じてもボタンの位置を保つ
+  });
 })();
 </script>
 </body>
