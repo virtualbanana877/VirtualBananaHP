@@ -30,7 +30,7 @@ h1,h2{font-family:'Dela Gothic One',sans-serif;font-weight:400;line-height:1.15;
 .wrap{max-width:1040px;margin:0 auto;padding:0 20px}
 section{padding:72px 0}
 h2{font-size:clamp(26px,5vw,38px);margin-bottom:28px}
-.lead{max-width:34em;margin-bottom:28px}
+.lead{max-width:36em;margin-bottom:28px}
 
 /* nav */
 nav{position:sticky;top:0;z-index:10;background:var(--banana);border-bottom:3px solid var(--ink);padding-top:env(safe-area-inset-top)}
@@ -102,7 +102,7 @@ nav a{text-decoration:none}nav a:hover{text-decoration:underline}
 .note:empty{display:none}
 @media(max-width:900px){.stats .wrap{grid-template-columns:repeat(2,minmax(0,1fr))}.stat{padding:18px 14px}.stat strong{font-size:clamp(20px,5.6vw,30px)}}
 
-/* videos */
+/* videos & playlists */
 .vgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:20px}
 .v{display:block;text-decoration:none;border:3px solid var(--ink);border-radius:var(--r);overflow:hidden;background:var(--white);box-shadow:0 5px 0 var(--ink);transition:transform .15s}
 .v:hover{transform:translateY(-3px)}
@@ -110,6 +110,16 @@ nav a{text-decoration:none}nav a:hover{text-decoration:underline}
 .v div{padding:12px 16px 14px}
 .v small{display:inline-block;background:var(--banana);border-radius:999px;padding:0 10px;font-weight:700;font-size:12px;margin-bottom:4px}
 .v p{font-weight:700;line-height:1.5;font-size:15px}
+
+.pl{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:18px;margin-bottom:36px}
+.plc{display:block;text-decoration:none;background:var(--banana);border:3px solid var(--ink);border-radius:var(--r);overflow:hidden;box-shadow:0 5px 0 var(--ink);transition:transform .15s}
+.plc:hover{transform:translateY(-3px)}
+.plc-thumb{position:relative;aspect-ratio:16/9;background:var(--cream);border-bottom:3px solid var(--ink);overflow:hidden}
+.plc-thumb img{width:100%;height:100%;object-fit:cover;display:block}
+.plc-badge{position:absolute;right:8px;bottom:8px;background:var(--ink);color:var(--banana);font-size:11px;font-weight:900;padding:2px 9px;border-radius:999px}
+.plc-body{padding:12px 16px 14px}
+.plc strong{display:block;font-size:18px;line-height:1.35;margin-bottom:2px}
+.plc small{font-weight:700;opacity:.8;font-size:13px}
 
 /* achievements */
 .tabs{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:22px}
@@ -125,17 +135,11 @@ nav a{text-decoration:none}nav a:hover{text-decoration:underline}
 .more-wrap{margin-top:18px;text-align:center}
 @media(max-width:600px){.ach a{grid-template-columns:auto 1fr}.ach .t{grid-column:1/-1}}
 
-.intro{display:grid;grid-template-columns:auto 1fr;gap:28px;align-items:center;margin-bottom:36px}
+.intro{display:grid;grid-template-columns:auto 1fr;gap:28px;align-items:center;margin-bottom:40px}
 .intro iframe{width:260px;aspect-ratio:9/16;border:3px solid var(--ink);border-radius:var(--r);box-shadow:0 5px 0 var(--ink);background:var(--cream)}
 .intro small{display:inline-block;background:var(--banana);border-radius:999px;padding:0 12px;font-weight:900;font-size:13px}
 .intro p{font-weight:700;font-size:18px;line-height:1.6;margin:8px 0 18px;max-width:22em}
 @media(max-width:620px){.intro{grid-template-columns:1fr;justify-items:center;text-align:center}.intro iframe{width:min(260px,100%)}}
-
-.pl{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:14px;margin-bottom:30px}
-.plc{display:block;text-decoration:none;background:var(--banana);border:3px solid var(--ink);border-radius:var(--r);padding:14px 18px;box-shadow:0 4px 0 var(--ink);transition:transform .15s}
-.plc:hover{transform:translateY(-3px)}
-.plc strong{display:block;font-size:18px;line-height:1.4}
-.plc small{font-weight:700;opacity:.75}
 
 #streak{padding-bottom:24px}
 .streakbox{display:grid;grid-template-columns:auto 1fr;gap:10px 32px;align-items:center;border:3px solid var(--ink);border-radius:var(--r);padding:26px 30px;background:var(--banana);box-shadow:0 5px 0 var(--ink);margin-bottom:30px}
@@ -151,12 +155,12 @@ nav a{text-decoration:none}nav a:hover{text-decoration:underline}
 .hit strong{display:block;font-family:'Dela Gothic One';font-weight:400;font-size:22px;color:var(--banana);margin:8px 0 2px}
 .hit span{font-size:13px;opacity:.8}
 
+/* work */
 .acts{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:16px}
-.act{background:var(--white);border:3px solid var(--ink);border-radius:var(--r);padding:18px 20px 16px}
-.act h3{font-size:18px;line-height:1.4}
-.act p{font-size:14.5px;margin:4px 0 8px}
-.act a{font-weight:700;font-size:14px}
-.ok{display:inline-block;background:var(--banana);border:2px solid var(--ink);border-radius:999px;font-size:11px;font-weight:900;padding:0 10px;margin-top:8px}
+.act{background:var(--white);border:3px solid var(--ink);border-radius:var(--r);padding:20px 22px;display:flex;flex-direction:column;justify-content:space-between}
+.act h3{font-size:18px;line-height:1.4;margin-bottom:6px}
+.act p{font-size:14.5px;margin-bottom:12px}
+.ok{display:inline-block;align-self:flex-start;background:var(--banana);border:2px solid var(--ink);border-radius:999px;font-size:11px;font-weight:900;padding:1px 10px}
 .why a{font-weight:700}
 
 /* services */
@@ -215,7 +219,7 @@ footer{background:var(--ink);color:var(--white);padding:28px 20px calc(28px + en
 <nav><div class="wrap">
   <b class="brand"><img src="images/icon.png" alt="" width="32" height="32">バーチャルバナナ</b>
   <ul>
-    <li><a href="#videos">動画</a></li><li><a href="#achv">実績</a></li><li><a href="#work">活動・お仕事</a></li><li><a href="#about">キャラ</a></li><li><a href="#games">ゲーム</a></li><li><a class="cta" href="#contact">お仕事の相談</a></li>
+    <li><a href="#videos">動画</a></li><li><a href="#achv">実績</a></li><li><a href="#work">お仕事依頼</a></li><li><a href="#about">キャラ</a></li><li><a href="#games">ゲーム</a></li><li><a class="cta" href="#contact">お仕事の相談</a></li>
   </ul>
 </div></nav>
 
@@ -224,8 +228,7 @@ footer{background:var(--ink);color:var(--white);padding:28px 20px calc(28px + en
     <h1>バーチャル<br>バナナ</h1>
     <p class="tag">300以上の声真似＆パロディを毎日投稿する、バナナ系マルチVTuber。動画・オリジナル曲・Webゲーム制作まで、ぜんぶひとりで楽しんでいます。</p>
     <div class="btns">
-      <a class="btn dark" href="https://www.youtube.com/@VirtualBa7" target="_blank" rel="noopener">YouTubeで動画を見る</a>
-      <a class="btn" href="https://www.tiktok.com/@virtualba7" target="_blank" rel="noopener">TikTok</a>
+      <a class="btn dark" href="#videos">まずは動画を見る</a>
       <a class="btn" href="#contact">お仕事の相談</a>
     </div>
   </div>
@@ -234,7 +237,7 @@ footer{background:var(--ink);color:var(--white);padding:28px 20px calc(28px + en
 
 <div class="guide"><div class="wrap">
   <a class="gcard" href="#videos"><small>はじめて見る方へ</small><strong>最新の自己紹介と、ジャンル別の再生リストから</strong></a>
-  <a class="gcard" href="#work"><small>企業・制作のご依頼の方へ</small><strong>依頼できる内容と、これまでの実績</strong></a>
+  <a class="gcard" href="#work"><small>企業・制作のご依頼の方へ</small><strong>ご依頼いただける制作メニューとこれまでの実績</strong></a>
 </div></div>
 
 <div class="stats"><div class="wrap keys" id="keystats"></div><div class="wrap" id="stats"></div></div>
@@ -244,7 +247,7 @@ footer{background:var(--ink);color:var(--white);padding:28px 20px calc(28px + en
   <h2>毎日、ショート動画を投稿しています</h2>
   <div class="streakbox">
     <div class="n">2023.02.25〜</div>
-    <div><p>毎日ショート動画の投稿を開始。YouTubeとTikTokを合わせて、いまも毎日投稿しています。</p><p>24時間、毎時間動画を投稿する企画も実施しました。</p></div>
+    <div><p>毎日ショート動画の投稿を開始。YouTubeとTikTokを合わせて、いまも毎日投稿を継続中です。</p><p>24時間、毎時間動画を投稿する企画も実施しました。</p></div>
   </div>
   <h3 style="margin-bottom:14px">TikTokで伸びた動画</h3>
   <div class="hits" id="hits"></div>
@@ -256,8 +259,10 @@ footer{background:var(--ink);color:var(--white);padding:28px 20px calc(28px + en
     <iframe src="https://www.youtube.com/embed/_4Xt-d4_Eec" title="バーチャルバナナ 自己紹介" loading="lazy" allow="accelerometer; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen referrerpolicy="strict-origin-when-cross-origin"></iframe>
     <div><small>最新の自己紹介</small><p>はじめての方は、まずこの1本から。声真似とキャラクターの雰囲気がわかります。</p><a class="btn" href="https://www.youtube.com/shorts/_4Xt-d4_Eec" target="_blank" rel="noopener">YouTubeで開く</a></div>
   </div>
-  <p class="lead">声真似、パロディ、オリジナル曲。気になったものから見てください。ジャンルごとの再生リストもあります。</p>
-  <div class="pl"><a class="plc" href="https://www.youtube.com/playlist?list=PL3gFxXuE5n5-PvnewDowQEjVqiP4A9YY5" target="_blank" rel="noopener"><strong>声真似講座</strong><small>再生リストを開く</small></a><a class="plc" href="https://www.youtube.com/playlist?list=PL3gFxXuE5n59yglV73pzzHqhX0lLzI1vo" target="_blank" rel="noopener"><strong>オリジナル曲</strong><small>再生リストを開く</small></a><a class="plc" href="https://www.youtube.com/playlist?list=PL3gFxXuE5n5-pdZG9F5msX2iDPGbYEPEs" target="_blank" rel="noopener"><strong>パロディ</strong><small>再生リストを開く</small></a><a class="plc" href="https://www.youtube.com/playlist?list=PL3gFxXuE5n58jAKFwu13jQtDQ5MzE4AYv" target="_blank" rel="noopener"><strong>バナナアート</strong><small>再生リストを開く</small></a></div>
+  <h3 style="margin-bottom:10px">ジャンル別の再生リスト</h3>
+  <p class="lead">声真似、パロディ、オリジナル曲、バナナアート。気になるジャンルからまとめて見られます。</p>
+  <div class="pl" id="plgrid"></div>
+  <h3 style="margin-bottom:16px">ピックアップ動画</h3>
   <div class="vgrid" id="vgrid"></div>
 </div></section>
 
@@ -271,29 +276,26 @@ footer{background:var(--ink);color:var(--white);padding:28px 20px calc(28px + en
 </div></section>
 
 <section id="work" class="cream"><div class="wrap">
-  <h2>活動内容とお仕事</h2>
-  <p class="lead">声真似を軸に、動画、アート、曲、Webまで幅広く制作しています。「ご依頼OK」の内容は、お仕事のご相談をお受けしています。</p>
+  <h2>お仕事のご依頼</h2>
+  <p class="lead">声の収録から動画制作、ブラウザゲーム・Webツール開発まで幅広い制作をご依頼いただけます。個人様・企業様問わずお気軽にご相談ください。</p>
   <div class="why">
-    <div><b>企画から制作まで一人で対応</b><p>声と映像の制作を担当し、活動は基本ワンオペ。やり取りがシンプルです。</p></div>
-    <div><b>ジャンルをまたいで制作</b><p>声、映像、曲、アート、Webまで、一人で手がけています。</p></div>
-    <div><b>受賞・CM放映・メディア掲載</b><p>実績は<a href="#achv">こちら</a>にまとめています。</p></div>
+    <div><b>企画〜実装まで窓口ひとつ</b><p>脚本・収録・編集・コーディングまで一貫対応。複数人への発注が不要でやり取りがシンプルです。</p></div>
+    <div><b>ジャンルをまたいだ複合制作</b><p>「オリジナル曲＋MV」「ボイス入りWebゲーム」など、領域を掛け合わせた企画も制作できます。</p></div>
+    <div><b>受賞・CM放映・メディア掲載</b><p>これまでの外部掲載や受賞歴は<a href="#achv">実績一覧</a>にまとめています。</p></div>
   </div>
   <div class="acts">
-    <div class="act"><h3>声真似</h3><p>声真似を軸に動画を制作。講座動画も公開しています。</p><a href="https://www.youtube.com/playlist?list=PL3gFxXuE5n5-PvnewDowQEjVqiP4A9YY5" target="_blank" rel="noopener">声真似講座を見る</a></div>
-    <div class="act"><h3>パロディ動画</h3><p>パロディ動画を制作・投稿しています。</p><a href="https://www.youtube.com/playlist?list=PL3gFxXuE5n5-pdZG9F5msX2iDPGbYEPEs" target="_blank" rel="noopener">パロディの再生リスト</a></div>
-    <div class="act"><h3>バナナアート</h3><p>バナナを題材にしたアート作品。</p><a href="https://www.youtube.com/playlist?list=PL3gFxXuE5n58jAKFwu13jQtDQ5MzE4AYv" target="_blank" rel="noopener">作品を再生リストで見る</a><br><span class="ok">ご依頼OK</span></div>
-    <div class="act"><h3>オリジナル曲</h3><p>オリジナル曲を制作・公開しています。</p><a href="https://www.youtube.com/playlist?list=PL3gFxXuE5n59yglV73pzzHqhX0lLzI1vo" target="_blank" rel="noopener">オリジナル曲の再生リスト</a></div>
-    <div class="act"><h3>動画の企画・脚本・編集</h3><p>企画から編集まで一人で制作。Vtuberさん向けCM動画の制作実績があります（案件名は非公開）。</p><span class="ok">ご依頼OK</span></div>
-    <div class="act"><h3>Webゲーム制作</h3><p>スマホで遊べるブラウザゲームを制作・公開しています。</p><a href="https://virtualbanana877.github.io/VirtualBananaArcade/">ゲーム屋台で遊ぶ</a><br><span class="ok">ご依頼OK</span></div>
-    <div class="act"><h3>Webサイト・ツール制作</h3><p>Webサイトや便利ツールを制作します。</p><span class="ok">ご依頼OK</span></div>
-    <div class="act"><h3>ボイス提供</h3><p>SEやジングルなどのボイス収録、キャラクターボイスの制作。</p><span class="ok">ご依頼OK</span></div>
+    <div class="act"><div><h3>ボイス提供</h3><p>SEやジングルなどのボイス収録、キャラクターボイスの制作に対応します。</p></div><span class="ok">ご依頼OK</span></div>
+    <div class="act"><div><h3>動画の企画・脚本・編集</h3><p>企画構成から編集まで一貫制作。VTuber様向けCM動画の制作実績もあります（案件名は非公開）。</p></div><span class="ok">ご依頼OK</span></div>
+    <div class="act"><div><h3>Webゲーム制作</h3><p>スマホで手軽に遊べるブラウザゲームやミニゲーム企画を制作します。</p></div><span class="ok">ご依頼OK</span></div>
+    <div class="act"><div><h3>Webサイト・ツール制作</h3><p>活動者向け公式サイトや、配信・制作に役立つ便利ツールを構築します。</p></div><span class="ok">ご依頼OK</span></div>
+    <div class="act"><div><h3>バナナアート制作</h3><p>バナナを題材にしたユニークなアート作品・PRビジュアルを制作します。</p></div><span class="ok">ご依頼OK</span></div>
   </div>
   <ul class="works" id="works"></ul>
 </div></section>
 
 <section id="project"><div class="wrap">
   <h2>バーチャルバナナプロジェクト</h2>
-  <p class="lead">声と映像の制作を担当するプロデューサーを中心に、家族で動かしているプロジェクトです。</p>
+  <p class="lead">声と映像の制作を担当するプロデューサーを中心に、家族の支えとともに運営している創作プロジェクトです。</p>
   <figure class="fig-fam"><a href="images/project-family.png" target="_blank" rel="noopener"><img src="images/project-family.png" alt="バーチャルバナナプロジェクトの体制図：プロデューサー（声・映像制作担当、活動は基本ワンオペ）、妻（バーチャルバナナのデザイン原案）、息子（子バナナ）我が家の宝" width="1600" height="900" loading="lazy"></a></figure>
   <div class="pgal">
     <figure><a href="images/project-characters.jpg" target="_blank" rel="noopener"><img src="images/project-characters.jpg" alt="プロデューサが担当するバーチャルキャラクター一覧：バーチャルバナナ、芭蕉宮香、バナナ農家のおじさん、活動初期バナナ ほか" width="1600" height="900" loading="lazy"></a><figcaption>プロデューサが担当するバーチャルキャラクター（タップで拡大）</figcaption></figure>
@@ -338,8 +340,8 @@ footer{background:var(--ink);color:var(--white);padding:28px 20px calc(28px + en
 
   <div class="hist">
     <p><b>2018.03</b>Vtuberとして活動開始</p>
-    <p><b>2023.02</b>毎日ショート動画の投稿を開始</p>
-    <p><b>今</b>YouTube、TikTok、Xで声真似・パロディ動画を投稿。Webゲームやサイトの制作も手がけています。</p>
+    <p><b>2023.02</b>ショート動画の毎日投稿をスタート</p>
+    <p><b>今</b>動画投稿に加えて、Webゲーム・公式サイト・便利ツールの制作へと活動の幅を拡大中。</p>
   </div>
 </div></section>
 
@@ -399,6 +401,13 @@ const CONFIG = {
     { url: "https://www.tiktok.com/@virtualba7/video/7593501218035666197", date: "2026-01-10", views: null, note: "" },
     { url: "https://www.tiktok.com/@virtualba7/video/7582886528498535701", date: "2025-12-12", views: null, note: "" }
   ],
+  // ジャンル別再生リスト（thumbId に代表動画のYouTube IDを入れるとサムネが表示されます。APIキーがあれば先頭動画のサムネを自動取得します）
+  playlists: [
+    { id: "PL3gFxXuE5n5-PvnewDowQEjVqiP4A9YY5", title: "声真似講座",     desc: "声真似のコツやレパートリー", thumbId: "N8p06Cq7fqs" },
+    { id: "PL3gFxXuE5n5-pdZG9F5msX2iDPGbYEPEs", title: "パロディ",       desc: "広告パロディ・ネタ動画",     thumbId: "akBp5lKW7ho" },
+    { id: "PL3gFxXuE5n59yglV73pzzHqhX0lLzI1vo", title: "オリジナル曲",   desc: "作詞・作曲・MV制作",         thumbId: "xpB0ZNW6l3w" },
+    { id: "PL3gFxXuE5n58jAKFwu13jQtDQ5MzE4AYv", title: "バナナアート",   desc: "バナナを使ったアート作品",   thumbId: "PwBh4UhAnnU" }
+  ],
   achievements: [
     { d:"2026-08-29", s:1, c:"受賞", t:"メタコミアワード 2026「ショート動画コンテスト」受賞", u:"https://metacomi.net/contests/award.html" },
     { d:"2025-03-08", s:1, c:"受賞", t:"BlitzMe 第40回 毎週賞レース 1位", u:"https://x.com/BlitzMeOfficial/status/1898345722459906089" },
@@ -437,6 +446,51 @@ const $ = s => document.querySelector(s);
 (function(){
   $("#hits").innerHTML = CONFIG.tiktokHits.map(h => `<a class="hit" href="${h.url}" target="_blank" rel="noopener"><small>TikTok</small><strong>${h.views ? fmt(h.views) + "回再生" : "伸びた動画"}</strong><span>${h.date.replace(/-/g,".")}${h.note ? " ｜ " + h.note : ""}</span></a>`).join("");
 })();
+
+// 再生リスト（サムネイル付き描画＋APIキーがあれば最新サムネ・本数を自動反映）
+function renderPlaylists(dataList){
+  $("#plgrid").innerHTML = dataList.map(p => {
+    const thumb = p.thumbUrl || (p.thumbId ? `https://i.ytimg.com/vi/${p.thumbId}/hqdefault.jpg` : "images/ogp.png");
+    const badge = p.count ? `全${p.count}本` : "再生リスト";
+    return `<a class="plc" href="https://www.youtube.com/playlist?list=${p.id}" target="_blank" rel="noopener">
+      <div class="plc-thumb"><img src="${thumb}" alt="${p.title}" loading="lazy"><span class="plc-badge">${badge}</span></div>
+      <div class="plc-body"><strong>${p.title}</strong><small>${p.desc}</small></div>
+    </a>`;
+  }).join("");
+}
+
+async function fetchPlaylists(){
+  if (!CONFIG.ytKey || !CONFIG.playlists.length) return;
+  const ids = CONFIG.playlists.map(p => p.id).join(",");
+  const ctl = new AbortController();
+  const timer = setTimeout(() => ctl.abort(), 8000);
+  try {
+    const r = await fetch(`https://www.googleapis.com/youtube/v3/playlists?part=snippet,contentDetails&id=${encodeURIComponent(ids)}&key=${encodeURIComponent(CONFIG.ytKey)}`, { signal: ctl.signal });
+    if (!r.ok) return;
+    const j = await r.json();
+    if (!j.items) return;
+    const map = Object.fromEntries(j.items.map(it => [it.id, it]));
+    const updated = CONFIG.playlists.map(p => {
+      const it = map[p.id];
+      if (!it) return p;
+      const thumbs = it.snippet && it.snippet.thumbnails;
+      const best = thumbs && (thumbs.high || thumbs.medium || thumbs.default);
+      return {
+        ...p,
+        thumbUrl: best ? best.url : p.thumbUrl,
+        count: it.contentDetails && it.contentDetails.itemCount ? it.contentDetails.itemCount : p.count
+      };
+    });
+    renderPlaylists(updated);
+  } catch (e) {
+    console.warn("再生リストサムネ自動取得をスキップ:", e);
+  } finally {
+    clearTimeout(timer);
+  }
+}
+
+renderPlaylists(CONFIG.playlists);
+fetchPlaylists();
 
 // 動画
 $("#vgrid").innerHTML = CONFIG.videos.map(v =>
