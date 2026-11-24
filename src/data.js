@@ -63,7 +63,7 @@ export const TIKTOK_HITS = [
 export const ACHIEVEMENTS = [
   { d: '2026-08-29', s: 1, c: '受賞', t: 'メタコミアワード 2026「ショート動画コンテスト」受賞', u: 'https://metacomi.net/contests/award.html' },
   { d: '2025-03-08', s: 1, c: '受賞', t: 'BlitzMe 第40回 毎週賞レース 1位', u: 'https://x.com/BlitzMeOfficial/status/1898345722459906089' },
-  { d: '2024-08-17', c: '出演', t: 'そらのうえショッピングモールミュージック夏フェス 出演', u: 'https://x.com/VirtualBa7/status/1822141255452606912' },
+  { d: '2024-08-17', c: '出演', t: 'そらのうえショッピングモール\u200Bミュージック夏フェス 出演'   /* \u200B = ここで改行してよい（自動改行が苦手な固有名詞だけ手動指定） */, u: 'https://x.com/VirtualBa7/status/1822141255452606912' },
   { d: '2024-01-23', c: '出演', t: 'あつまれ！ばーちゃる！Vol.14 ゲームコーナー出演', u: 'https://live.nicovideo.jp/watch/lv343621239' },
   { d: '2023-12-12', c: '受賞', t: 'あつまればーちゃる祭 2023秋 動画投稿祭 スタッフイチオシ賞', u: 'https://live.nicovideo.jp/watch/lv343421323' },
   { d: '2023-10-29', s: 1, c: 'CM', t: '3D LIVE『東雲めぐのすーぱーはっぴーふりーだむ！』でCM放映', u: 'https://www.youtube.com/watch?v=PsNPq-pA9UQ' },
@@ -91,7 +91,7 @@ export const HISTORY = [
 // ok:true が「ご依頼OK」。link はカードから飛ぶ関連実績
 export const SERVICES = [
   { t: 'バナナアート', b: 'バナナを題材にしたアート作品。', ok: true, link: { l: 'バナナアートの再生リスト', u: PLAYLISTS[3].u } },
-  { t: '動画の企画・脚本・編集', b: '企画から編集まで。VTuberさん向けCM動画の制作実績があります（案件名は非公開）。', ok: true, link: { l: 'CM放映の実績', u: '/works' } },
+  { t: '動画の企画・脚本・編集', b: '企画から編集まで。VTuberさん向けCM動画の制作実績があります（案件名は非公開）。', ok: true, link: { l: 'CM放映の実績', u: '/works?type=CM#achievements' } },
   { t: 'Webゲーム制作', b: 'スマホで遊べるブラウザゲームを制作・公開しています。', ok: true, link: { l: 'ゲーム屋台で遊ぶ', u: LINKS.arcade } },
   { t: 'Webサイト・ツール制作', b: 'Webサイトや便利ツールを制作します。', ok: true, link: { l: 'ポートフォリオ', u: LINKS.portfolio } },
   { t: 'ボイス提供', b: 'SEやジングルなどのボイス収録、キャラクターボイスの制作。', ok: true, link: { l: 'ポートフォリオ', u: LINKS.portfolio } },
@@ -161,9 +161,10 @@ export const LINK_GROUPS = [
   {
     title: 'お仕事のご相談',
     links: [
-      { t: 'XのDMで相談する', s: '内容・納期・ご予算の目安を添えて', u: LINKS.x, i: 'x', ink: true },
+      { t: 'Xで相談する', s: 'プロフィールの「メッセージ」からDMへ', u: LINKS.x, i: 'x', ink: true },
       { t: 'ポートフォリオ', s: 'foriio', u: LINKS.portfolio, i: 'case' },
-      { t: 'できること・実績', s: '公式サイト', u: '/services', i: 'home' },
+      { t: 'できること', s: 'ご依頼OKの内容', u: '/services', i: 'home' },
+      { t: '実績', s: '受賞・出演・CM・メディア', u: '/works', i: 'home' },
     ],
   },
 ]

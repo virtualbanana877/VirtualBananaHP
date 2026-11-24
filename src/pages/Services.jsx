@@ -86,9 +86,11 @@ export default function Services() {
             <li>ご予算の目安</li>
           </ul>
           <div className="btns btns--center">
-            <a className="btn btn--ink btn--lg" href={LINKS.x} target="_blank" rel="noopener noreferrer"><Icon.x />XのDMで相談する</a>
+            <a className="btn btn--ink btn--lg" href={LINKS.x} target="_blank" rel="noopener noreferrer"><Icon.x />Xで相談する</a>
             <a className="btn btn--white btn--lg" href={LINKS.portfolio} target="_blank" rel="noopener noreferrer">ポートフォリオを見る<Icon.ext /></a>
           </div>
+          {/* shortcut: ボタンはプロフィールを開くだけ。XのユーザーID(数字)が分かれば x.com/messages/compose?recipient_id= で直接DM画面を開ける */}
+          <p className="contact__note">ボタンを押すと X のプロフィール（@VirtualBa7）が開きます。<br />プロフィールの「メッセージ」ボタンから DM を送ってください。</p>
         </div>
       </section>
     </>

@@ -1,4 +1,4 @@
-import { useRef, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { CountUp, Icon, Marquee, SecHead, VideoCard, img, dot, tilt } from '../components.jsx'
 import {
@@ -38,7 +38,15 @@ function Hero({ day }) {
     'お仕事のご相談はXのDMへどうぞ！',
   ]
 
+  // 吹き出しは4秒でフェードアウト（CSS）し、終わったら消す。動きを減らす設定でも消えるようタイマーで外す
+  useEffect(() => {
+    if (!talk.line) return
+    const id = setTimeout(() => setTalk(t => ({ ...t, line: null })), 4400)
+    return () => clearTimeout(id)
+  }, [talk])
+
   const onMove = e => {
+    if (matchMedia('(prefers-reduced-motion: reduce)').matches) return   // 動きを減らす設定ではマウスに追従させない
     const r = sec.current.getBoundingClientRect()
     sec.current.style.setProperty('--px', ((e.clientX - r.left) / r.width - 0.5).toFixed(3))
     sec.current.style.setProperty('--py', ((e.clientY - r.top) / r.height - 0.5).toFixed(3))
@@ -63,13 +71,15 @@ function Hero({ day }) {
             <span aria-hidden="true" className="hero__line">{[...'バーチャル'].map((c, i) => <span key={i} className="ch" style={{ '--i': i }}>{c}</span>)}</span>
             <span aria-hidden="true" className="hero__line hero__line--ink">{[...'バナナ'].map((c, i) => <span key={i} className="ch" style={{ '--i': i + 5 }}>{c}</span>)}</span>
           </h1>
-          <p className="hero__catch">声真似・パロディを軸に、動画制作・バナナアート・オリジナル曲・Webゲームやサイト制作まで幅広く手がけるVTuberです。</p>
-          <ul className="hero__stats">
-            {KEY_STATS.map(s => <li key={s.l}><strong><CountUp value={s.n} /></strong><span>{s.l}</span></li>)}
-          </ul>
-          <div className="btns">
-            <Link className="btn btn--ink" to="/videos"><Icon.play />動画を見る</Link>
-            <Link className="btn" to="/services#contact">お仕事の相談<Icon.arrow /></Link>
+          <div className="hero__sheet">{/* スマホ・タブレットでは下端の白いシートになる */}
+            <p className="hero__catch">声真似・パロディを軸に、動画制作・バナナアート・オリジナル曲・Webゲームやサイト制作まで幅広く手がけるVTuberです。</p>
+            <ul className="hero__stats">
+              {KEY_STATS.map(s => <li key={s.l}><strong><CountUp value={s.n} /></strong><span>{s.l}</span></li>)}
+            </ul>
+            <div className="btns">
+              <Link className="btn btn--ink" to="/videos"><Icon.play />動画を見る</Link>
+              <Link className="btn" to="/services#contact">お仕事の相談<Icon.arrow /></Link>
+            </div>
           </div>
         </div>
 
@@ -85,7 +95,7 @@ function Hero({ day }) {
             <img ref={chara} src={img('hero.png')} alt="" width="900" height="900" />
           </button>
           <p className="bubble" key={talk.n} role="status" hidden={!talk.line}>{talk.line}</p>
-          <p className="hero__hint" hidden={!!talk.line} aria-hidden="true">クリックで<br />話しかける</p>
+          <p className="hero__hint" hidden={!!talk.line} aria-hidden="true"><span className="hint-pc">クリック</span><span className="hint-touch">タップ</span>で<br />話しかける</p>
           <div className="sticker">
             <small>毎日投稿</small>
             <b>{day.toLocaleString('ja-JP')}</b>
@@ -101,7 +111,7 @@ function Hero({ day }) {
 function Featured() {
   return (
     <section className="sec sec--white">
-      <div className="wrap split split--5-7">
+      <div className="wrap split split--5-7 split--feature">
         <div className="phone-wrap reveal">
           <div className="phone">
             <iframe
@@ -147,7 +157,7 @@ function FindVideos() {
             </li>
           ))}
         </ul>
-        <h3 className="subhead">新着動画</h3>
+        <h3 className="subhead">おすすめ動画</h3>{/* 手選びの数本なので「新着」とは呼ばない。最新を自動で出すなら新着に戻す */}
         <ul className="grid grid--videos hscroll">
           {latest.map(v => <li key={v.id}><VideoCard v={v} /></li>)}
         </ul>

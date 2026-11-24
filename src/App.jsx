@@ -1,4 +1,4 @@
-import { useEffect } from 'react'
+import { useEffect, useRef } from 'react'
 import { Routes, Route, useLocation, Link } from 'react-router-dom'
 import { Header, Footer, Curtain } from './components.jsx'
 import Home from './pages/Home.jsx'
@@ -8,22 +8,37 @@ import Works from './pages/Works.jsx'
 import Services from './pages/Services.jsx'
 import Links from './pages/Links.jsx'
 
+const TITLES = { '/': 'バーチャルバナナ｜声真似VTuber 公式サイト', '/videos': '動画', '/character': 'キャラクター', '/works': '実績', '/services': 'できること', '/links': 'リンク' }
+
 export default function App() {
   const { pathname, hash } = useLocation()
-  const bare = pathname === '/links'   // リンクまとめはSNSプロフィール用なのでヘッダー・フッターなし
+  const path = pathname.replace(/\/+$/, '') || '/'   // 末尾の / は無視（/links/ も /links と同じ扱い）
+  const bare = path === '/links'   // リンクまとめはSNSプロフィール用なのでヘッダー・フッターなし
+  const last = useRef(null)   // 前回処理したURL（最初の表示・同じURLの再実行ではフォーカスを動かさない）
 
-  // ページ移動時: #があればその位置へ、なければ先頭へ
+  // ページ移動時: #があればその位置へ、なければ先頭へ。タイトルもページごとに
   useEffect(() => {
+    const t = TITLES[path]
+    document.title = path === '/' ? t : `${t || 'ページが見つかりません'}｜バーチャルバナナ`
     const el = hash && document.getElementById(decodeURIComponent(hash.slice(1)))
     if (el) el.scrollIntoView()
     else window.scrollTo(0, 0)
-  }, [pathname, hash])
+    // 2回目以降の移動では、キーボードと読み上げの位置も移動先の見出しへ
+    const prev = last.current
+    last.current = path + hash
+    if (prev === null || prev === last.current) return
+    const target = (el && (el.querySelector('h1, h2') || el)) || document.querySelector('main h1')
+    if (!target) return
+    if (!target.hasAttribute('tabindex')) target.setAttribute('tabindex', '-1')
+    target.focus({ preventScroll: true })
+  }, [path, hash])
 
   return (
     <>
+      <a className="skip" href="#main">本文へスキップ</a>
       <Curtain />
       {!bare && <Header />}
-      <main>
+      <main id="main" tabIndex={-1}>
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/videos" element={<Videos />} />

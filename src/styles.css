@@ -9,7 +9,9 @@
   --cream: #FFF6CC;
   --white: #FFFFFF;
 
-  --hh: 64px;             /* ヘッダー高さ */
+  --cap: 58px;            /* ヘッダー（カプセル）の高さ */
+  --cap-top: 10px;        /* カプセルの上の隙間 */
+  --hh: 74px;             /* ヘッダーが覆う高さ（隙間＋カプセル＋影） */
   --max: 1120px;
   --pad-x: 16px;
   --gut: 16px;
@@ -22,7 +24,7 @@
   --body: 'Zen Maru Gothic', 'Hiragino Maru Gothic ProN', 'Hiragino Sans', sans-serif;
 }
 @media (min-width: 768px) { :root { --pad-x: 24px; } }
-@media (min-width: 1024px) { :root { --hh: 76px; --gut: 24px; --sec: 96px; } }
+@media (min-width: 1024px) { :root { --cap: 64px; --cap-top: 14px; --hh: 84px; --gut: 24px; --sec: 96px; } }
 
 *, *::before, *::after { box-sizing: border-box; }
 html { scroll-padding-top: calc(var(--hh) + 16px); -webkit-text-size-adjust: 100%; }
@@ -36,17 +38,25 @@ body {
   line-height: 1.8;
   overflow-x: clip;
   -webkit-font-smoothing: antialiased;
+  word-break: keep-all; overflow-wrap: anywhere;   /* 改行は linebreak.js が入れた文節の切れ目だけ。収まらない時だけどこでも折る */
 }
 img { max-width: 100%; height: auto; display: block; }
+.nowrap { white-space: nowrap; }   /* 「1,300+」などの数字は途中で折らない */
 a { color: inherit; }
 h1, h2, h3, p, ul, ol, dl, dd, figure { margin: 0; }
-h1, h2, h3, strong, .chip, .btn, .big-lead { word-break: auto-phrase; }   /* 日本語を文節で改行（対応ブラウザのみ） */
 ul, ol { padding: 0; list-style: none; }
 button { font: inherit; color: inherit; cursor: pointer; }
 ::selection { background: var(--ink); color: var(--y); }
 :focus-visible { outline: 3px solid var(--ink); outline-offset: 3px; border-radius: 6px; }
 .sec--ink :focus-visible, .footer :focus-visible { outline-color: var(--y); }
 [hidden] { display: none !important; }
+.skip {
+  position: fixed; left: 12px; top: 12px; z-index: 200;
+  padding: 10px 18px; border-radius: 999px; background: var(--ink); color: var(--y);
+  font-weight: 900; text-decoration: none; translate: 0 -200%;
+}
+.skip:focus { translate: none; }
+main:focus { outline: none; }
 .vh { position: absolute !important; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
 
 .wrap { width: min(100% - var(--pad-x) * 2, var(--max)); margin-inline: auto; }
@@ -92,80 +102,109 @@ main { overflow-x: clip; }   /* 傾けた帯のはみ出しを切る（clip は 
 }
 .sec--ink .kicker { background: var(--y); color: var(--ink); }
 
-/* ---------- ヘッダー ---------- */
+/* ---------- ヘッダー（上に浮いたカプセル。カードやボタンと同じ黒フチ＋ずらし影） ---------- */
 .header {
   position: fixed; inset: 0 0 auto; z-index: 50;
-  height: var(--hh);
-  background: var(--white);
-  border-bottom: 2px solid var(--ink);
+  padding: var(--cap-top) var(--pad-x) 0;
+  pointer-events: none;   /* カプセルの外側は下のページを触れる */
 }
-.header__in { height: 100%; display: flex; align-items: center; gap: 12px; }
-.logo {
-  display: flex; align-items: center; gap: 10px;
-  font-family: var(--display); font-size: 18px; text-decoration: none; white-space: nowrap;
+.header__in, .menu { pointer-events: auto; }
+/* 左・中央・右の3列。中央のメニューはカプセルのちょうど真ん中に来る（左右の幅の差に引っぱられない） */
+.header__in {
+  --ctl: calc(var(--cap) - 18px);   /* 右端のボタン類の高さ。上下右の余白が同じになる */
+  position: relative; z-index: 2;
+  max-width: calc(var(--max) + 48px); height: var(--cap); margin-inline: auto;   /* ロゴの左端が本文の左端とそろう幅 */
+  display: grid; grid-template-columns: 1fr auto 1fr; align-items: center;
+  padding: 0 7px;   /* 左右同じにして中央列を真ん中に。ロゴの左の余白はロゴ側で取る */
+  background: var(--white); border: 2px solid var(--ink); border-radius: 999px;
+  box-shadow: 4px 4px 0 var(--ink);
 }
-.logo img { width: 40px; height: 40px; border-radius: 50%; border: 2px solid var(--ink); transition: transform .4s cubic-bezier(.3,1.6,.5,1); }
-.logo:hover img { transform: rotate(-20deg) scale(1.1); }
-.nav { display: none; }
+.logo { grid-column: 1; justify-self: start; margin-left: 15px; transition: transform .35s cubic-bezier(.3,1.6,.5,1); }
+.logo img { height: calc(var(--cap) - 24px); width: auto; }
+.logo:hover { transform: rotate(-5deg) scale(1.06); }
+
+.nav { display: none; grid-column: 2; gap: 6px; }
 .nav a {
-  position: relative; padding: 6px 12px; border-radius: 999px;
-  font-weight: 900; font-size: 15px; text-decoration: none; white-space: nowrap;
-  transition: background-color .15s;
+  position: relative; padding: 8px 14px;
+  font-weight: 700; font-size: 15px; letter-spacing: .06em; line-height: 1.4; text-decoration: none; white-space: nowrap;
 }
-.nav a:hover, .nav a.active { background: var(--y); }
-.header__cta { margin-left: auto; }
+.nav small { display: none; }   /* 英字ラベルはスマホのメニューだけ */
+.nav a::after {   /* 黄色の下線マーカー。乗せると左から引かれる */
+  content: ''; position: absolute; z-index: -1; left: 10px; right: 10px; bottom: 7px; height: 9px;
+  background: var(--y); border-radius: 3px;
+  transform: scaleX(0); transform-origin: left; transition: transform .25s cubic-bezier(.3,.8,.3,1);
+}
+.nav a:hover::after, .nav a.active::after { transform: scaleX(1); }
+
+.header__act { grid-column: 3; justify-self: end; display: flex; align-items: center; gap: 8px; }
+.header__cta {
+  display: inline-flex; align-items: center; gap: 12px;
+  height: var(--ctl); padding: 0 5px 0 20px; border-radius: 999px;
+  background: var(--ink); color: var(--white);
+  font-weight: 700; font-size: 14px; letter-spacing: .06em; text-decoration: none; white-space: nowrap;
+}
+.header__cta i {   /* 黄色い丸の矢印 */
+  width: calc(var(--ctl) - 10px); aspect-ratio: 1; border-radius: 50%;
+  display: grid; place-items: center; background: var(--y); color: var(--ink);
+  transition: transform .25s cubic-bezier(.3,1.6,.5,1);
+}
+.header__cta:hover i { transform: translateX(3px) rotate(-45deg); }
 .burger {
-  width: 46px; height: 46px; flex: none;
-  border: 2px solid var(--ink); border-radius: 50%; background: var(--white);
+  width: var(--ctl); height: var(--ctl); flex: none;
+  border: 0; border-radius: 50%; background: var(--ink);
   display: grid; place-content: center; gap: 5px;
 }
-.burger span:not(.vh) { width: 20px; height: 2.5px; background: var(--ink); border-radius: 2px; transition: transform .25s; }
-.burger[aria-expanded="true"] { background: var(--y); }
+.burger span:not(.vh) { width: 18px; height: 2.5px; background: var(--y); border-radius: 2px; transition: transform .25s; }
 .burger[aria-expanded="true"] span:nth-child(1) { transform: translateY(3.75px) rotate(45deg); }
 .burger[aria-expanded="true"] span:nth-child(2) { transform: translateY(-3.75px) rotate(-45deg); }
 
-@media (max-width: 479px) {
-  .logo { font-size: 0; gap: 0; }   /* 小さい画面はアイコンだけ */
-}
+@media (max-width: 1023px) { .logo { margin-left: 11px; } .header__cta { font-size: 13px; padding-left: 16px; gap: 10px; } }
 @media (min-width: 1024px) {
-  .nav { display: flex; gap: 2px; margin-inline: auto; }
-  .header__cta { margin-left: 0; }
+  .nav { display: flex; }
   .burger, .menu { display: none !important; }
-  .logo { font-size: 20px; }
 }
 
-/* スクロール量の黄色いバー */
+/* スクロール量の黄色いバー（画面の上端） */
 @supports (animation-timeline: scroll()) {
-  .header::after {
-    content: ''; position: absolute; left: 0; right: 0; bottom: -2px; height: 4px;
-    background: var(--y); border-block: 1px solid var(--ink);
+  .header::before {
+    content: ''; position: absolute; inset: 0 0 auto; height: 4px;
+    background: var(--y); border-bottom: 1px solid var(--ink);
     transform-origin: 0 50%; transform: scaleX(0);
     animation: grow linear both; animation-timeline: scroll(root);
   }
   @keyframes grow { to { transform: scaleX(1); } }
 }
 
-/* スマホのメニュー */
+/* スマホのメニュー: カプセルの下に開くカード。周りは暗くして、タップで閉じる */
 .menu {
-  position: fixed; inset: var(--hh) 0 0; z-index: 49;
-  background: var(--y);
-  padding: 24px var(--pad-x) 40px;
-  display: flex; flex-direction: column;
+  position: fixed; inset: 0; z-index: 1;
+  padding: calc(var(--cap-top) + var(--cap) + 12px) var(--pad-x) 24px;
+  background: rgba(26, 26, 26, .45);
   overflow-y: auto;
+  animation: fadeIn .25s ease-out;
+}
+.menu__card {
+  max-width: 560px; margin-left: auto;
+  display: flex; flex-direction: column;
+  padding: 8px 22px 24px;
+  background: var(--y); border: 2px solid var(--ink); border-radius: 28px; box-shadow: 6px 6px 0 var(--ink);
   animation: menuIn .35s cubic-bezier(.2,.9,.3,1);
 }
-.menu > a {
-  font-family: var(--display); font-size: clamp(26px, 8vw, 40px);
-  text-decoration: none; padding: 10px 0;
+.menu__card > a:not(.btn) {
+  display: flex; align-items: baseline; justify-content: space-between; gap: 12px;
+  font-family: var(--display); font-size: clamp(24px, 7vw, 32px);
+  text-decoration: none; padding: 12px 0;
   border-bottom: 2px solid var(--ink);
   animation: slideIn .4s cubic-bezier(.2,.9,.3,1) both;
 }
-.menu > a:nth-child(2) { animation-delay: .04s; } .menu > a:nth-child(3) { animation-delay: .08s; }
-.menu > a:nth-child(4) { animation-delay: .12s; } .menu > a:nth-child(5) { animation-delay: .16s; }
-.menu > a:nth-child(6) { animation-delay: .2s; }
-.menu .sns { margin-top: 32px; }
-.menu .sns a { border-color: var(--ink); color: var(--ink); }
-@keyframes menuIn { from { clip-path: inset(0 0 100% 0); } to { clip-path: inset(0 0 0 0); } }
+.menu__card > a small { order: 1; font-size: 10px; letter-spacing: .16em; }
+.menu__card > a:nth-child(2) { animation-delay: .04s; } .menu__card > a:nth-child(3) { animation-delay: .08s; }
+.menu__card > a:nth-child(4) { animation-delay: .12s; } .menu__card > a:nth-child(5) { animation-delay: .16s; }
+.menu__cta { margin-top: 20px; }
+.menu__card .sns { margin-top: 20px; justify-content: center; }
+.menu__card .sns a { border-color: var(--ink); color: var(--ink); }
+@keyframes fadeIn { from { opacity: 0; } }
+@keyframes menuIn { from { opacity: 0; transform: translateY(-12px) scale(.97); } }
 @keyframes slideIn { from { opacity: 0; transform: translateX(-24px); } }
 
 /* ---------- 遷移の幕 ---------- */
@@ -199,6 +238,7 @@ main { overflow-x: clip; }   /* 傾けた帯のはみ出しを切る（clip は 
   user-select: none;
 }
 .marquee__track { display: flex; width: max-content; animation: marquee var(--dur, 40s) linear infinite; }
+.marquee:hover .marquee__track { animation-play-state: paused; }
 .marquee span { display: inline-flex; align-items: center; padding: 16px 0; }
 .marquee i { font-style: normal; margin: 0 .9em; font-size: .7em; }
 @keyframes marquee { to { transform: translateX(-50%); } }
@@ -272,14 +312,23 @@ main { overflow-x: clip; }   /* 傾けた帯のはみ出しを切る（clip は 
   .grid--videos { grid-template-columns: repeat(3, 1fr); }
   .grid--svc { grid-template-columns: repeat(5, 1fr); }
 }
-/* スマホでは新着動画を横スクロール */
-@media (max-width: 767px) {
+/* スマホ・タブレットでは新着動画を横スクロール。次のカードが少し見えて横に送れると分かる幅にする */
+@media (max-width: 1023px) {
   .hscroll {
     grid-auto-flow: column; grid-auto-columns: 82%; grid-template-columns: none;
     overflow-x: auto; scroll-snap-type: x mandatory;
-    margin-inline: calc(var(--pad-x) * -1); padding: 4px var(--pad-x) 16px;
+    margin-inline: calc(var(--pad-x) * -1); padding: 4px var(--pad-x) 16px; scroll-padding-inline: var(--pad-x);
   }
   .hscroll > li { scroll-snap-align: center; }
+}
+@media (min-width: 600px) and (max-width: 1023px) {
+  .hscroll { grid-auto-columns: 45%; }
+  .hscroll > li { scroll-snap-align: start; }
+}
+/* タブレット: 「まずはこの1本」は文字を左、スマホ枠を右に並べて縦の余白を詰める */
+@media (min-width: 600px) and (max-width: 1023px) {
+  .split--feature { grid-template-columns: 1fr 38%; gap: 32px; }
+  .split--feature .phone-wrap { order: 1; width: min(100%, 300px); }
 }
 
 /* ---------- カード（共通） ---------- */
@@ -325,11 +374,12 @@ li:nth-child(even) > .card { --rot: 1.2deg; }
 /* 再生リスト */
 .plist { padding: 0; overflow: hidden; height: 100%; display: flex; flex-direction: column; }
 .plist__top {
-  display: flex; align-items: baseline; justify-content: space-between; gap: 8px;
+  display: flex; align-items: baseline; justify-content: space-between; gap: 8px; white-space: nowrap;
   padding: 14px 16px 12px; background: var(--ink); color: var(--y);
   font-family: var(--display); font-size: 12px; letter-spacing: .12em;
 }
 .plist__no { font-size: clamp(30px, 4vw, 44px); line-height: 1; letter-spacing: 0; }
+@media (max-width: 479px) { .plist__top { padding-inline: 12px; letter-spacing: .06em; } }
 .plist strong { padding: 16px 16px 4px; font-size: clamp(17px, 1.8vw, 20px); font-weight: 900; }
 .plist__go { margin-top: auto; padding: 8px 16px 16px; font-size: 13px; font-weight: 700; display: inline-flex; align-items: center; gap: 4px; }
 
@@ -347,10 +397,9 @@ li:nth-child(even) > .card { --rot: 1.2deg; }
   mask: radial-gradient(120% 90% at 0% 100%, #000 0, transparent 55%);
 }
 .hero__grid { position: relative; display: grid; gap: 24px; align-items: center; }
-.hero__visual { order: -1; }
+.hero__text { position: relative; z-index: 2; }   /* 文字・ボタンはキャラ側の要素より手前（押せなくならないように） */
 @media (min-width: 1024px) {
   .hero__grid { grid-template-columns: 7fr 5fr; gap: 32px; min-height: min(calc(100svh - var(--hh) - 80px), 760px); }
-  .hero__visual { order: 0; }
 }
 
 .hero__kicker { display: flex; align-items: center; gap: 10px; font-family: var(--display); font-size: 14px; letter-spacing: .1em; }
@@ -379,49 +428,71 @@ li:nth-child(even) > .card { --rot: 1.2deg; }
 }
 .hero__stats strong { font-family: var(--display); font-weight: 400; font-size: clamp(22px, 3.2vw, 36px); line-height: 1.15; }
 .hero__stats li > span { font-size: 11px; font-weight: 900; line-height: 1.4; }
-
-.hero__visual {
-  position: relative; width: 100%; max-width: 360px; margin-inline: auto; aspect-ratio: 1;
+@media (min-width: 1024px) {   /* PCは黄色の背景に直接置くので、黄色いボタンは白にして埋もれないように */
+  .hero .btns .btn:not(.btn--ink) { background: var(--white); }
+  .hero .btns .btn:not(.btn--ink):hover { background: var(--cream); }
 }
-@media (min-width: 1024px) { .hero__visual { max-width: 500px; } }
+
+/* キャラまわりは --d（円の直径）・--x（円と顔の中心）・--top（画像の上端）で配置する。座標はキャラ枠の左上が基準。
+   値はスマホ・タブレット用（このセクション末尾）と PC 用（すぐ下）でそれぞれ決める */
+.hero__visual { position: relative; }
+/* PC: 右カラムに特大で。王冠の先はヘッダーの裏。
+   --d は「右カラム＋画面右の余白」の8割。こうすると左手の先(顔の中心-0.75d)が本文にかからず、円の右端も画面内に収まる */
+@media (min-width: 1024px) {
+  .hero__visual {
+    align-self: stretch; height: auto;
+    container-type: inline-size;
+    --d: min(750px, (100cqw + max(24px, 50vw - 570px)) * .8);
+    --x: calc(var(--d) * .75);
+    --top: -52px;
+    --hit-bottom: -54px;   /* ヒーロー下の余白88pxのうち、帯に隠れない分 */
+  }
+}
 .hero__burst {
-  position: absolute; inset: -45%;
+  position: absolute; left: calc(var(--x) - var(--d) * 1.2); top: calc(var(--top) - var(--d) * .48); width: calc(var(--d) * 2.4); aspect-ratio: 1;
   background: repeating-conic-gradient(rgba(26,26,26,.075) 0 7.5deg, transparent 7.5deg 15deg);
   -webkit-mask: radial-gradient(closest-side, #000 35%, transparent);
   mask: radial-gradient(closest-side, #000 35%, transparent);
   animation: spin 90s linear infinite;
+  pointer-events: none;   /* 飾り。本文側まで広がるのでクリックを通す */
 }
 .hero__disc {
-  position: absolute; left: 7%; right: 7%; bottom: 0; aspect-ratio: 1;
+  position: absolute; left: calc(var(--x) - var(--d) / 2); top: calc(var(--top) + var(--d) * .22); width: var(--d); aspect-ratio: 1;
   border-radius: 50%; background: var(--ink);
   translate: calc(var(--px) * 16px) calc(var(--py) * 12px);
   transition: translate .3s ease-out;
+  pointer-events: none;   /* 飾り */
 }
 .ring { position: absolute; inset: 0; width: 100%; height: 100%; animation: spin 30s linear infinite; }
 .ring text { fill: var(--y); font-family: var(--display); font-size: 12px; letter-spacing: .1em; }
 .hero__chara {
-  position: absolute; inset: -9% 0 0;
-  padding: 0; border: 0; background: none; border-radius: 40%;
+  /* 当たり判定 = 王冠(画像の上端)から下端まで × 左手の先から円の右端まで。キャラ全体を覆う */
+  position: absolute; left: 0; top: var(--top); bottom: var(--hit-bottom, 0px); width: calc(var(--x) + var(--d) / 2);
+  padding: 0; border: 0; background: none;
   translate: calc(var(--px) * -26px) calc(var(--py) * -16px);
   transition: translate .3s ease-out;
 }
+.hero__chara:focus-visible { outline-offset: -6px; border-radius: 24px; }   /* ヒーローの端で切れないよう内側に */
 .hero__chara img {
-  width: 100%; height: 100%; object-fit: contain;
+  position: absolute; left: var(--x); top: 0; translate: -57% 0;   /* 顔の中心(画像の57%)を円の中心へ。上端はボタンの上端 */
+  width: auto; height: calc(var(--d) * 2.13); max-width: none; pointer-events: none;   /* はみ出した絵はクリックを奪わない */
   filter: drop-shadow(3px 0 0 #fff) drop-shadow(-3px 0 0 #fff) drop-shadow(0 3px 0 #fff) drop-shadow(0 -3px 0 #fff) drop-shadow(8px 8px 0 var(--ink));
   animation: float 5s ease-in-out infinite, enter 1s cubic-bezier(.2,1.3,.4,1) .6s both;
 }
-@keyframes float { 50% { transform: translateY(-2.5%); } }
+@keyframes float { 50% { transform: translateY(-12px); } }
 @keyframes enter { from { opacity: 0; scale: .6; rotate: 12deg; } }
 @keyframes spin { to { transform: rotate(1turn); } }
 
 .bubble {
-  position: absolute; left: -4%; top: 6%; z-index: 2;
+  pointer-events: none;   /* 押してもキャラに届く */
+  position: absolute; left: max(0px, var(--x) - var(--d) * .73); top: calc(var(--top) + var(--d) * .12); z-index: 2;
   max-width: 62%;
   background: var(--white); border: 2px solid var(--ink); border-radius: 20px;
   padding: 10px 16px; font-weight: 900; font-size: 15px; line-height: 1.5;
   box-shadow: 4px 4px 0 var(--ink);
-  animation: pop .35s cubic-bezier(.3,1.6,.5,1);
+  animation: pop .35s cubic-bezier(.3,1.6,.5,1), fade-out .4s ease-in 4s forwards;   /* 4秒でフェードアウト（要素を消すのは Home.jsx のタイマー） */
 }
+@keyframes fade-out { to { opacity: 0; translate: 0 -8px; } }
 .bubble::after {
   content: ''; position: absolute; right: 18%; bottom: -12px;
   width: 20px; height: 20px; background: var(--white);
@@ -429,27 +500,89 @@ li:nth-child(even) > .card { --rot: 1.2deg; }
   transform: skewX(30deg) rotate(45deg);
 }
 .hero__hint {
-  position: absolute; left: 0; top: 14%;
+  pointer-events: none;   /* 押してもキャラに届く */
+  position: absolute; left: calc(var(--x) - var(--d) * .51 - 76px); top: calc(var(--top) + var(--d) * .43);   /* 左の髪と左手の間の空き */
   font-size: 12px; font-weight: 900; line-height: 1.4; text-align: center;
   rotate: -10deg; animation: wobble 2.4s ease-in-out infinite;
 }
-@media (max-width: 1023px) { .hero__hint { display: none; } }
+.hint-touch { display: none; }
+@media (hover: none) { .hint-pc { display: none; } .hint-touch { display: inline; } }
 @keyframes wobble { 50% { rotate: -4deg; translate: 0 -4px; } }
 
 .sticker {
-  position: absolute; right: -2%; bottom: 6%; z-index: 2;
-  width: clamp(108px, 28%, 140px); aspect-ratio: 1;
+  pointer-events: none;   /* 押してもキャラに届く */
+  position: absolute; left: calc(var(--x) + var(--d) * .47); top: calc(var(--top) + var(--d) * .8); translate: -100% 0; z-index: 2;   /* 右端を円の右端に揃える */
+  width: max(112px, var(--d) * .26); aspect-ratio: 1;
   display: grid; place-content: center; text-align: center;
   background: var(--white); border: 2px solid var(--ink); border-radius: 50%;
   box-shadow: 4px 4px 0 var(--ink), inset 0 0 0 5px var(--white), inset 0 0 0 7px var(--ink);
   rotate: 12deg; line-height: 1.1;
   animation: pop .6s cubic-bezier(.3,1.6,.5,1) 1.4s both;
 }
-.sticker small { font-size: 11px; font-weight: 900; }
-.sticker b { font-family: var(--display); font-weight: 400; font-size: clamp(20px, 2.2vw, 26px); margin: 2px 0; letter-spacing: -.02em; }
+.sticker small { font-size: 13px; font-weight: 900; }
+.sticker b { font-family: var(--display); font-weight: 400; font-size: max(20px, var(--d) * .06); margin: 2px 0; letter-spacing: -.02em; }
+
+/* スマホ・タブレット: 1画面(100svh)のポスター型。
+   上 = キッカーとタイトル（左上）／中 = キャラの上半身（右に特大、左手は空いた左側へ）／
+   下 = 白いシート（説明・数字・ボタン）。キャラの腰から下はシートの裏に隠れる（配信画面のオーバーレイのイメージ） */
+@media (max-width: 1023px) {
+  .hero {
+    padding: calc(var(--hh) + 16px) 0 0;
+    --F: clamp(42px, 11vw, 84px);   /* タイトルの文字サイズ */
+    --sheet: 330px;                  /* 下の白いシートの高さの目安。キャラの腰をここで切る */
+    /* キャラ画像の高さ: 王冠〜胸の下(画像の44%)がヘッダー下〜シート上に収まる大きさ。幅が狭いときは顔がタイトルにかからない大きさ */
+    --h: min(205vw, (100svh - var(--sheet) - 56px) / .44);
+  }
+  .hero__grid { position: static; display: block; }   /* キャラ枠の基準をヒーロー全体にする */
+  .hero__text {
+    position: relative; z-index: 2;
+    display: flex; flex-direction: column; align-items: flex-start;
+    min-height: calc(100svh - var(--hh) - 16px);
+    pointer-events: none;   /* 文字の隙間のタップはキャラに通す */
+  }
+  .hero__text > * { pointer-events: auto; }
+  .hero__kicker { text-shadow: 2px 0 #fff, -2px 0 #fff, 0 2px #fff, 0 -2px #fff; }   /* 王冠に重なっても読める白フチ */
+  .hero__kicker span { text-shadow: none; }
+  .hero__title {
+    font-size: var(--F); margin: 10px 0 24px;
+    text-shadow: 3px 0 #fff, -3px 0 #fff, 0 3px #fff, 0 -3px #fff, 2px 2px #fff, -2px 2px #fff, 2px -2px #fff, -2px -2px #fff;
+  }
+  .hero__line--ink { text-shadow: none; }
+  .hero__sheet {
+    align-self: stretch; margin: auto calc(var(--pad-x) * -1) 0;   /* 下端に寄せて画面幅いっぱい */
+    padding: 20px var(--pad-x) 64px;   /* 下64pxは帯が重なる分 */
+    background: var(--white); border-top: 2px solid var(--ink); border-radius: 28px 28px 0 0;
+  }
+  .hero__catch { font-size: 14px; line-height: 1.75; }
+  .hero__stats { margin-top: 14px; }
+  .hero__stats li { padding: 9px 6px 8px; }
+  .hero .btns { margin-top: 14px; flex-wrap: nowrap; max-width: 560px; }
+  .hero .btns .btn { flex: 1; min-height: 50px; padding-inline: 12px; }   /* 2つのボタンを1行に */
+  .hero__chara { max-width: 100%; }
+  .hero__visual {
+    position: absolute; inset: 0;
+    --d: calc(var(--h) / 2.13);
+    --x: calc(100vw - 12px - var(--h) * .12);   /* 右目(画像の69%)が画面右端の少し内側。髪は右へはみ出す */
+    --top: calc(100% - var(--sheet) - var(--h) * .44);   /* 画像の44%（ふわふわ動いてもワンピースの切れ込みが出ない高さ）をシートの上端に */
+  }
+  .sticker { left: auto; right: var(--pad-x); top: auto; bottom: calc(var(--sheet) + 12px); translate: none; width: clamp(100px, 26vw, 140px); }   /* 顔の下・右 */
+  .sticker b { font-size: clamp(20px, 6vw, 30px); }
+  .bubble { left: var(--pad-x); top: max(var(--hh) + 63px + var(--F) * 2.2, var(--top) + var(--h) * .15); }   /* タイトルの下・顔の左 */
+  .hero__hint { left: var(--pad-x); top: max(var(--hh) + 71px + var(--F) * 2.2, var(--top) + var(--h) * .24); }   /* 左手の上 */
+}
+@media (min-width: 600px) and (max-width: 1023px) {
+  .hero { --sheet: 300px; }   /* タブレットは説明が2行で収まるぶんシートが低い */
+  /* シートの中身は中央に。説明・数字・ボタンを同じ幅でそろえる */
+  .hero__sheet { display: flex; flex-direction: column; align-items: center; text-align: center; padding-top: 24px; }
+  .hero__catch { font-size: 15px; max-width: 36em; text-wrap: balance; }
+  .hero__stats, .hero .btns { width: 100%; max-width: 600px; }
+}
+@media (max-width: 1023px) and (max-height: 699px) {
+  .sticker, .hero__hint { display: none; }   /* 背の低い画面は置き場がない（同じ日数は帯にも出ている） */
+}
 
 /* ---------- まずはこの1本 ---------- */
-.phone-wrap { position: relative; justify-self: center; width: min(72%, 260px); }
+.phone-wrap { position: relative; justify-self: center; width: max(220px, min(72%, 260px)); }   /* 枠を除いて200px以上（YouTubeの最小幅） */
 @media (min-width: 1024px) { .phone-wrap { width: min(100%, 320px); } }
 .phone {
   aspect-ratio: 9 / 16;
@@ -615,7 +748,7 @@ a.ccard:hover { transform: perspective(900px) rotateX(var(--rx, 0deg)) rotateY(v
   transition: background-color .15s, transform .15s, box-shadow .15s;
 }
 .ctabs button img { width: 44px; height: 44px; border-radius: 50%; border: 2px solid var(--ink); object-fit: cover; background: var(--cream); }
-.ctabs button[aria-selected="true"] { background: var(--y); transform: translate(-2px, -2px); box-shadow: 5px 5px 0 var(--ink); }
+.ctabs button[aria-pressed="true"] { background: var(--y); transform: translate(-2px, -2px); box-shadow: 5px 5px 0 var(--ink); }
 .profile { animation: rise .5s cubic-bezier(.2,1.2,.4,1); }
 .profile__img {
   position: relative; aspect-ratio: 1; border: 2px solid var(--ink); border-radius: 32px; overflow: hidden;
@@ -648,6 +781,8 @@ a.ccard:hover { transform: perspective(900px) rotateX(var(--rx, 0deg)) rotateY(v
 .tags { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 24px; }
 .tags li { background: var(--white); border: 2px solid var(--ink); border-radius: 12px; padding: 8px 14px; font-weight: 900; display: grid; line-height: 1.5; box-shadow: 3px 3px 0 var(--ink); }
 .tags small { font-size: 11px; font-weight: 700; }
+.tags .tags__secret { color: var(--white); }   /* 白い札に白い文字。選択したときだけ読める */
+.tags__secret ::selection, .tags__secret::selection { background: var(--ink); color: var(--y); }
 
 .lightbox {
   padding: 0; border: 2px solid var(--ink); border-radius: 20px;
@@ -759,6 +894,7 @@ a.ccard:hover { transform: perspective(900px) rotateX(var(--rx, 0deg)) rotateY(v
 }
 .checklist li::before { content: '✓'; width: 24px; height: 24px; border-radius: 50%; background: var(--ink); color: var(--y); display: grid; place-items: center; font-size: 13px; }
 .contact .btns { flex-direction: column; align-items: stretch; width: min(100%, 420px); }
+.contact__note { margin-top: 16px; font-size: 14px; font-weight: 700; text-wrap: balance; }
 @media (min-width: 768px) { .contact .btns { flex-direction: row; width: auto; } }
 
 /* ---------- スクロールで出てくる（対応ブラウザだけ。非対応ならそのまま表示） ---------- */
@@ -802,7 +938,7 @@ a.ccard:hover { transform: perspective(900px) rotateX(var(--rx, 0deg)) rotateY(v
   margin-top: 8px; padding: 2px 14px; border-radius: 999px;
   background: var(--ink); color: var(--y); font-size: 13px; font-weight: 900;
 }
-.links__bio { margin-top: 14px; font-size: 14px; font-weight: 700; line-height: 1.8; word-break: auto-phrase; text-wrap: balance; }
+.links__bio { margin-top: 14px; font-size: 14px; font-weight: 700; line-height: 1.8; text-wrap: balance; }
 .links .sns { justify-content: center; margin-top: 18px; }
 .links .sns a { border-color: var(--ink); color: var(--ink); background: var(--white); transition: background-color .2s, color .2s, transform .3s cubic-bezier(.3,1.6,.5,1); }
 .links .sns a:hover { background: var(--ink); color: var(--y); transform: translateY(-4px) rotate(-8deg); }

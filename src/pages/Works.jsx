@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { Link, useSearchParams } from 'react-router-dom'
 import { CountUp, Icon, PageHero, SecHead, dot } from '../components.jsx'
 import { ACHIEVEMENTS, ACH_TYPES, HISTORY, REACH_STATS, STATS_AS_OF, countBy, dailyDay } from '../data.js'
 
@@ -6,7 +7,8 @@ const SORTED = [...ACHIEVEMENTS].sort((a, b) => b.d.localeCompare(a.d))
 const LABEL = { 受賞: '受賞・入賞', 出演: '出演', CM: 'CM放映', メディア: 'メディア掲載' }
 
 export default function Works() {
-  const [type, setType] = useState('すべて')
+  const [params] = useSearchParams()   // /works?type=CM#achievements のように、種別を指定して開ける
+  const [type, setType] = useState(() => ACH_TYPES.includes(params.get('type')) ? params.get('type') : 'すべて')
   const list = type === 'すべて' ? SORTED : SORTED.filter(a => a.c === type)
   const day = dailyDay()
 
@@ -29,7 +31,7 @@ export default function Works() {
         </div>
       </section>
 
-      <section className="sec sec--cream">
+      <section className="sec sec--cream" id="achievements">
         <div className="wrap">
           <SecHead en="ACHIEVEMENTS" title="受賞・出演・メディア" />
           <div className="chips-filter" role="group" aria-label="種別で絞り込む">
@@ -39,7 +41,8 @@ export default function Works() {
               </button>
             ))}
           </div>
-          <ul className="alist" aria-live="polite">
+          <p className="vh" role="status">{LABEL[type] || type} {list.length}件</p>{/* 一覧を丸ごと読み上げず件数だけ伝える */}
+          <ul className="alist">
             {list.map(a => (
               <li key={a.d + a.t} className={a.s ? 'is-star' : ''}>
                 <a href={a.u} target="_blank" rel="noopener noreferrer">
@@ -51,6 +54,10 @@ export default function Works() {
               </li>
             ))}
           </ul>
+          <div className="btns btns--center">{/* 実績を見た依頼者がそのまま相談へ進めるように */}
+            <Link className="btn btn--ink" to="/services#contact">お仕事の相談<Icon.arrow /></Link>
+            <Link className="btn btn--white" to="/services">できることを見る<Icon.arrow /></Link>
+          </div>
         </div>
       </section>
 

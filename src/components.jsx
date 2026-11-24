@@ -43,45 +43,68 @@ export const SNS = [
 ]
 
 const NAV = [
-  ['/videos', '動画'],
-  ['/character', 'キャラクター'],
-  ['/#play', '遊ぶ・応援'],
-  ['/works', '実績'],
-  ['/services', 'できること'],
+  ['/videos', '動画', 'VIDEOS'],
+  ['/character', 'キャラクター', 'CHARACTER'],
+  ['/#play', '遊ぶ・応援', 'PLAY'],
+  ['/works', '実績', 'WORKS'],
+  ['/services', 'できること', 'SERVICES'],
 ]
 
 /* ---------- ヘッダー ---------- */
 export function Header() {
   const [open, setOpen] = useState(false)
   const loc = useLocation()
+  const burger = useRef(null)
+  const card = useRef(null)
   useEffect(() => setOpen(false), [loc.pathname, loc.hash])
   useEffect(() => {
     if (!open) return
-    const onKey = e => e.key === 'Escape' && setOpen(false)
-    document.addEventListener('keydown', onKey)
+    // 開いている間: 裏のページはTabでもタップでも触れない・スクロールしない。最初のリンクにフォーカス
+    const behind = document.querySelectorAll('main, .footer')
+    behind.forEach(el => { el.inert = true })
     document.body.style.overflow = 'hidden'
-    return () => { document.removeEventListener('keydown', onKey); document.body.style.overflow = '' }
+    card.current.querySelector('a').focus()
+    const onKey = e => e.key === 'Escape' && setOpen(false)
+    const wide = matchMedia('(min-width: 1024px)')   // PC幅になったらメニュー自体が消えるので閉じる
+    const onWide = () => wide.matches && setOpen(false)
+    document.addEventListener('keydown', onKey)
+    wide.addEventListener('change', onWide)
+    return () => {
+      behind.forEach(el => { el.inert = false })
+      document.body.style.overflow = ''
+      document.removeEventListener('keydown', onKey)
+      wide.removeEventListener('change', onWide)
+      // メニューの中にいたフォーカスは開閉ボタンへ戻す（ページを移った時は App が見出しへ移す）
+      const a = document.activeElement
+      if (a === document.body || card.current?.contains(a)) burger.current?.focus()
+    }
   }, [open])
 
-  const links = NAV.map(([to, l]) => to.includes('#')
-    ? <Link key={to} to={to}>{l}</Link>
-    : <NavLink key={to} to={to}>{l}</NavLink>)
+  const links = NAV.map(([to, l, en]) => {
+    const inner = <><small aria-hidden="true">{en}</small>{l}</>
+    return to.includes('#') ? <Link key={to} to={to}>{inner}</Link> : <NavLink key={to} to={to}>{inner}</NavLink>
+  })
 
   return (
     <header className="header">
-      <div className="wrap header__in">
-        <Link to="/" className="logo"><img src={img('icon.png')} alt="" width="40" height="40" />バーチャルバナナ</Link>
+      <div className="header__in">
+        <Link to="/" className="logo"><img src={img('logo.webp')} alt="バーチャルバナナ" width="1000" height="563" /></Link>
         <nav className="nav" aria-label="メイン">{links}</nav>
-        <Link to="/services#contact" className="btn btn--sm header__cta">お仕事の相談</Link>
-        <button className="burger" aria-expanded={open} aria-controls="menu" onClick={() => setOpen(!open)}>
-          <span /><span /><span className="vh">メニュー</span>
-        </button>
+        <div className="header__act">
+          <Link to="/services#contact" className="header__cta">お仕事の相談<i aria-hidden="true"><Icon.arrow /></i></Link>
+          <button ref={burger} className="burger" aria-expanded={open} aria-controls="menu" onClick={() => setOpen(!open)}>
+            <span /><span /><span className="vh">メニュー</span>
+          </button>
+        </div>
       </div>
-      <nav id="menu" className="menu" hidden={!open} aria-label="メニュー">
-        {links}
-        <Link to="/services#contact">お仕事の相談</Link>
-        <ul className="sns">{SNS.map(s => <li key={s.l}><a href={s.u} target="_blank" rel="noopener noreferrer" aria-label={s.l}><s.i /></a></li>)}</ul>
-      </nav>
+      {/* 外側（暗い所）か、中のリンクを押したら閉じる（今いるページのリンクでも閉じる） */}
+      <div className="menu" hidden={!open} onClick={e => (e.target === e.currentTarget || e.target.closest('a')) && setOpen(false)}>
+        <nav id="menu" ref={card} className="menu__card" aria-label="メニュー">
+          {links}
+          <Link to="/services#contact" className="btn btn--ink menu__cta">お仕事の相談<Icon.arrow /></Link>
+          <ul className="sns">{SNS.map(s => <li key={s.l}><a href={s.u} target="_blank" rel="noopener noreferrer" aria-label={s.l}><s.i /></a></li>)}</ul>
+        </nav>
+      </div>
     </header>
   )
 }
@@ -98,12 +121,13 @@ export function Footer() {
             {NAV.map(([to, l]) => <Link key={to} to={to}>{l}</Link>)}
             <Link to="/services#contact">お仕事の相談</Link>
           </nav>
-          <nav aria-label="外部リンク">
+          <nav aria-label="関連リンク">
             <a href={LINKS.arcade} target="_blank" rel="noopener noreferrer">ゲーム屋台</a>
             <a href={LINKS.booth} target="_blank" rel="noopener noreferrer">BOOTH</a>
             <a href={LINKS.fanicon} target="_blank" rel="noopener noreferrer">fanicon</a>
             <a href={LINKS.note} target="_blank" rel="noopener noreferrer">note</a>
             <a href={LINKS.portfolio} target="_blank" rel="noopener noreferrer">ポートフォリオ</a>
+            <Link to="/links">リンクまとめ</Link>
           </nav>
         </div>
         <small className="copy">© 2018- バーチャルバナナ</small>
@@ -160,7 +184,7 @@ export function CountUp({ value }) {
     io.observe(ref.current)
     return () => { io.disconnect(); cancelAnimationFrame(raf) }
   }, [value])
-  return <><span ref={ref} aria-hidden="true">{shown}</span><span className="vh">{value}</span></>
+  return <><span ref={ref} className="nowrap" aria-hidden="true">{shown}</span><span className="vh">{value}</span></>
 }
 
 /* ---------- 見出し ---------- */

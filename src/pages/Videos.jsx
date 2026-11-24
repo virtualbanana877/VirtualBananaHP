@@ -13,10 +13,21 @@ const TABS = Object.keys(GROUPS).filter(k => GROUPS[k].length)
 export default function Videos() {
   const [tab, setTab] = useState(TABS[0])
   const list = useRef(null)
-  const pick = t => {
+  const pick = (t, e) => {
     setTab(t)
-    // 一覧が画面より下にあるときだけ、一覧までスクロール
-    if (list.current.getBoundingClientRect().top > innerHeight * 0.6) list.current.scrollIntoView({ behavior: 'smooth' })
+    // 一覧の先頭が固定フィルタのすぐ下に見えていなければ、そこまで移動（読み進めた後に押した場合も先頭へ戻る）
+    const top = list.current.getBoundingClientRect().top
+    const under = e.currentTarget.closest('.filter').getBoundingClientRect().bottom
+    if (top < under || top > innerHeight * 0.6) {
+      const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches
+      scrollTo({ top: scrollY + top - under, behavior: reduce ? 'auto' : 'smooth' })
+    }
+    // キーボードで押した時は、結果の見出しへフォーカスを移す（マウスの時はボタンに残す）
+    if (e.detail === 0) {
+      const h = list.current.querySelector('h2')
+      h.tabIndex = -1
+      h.focus({ preventScroll: true })
+    }
   }
 
   return (
@@ -26,7 +37,7 @@ export default function Videos() {
       <div className="filter">
         <div className="wrap filter__in" role="group" aria-label="動画のジャンル">
           {TABS.map(t => (
-            <button key={t} type="button" aria-pressed={tab === t} onClick={() => pick(t)}>
+            <button key={t} type="button" aria-pressed={tab === t} onClick={e => pick(t, e)}>
               {t}<small>{GROUPS[t].length}</small>
             </button>
           ))}
@@ -53,7 +64,8 @@ export default function Videos() {
       <section className="sec sec--cream" ref={list} id="list">
         <div className="wrap">
           <SecHead en="ALL VIDEOS" title={`動画一覧：${tab}`} />
-          <ul className="grid grid--videos" aria-live="polite">
+          <p className="vh" role="status">{tab}の動画 {GROUPS[tab].length}件</p>{/* 一覧を丸ごと読み上げず件数だけ伝える */}
+          <ul className="grid grid--videos">
             {tab === 'TikTok'
               ? GROUPS.TikTok.map(h => <li key={h.url}><TikTokCard h={h} /></li>)
               : GROUPS[tab].map(v => <li key={v.id}><VideoCard v={v} /></li>)}

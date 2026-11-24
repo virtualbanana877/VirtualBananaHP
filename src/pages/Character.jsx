@@ -19,16 +19,17 @@ export default function Character() {
 
       <section className="sec sec--white">
         <div className="wrap">
-          <div className="ctabs" role="tablist" aria-label="キャラクター">
+          {/* 切り替えボタン（押した方のプロフィールが下に出る）。タブの矢印キー操作は不要な、普通の押しボタンにしている */}
+          <div className="ctabs" role="group" aria-label="キャラクターを選ぶ">
             {CHARACTERS.map(x => (
-              <button key={x.key} type="button" role="tab" id={`tab-${x.key}`} aria-controls="profile"
-                aria-selected={x.key === c.key} onClick={() => setParams({ c: x.key }, { replace: true })}>
+              <button key={x.key} type="button" aria-controls="profile"
+                aria-pressed={x.key === c.key} onClick={() => setParams({ c: x.key }, { replace: true })}>
                 <img src={img(x.img)} alt="" width="48" height="48" />{x.name}
               </button>
             ))}
           </div>
 
-          <div className="split split--5-7 profile" id="profile" role="tabpanel" aria-labelledby={`tab-${c.key}`} key={c.key}>
+          <div className="split split--5-7 profile" id="profile" key={c.key}>
             <div className={`profile__img profile__img--${c.key}`}>
               <img src={img(c.full)} alt={c.name} />
             </div>
@@ -92,7 +93,7 @@ export default function Character() {
           <ul className="tags">
             <li><small>ハッシュタグ</small>#バーチャルバナナ</li>
             <li><small>イラスト</small>#バーチャルバナナ農園</li>
-            <li><small><font color="#FFFFFF">R-18イラスト</font></small><font color="#FFFFFF">#夜のバーチャルバナナ農園</font></li>
+            <li className="tags__secret"><small>R-18イラスト</small>#夜のバーチャルバナナ農園</li>{/* 文字は白。選択すると見える */}
           </ul>
         </div>
       </section>
