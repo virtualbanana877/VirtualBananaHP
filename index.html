@@ -4,14 +4,14 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>バーチャルバナナ｜声真似Vtuber 公式サイト</title>
-<meta name="description" content="声真似レパートリー300超えのVtuber。2018年デビュー。声真似・パロディ動画、ボイス提供、動画編集、Webゲーム・Webサイト制作のご相談も受付中。">
+<meta name="description" content="声真似・パロディ動画を軸に、バナナアート、オリジナル曲、Webゲーム・Webサイト制作まで幅広く手がけるVTuber。ボイス提供や動画制作のご相談も受け付けています。">
 <meta property="og:title" content="バーチャルバナナ｜声真似Vtuber 公式サイト">
 <meta property="og:site_name" content="バーチャルバナナ">
 <meta name="twitter:title" content="バーチャルバナナ｜声真似Vtuber 公式サイト">
 <meta property="og:type" content="website">
 <meta property="og:image" content="https://virtualbanana877.github.io/VirtualBananaHP/images/ogp.png">
 <meta name="twitter:image" content="https://virtualbanana877.github.io/VirtualBananaHP/images/ogp.png">
-<meta property="og:description" content="声真似レパートリー300超えのVtuber。動画・ボイス・ゲーム制作。">
+<meta property="og:description" content="声真似・パロディ動画を軸に、バナナアート、オリジナル曲、Webゲーム・Webサイト制作まで幅広く手がけるVTuber。">
 <meta name="twitter:card" content="summary_large_image">
 <link rel="icon" type="image/png" href="images/icon.png">
 <link rel="apple-touch-icon" href="images/apple-touch-icon.png"><text y='.9em' font-size='90'>🍌</text></svg>">
@@ -57,7 +57,13 @@ nav a{text-decoration:none}nav a:hover{text-decoration:underline}
 .cta{background:var(--ink);color:var(--banana);padding:6px 16px;border-radius:999px}
 .himg{position:relative;justify-self:center;width:100%;max-width:430px}
 .himg img{max-width:100%}
-.badge{position:absolute;left:-6px;bottom:18%;width:112px;height:112px;border-radius:50%;background:var(--ink);color:var(--banana);display:grid;place-content:center;text-align:center;font-family:'Dela Gothic One';line-height:1.15;transform:rotate(-10deg);border:4px solid var(--white)}
+.nums{display:flex;flex-wrap:wrap;gap:10px;margin:0 0 24px}
+.num{background:var(--ink);color:var(--white);border-radius:18px;padding:10px 18px 8px}
+.num b{display:block;font-family:'Dela Gothic One';font-weight:400;font-size:clamp(30px,6vw,46px);line-height:1.1;color:var(--banana)}
+.num span{font-size:12px;font-weight:700}
+.num.sm{background:var(--white);color:var(--ink);border:3px solid var(--ink)}
+.num.sm b{font-size:clamp(22px,4vw,30px);color:var(--ink)}
+.badge{display:none;position:absolute;left:-6px;bottom:18%;width:112px;height:112px;border-radius:50%;background:var(--ink);color:var(--banana);display:grid;place-content:center;text-align:center;font-family:'Dela Gothic One';line-height:1.15;transform:rotate(-10deg);border:4px solid var(--white)}
 .badge b{font-weight:400;font-size:30px;display:block}.badge span{font-size:12px}
 @media(max-width:760px){.himg{max-width:300px;order:-1}.badge{width:92px;height:92px;left:0}.badge b{font-size:24px}}
 .guide{background:var(--cream);padding:32px 0;border-bottom:3px solid var(--ink)}
@@ -84,6 +90,8 @@ nav a{text-decoration:none}nav a:hover{text-decoration:underline}
 .stats .wrap{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:0}
 .stat{padding:22px 18px;border-right:2px solid #3a382f;border-bottom:2px solid #3a382f;min-width:0}
 .stat strong{display:block;font-family:'Dela Gothic One';font-weight:400;font-size:clamp(22px,2.6vw,30px);color:var(--banana);line-height:1.2;white-space:nowrap}
+.statcta{background:var(--banana);color:var(--ink);text-decoration:none}
+.statcta strong{color:var(--ink)}
 .stat span{font-size:13px;opacity:.85}
 .note{background:var(--ink);color:rgba(255,255,255,.65);font-size:12px;padding:10px max(20px,calc((100% - 1040px)/2 + 20px)) 14px}
 .note:empty{display:none}
@@ -121,6 +129,25 @@ nav a{text-decoration:none}nav a:hover{text-decoration:underline}
 .plc strong{display:block;font-size:18px;line-height:1.4}
 .plc small{font-weight:700;opacity:.75}
 #about .gal figure{background:var(--white)}
+#streak{padding-bottom:24px}
+.streakbox{display:grid;grid-template-columns:auto 1fr;gap:10px 32px;align-items:center;border:3px solid var(--ink);border-radius:var(--r);padding:26px 30px;background:var(--banana);box-shadow:0 5px 0 var(--ink);margin-bottom:30px}
+.streakbox .n{font-family:'Dela Gothic One';font-size:clamp(24px,5vw,48px);line-height:1.1;white-space:nowrap}
+.streakbox p{font-weight:700;font-size:17px;line-height:1.7}
+.streakbox p+p{font-weight:500;font-size:15px}
+@media(max-width:620px){.streakbox{grid-template-columns:1fr;padding:22px}}
+.hits{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:16px}
+.hit{display:block;text-decoration:none;background:var(--ink);color:var(--white);border-radius:var(--r);padding:18px 22px;transition:transform .15s}
+.hit:hover{transform:translateY(-3px)}
+.hit small{background:var(--banana);color:var(--ink);font-weight:900;font-size:12px;border-radius:999px;padding:0 10px}
+.hit strong{display:block;font-family:'Dela Gothic One';font-weight:400;font-size:22px;color:var(--banana);margin:8px 0 2px}
+.hit span{font-size:13px;opacity:.8}
+.acts{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:16px}
+.act{background:var(--white);border:3px solid var(--ink);border-radius:var(--r);padding:18px 20px 16px}
+.act h3{font-size:18px;line-height:1.4}
+.act p{font-size:14.5px;margin:4px 0 8px}
+.act a{font-weight:700;font-size:14px}
+.ok{display:inline-block;background:var(--banana);border:2px solid var(--ink);border-radius:999px;font-size:11px;font-weight:900;padding:0 10px;margin-top:8px}
+.why a{font-weight:700}
 /* services */
 .cream{background:var(--cream)}
 .svc{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:0;border:3px solid var(--ink);border-radius:var(--r);overflow:hidden;background:var(--white)}
@@ -176,30 +203,45 @@ footer{background:var(--ink);color:var(--white);padding:28px 20px calc(28px + en
 <nav><div class="wrap">
   <b class="brand"><img src="images/icon.png" alt="" width="32" height="32">バーチャルバナナ</b>
   <ul>
-    <li><a href="#videos">動画</a></li><li><a href="#achv">実績</a></li><li><a href="#work">お仕事</a></li><li><a href="#about">キャラ</a></li><li><a href="#games">ゲーム</a></li><li><a class="cta" href="#contact">お仕事の相談</a></li>
+    <li><a href="#videos">動画</a></li><li><a href="#achv">実績</a></li><li><a href="#work">活動・お仕事</a></li><li><a href="#about">キャラ</a></li><li><a href="#games">ゲーム</a></li><li><a class="cta" href="#contact">お仕事の相談</a></li>
   </ul>
 </div></nav>
 
 <header class="hero"><div class="wrap">
   <div>
     <h1>バーチャル<br>バナナ</h1>
-    <p class="tag">声真似レパートリー300超え。2018年から続けるVtuberが、企画・声・映像・ゲームまで一人で作ります。</p>
+    <p class="tag">声真似・パロディ動画を軸に、バナナアート、オリジナル曲、Webゲームやサイト制作まで幅広く手がけるVTuberです。</p>
+    <div class="nums">
+      <div class="num"><b>300+</b><span>声真似レパートリー</span></div>
+      <div class="num"><b>1,300+</b><span>毎日ショート動画投稿</span></div>
+      <div class="num sm"><b>2018</b><span>活動開始</span></div>
+    </div>
     <div class="btns">
       <a class="btn dark" href="https://www.youtube.com/@VirtualBa7" target="_blank" rel="noopener">YouTubeで動画を見る</a>
       <a class="btn" href="https://www.tiktok.com/@virtualba7" target="_blank" rel="noopener">TikTok</a>
       <a class="btn" href="#contact">お仕事の相談</a>
     </div>
   </div>
-  <div class="himg"><img src="images/hero.png" alt="バーチャルバナナのキャラクター" width="430" height="430"><div class="badge" aria-hidden="true"><b id="badgeyr"></b><span>活動歴</span></div></div>
+  <div class="himg"><img src="images/hero.png" alt="バーチャルバナナのキャラクター" width="430" height="430"></div>
 </div></header>
 
 <div class="guide"><div class="wrap">
-  <a class="gcard" href="#videos"><small>はじめて見る方へ</small><strong>まずは自己紹介と代表動画から。声真似・パロディ・オリジナル曲</strong></a>
-  <a class="gcard" href="#achv"><small>企業・制作のご依頼の方へ</small><strong>受賞・CM放映・メディア掲載の実績と、できること</strong></a>
+  <a class="gcard" href="#videos"><small>はじめて見る方へ</small><strong>最新の自己紹介と、ジャンル別の再生リストから</strong></a>
+  <a class="gcard" href="#work"><small>企業・制作のご依頼の方へ</small><strong>依頼できる内容と、これまでの実績</strong></a>
 </div></div>
 
 <div class="stats"><div class="wrap" id="stats"></div></div>
 <p class="note" id="statnote"></p>
+
+<section id="streak"><div class="wrap">
+  <h2>毎日、ショート動画を投稿しています</h2>
+  <div class="streakbox">
+    <div class="n">2023.02.25〜</div>
+    <div><p>毎日ショート動画の投稿を開始。YouTubeとTikTokを合わせて、いまも毎日投稿しています。</p><p>24時間、毎時間動画を投稿する企画も実施しました。</p></div>
+  </div>
+  <h3 style="margin-bottom:14px">TikTokで伸びた動画</h3>
+  <div class="hits" id="hits"></div>
+</div></section>
 
 <section id="videos"><div class="wrap">
   <h2>まずはこの動画から</h2>
@@ -221,24 +263,29 @@ footer{background:var(--ink);color:var(--white);padding:28px 20px calc(28px + en
 </div></section>
 
 <section id="work" class="cream"><div class="wrap">
-  <h2>お仕事でできること</h2>
+  <h2>活動内容とお仕事</h2>
+  <p class="lead">声真似を軸に、動画、アート、曲、Webまで幅広く制作しています。「ご依頼OK」の内容は、お仕事のご相談をお受けしています。</p>
   <div class="why">
-    <div><b>声真似300超え</b><p>多彩なレパートリーで、パロディ動画やボイス制作に対応します。</p></div>
-    <div><b>企画から制作まで一人で完結</b><p>声と映像の制作を担当し、活動は基本ワンオペ。やり取りがシンプルです。</p></div>
-    <div><b>2018年から続く実績</b><p>受賞、CM放映、メディア掲載。当時の記事や配信にリンクしています。</p></div>
+    <div><b>企画から制作まで一人で対応</b><p>声と映像の制作を担当し、活動は基本ワンオペ。やり取りがシンプルです。</p></div>
+    <div><b>ジャンルをまたいで制作</b><p>声、映像、曲、アート、Webまで、一人で手がけています。</p></div>
+    <div><b>受賞・CM放映・メディア掲載</b><p>実績は<a href="#achv">こちら</a>にまとめています。</p></div>
   </div>
-  <div class="svc">
-    <div><h3>声真似・ボイス提供</h3><p>SEやジングルなどのボイス収録、キャラクターボイスの制作。</p></div>
-    <div><h3>動画の企画・脚本・編集</h3><p>パロディ動画やYouTube講座動画を、企画から編集まで一人で作ります。Vtuberさん向けCM動画の制作実績があります（案件名は非公開）。</p></div>
-    <div><h3>Webゲーム・Webサイト・ツール制作</h3><p>スマホで遊べるブラウザゲーム、便利ツール、Webサイトを制作します。</p></div>
-    <div><h3>バナナアート</h3><p>バナナを題材にしたアート作品の制作。<a href="https://www.youtube.com/playlist?list=PL3gFxXuE5n58jAKFwu13jQtDQ5MzE4AYv" target="_blank" rel="noopener">作品を再生リストで見る</a></p></div>
+  <div class="acts">
+    <div class="act"><h3>声真似</h3><p>声真似を軸に動画を制作。講座動画も公開しています。</p><a href="https://www.youtube.com/playlist?list=PL3gFxXuE5n5-PvnewDowQEjVqiP4A9YY5" target="_blank" rel="noopener">声真似講座を見る</a></div>
+    <div class="act"><h3>パロディ動画</h3><p>パロディ動画を制作・投稿しています。</p><a href="https://www.youtube.com/playlist?list=PL3gFxXuE5n5-pdZG9F5msX2iDPGbYEPEs" target="_blank" rel="noopener">パロディの再生リスト</a></div>
+    <div class="act"><h3>バナナアート</h3><p>バナナを題材にしたアート作品。</p><a href="https://www.youtube.com/playlist?list=PL3gFxXuE5n58jAKFwu13jQtDQ5MzE4AYv" target="_blank" rel="noopener">作品を再生リストで見る</a><br><span class="ok">ご依頼OK</span></div>
+    <div class="act"><h3>オリジナル曲</h3><p>オリジナル曲を制作・公開しています。</p><a href="https://www.youtube.com/playlist?list=PL3gFxXuE5n59yglV73pzzHqhX0lLzI1vo" target="_blank" rel="noopener">オリジナル曲の再生リスト</a></div>
+    <div class="act"><h3>動画の企画・脚本・編集</h3><p>企画から編集まで一人で制作。Vtuberさん向けCM動画の制作実績があります（案件名は非公開）。</p><span class="ok">ご依頼OK</span></div>
+    <div class="act"><h3>Webゲーム制作</h3><p>スマホで遊べるブラウザゲームを制作・公開しています。</p><a href="https://virtualbanana877.github.io/VirtualBananaArcade/">ゲーム屋台で遊ぶ</a><br><span class="ok">ご依頼OK</span></div>
+    <div class="act"><h3>Webサイト・ツール制作</h3><p>Webサイトや便利ツールを制作します。</p><span class="ok">ご依頼OK</span></div>
+    <div class="act"><h3>ボイス提供</h3><p>SEやジングルなどのボイス収録、キャラクターボイスの制作。</p><span class="ok">ご依頼OK</span></div>
   </div>
   <ul class="works" id="works"></ul>
 </div></section>
 
 <section id="project"><div class="wrap">
   <h2>バーチャルバナナプロジェクト</h2>
-  <p class="lead">声と映像の制作を担当するプロデューサーを中心に、家族で続けているプロジェクトです。</p>
+  <p class="lead">声と映像の制作を担当するプロデューサーを中心に、家族で動かしているプロジェクトです。</p>
   <figure class="fig-fam"><a href="images/project-family.png" target="_blank" rel="noopener"><img src="images/project-family.png" alt="バーチャルバナナプロジェクトの体制図：プロデューサー（声・映像制作担当、活動は基本ワンオペ）、妻（バーチャルバナナのデザイン原案）、息子（子バナナ）我が家の宝" width="1600" height="900" loading="lazy"></a></figure>
   <div class="gal pgal">
     <figure><a href="images/project-characters.jpg" target="_blank" rel="noopener"><img src="images/project-characters.jpg" alt="プロデューサが担当するバーチャルキャラクター一覧：バーチャルバナナ、芭蕉宮香、バナナ農家のおじさん、活動初期バナナ ほか" width="1600" height="900" loading="lazy"></a><figcaption>プロデューサが担当するバーチャルキャラクター（タップで拡大）</figcaption></figure>
@@ -264,9 +311,9 @@ footer{background:var(--ink);color:var(--white);padding:28px 20px calc(28px + en
     <figure><a href="images/sanmen.png" target="_blank" rel="noopener"><img src="images/sanmen.png" alt="バーチャルバナナの三面図（正面・側面・背面）" width="1600" height="1208" loading="lazy"></a><figcaption>三面図（タップで拡大）</figcaption></figure>
   </div>
   <div class="hist">
-    <p><b id="years"></b>2018年3月、Vtuberとして活動開始</p>
-    <p><b>2021</b>以降、動画投稿を中心に活動中</p>
-    <p><b>今</b>YouTube、TikTok、Xで声真似とパロディを投稿。Webゲームも制作</p>
+    <p><b>2018.03</b>Vtuberとして活動開始</p>
+    <p><b>2023.02</b>毎日ショート動画の投稿を開始</p>
+    <p><b>今</b>YouTube、TikTok、Xで声真似・パロディ動画を投稿。Webゲームやサイトの制作も手がけています。</p>
   </div>
 </div></section>
 
@@ -280,7 +327,7 @@ footer{background:var(--ink);color:var(--white);padding:28px 20px calc(28px + en
 
 <section id="contact"><div class="wrap">
   <h2>お仕事のご相談・リンク</h2>
-  <p class="lead">ボイス提供、動画制作、ゲーム制作などのご相談は、X（旧Twitter）のDMからお気軽にどうぞ。ご依頼内容・納期・ご予算の目安を添えていただくとスムーズです。</p>
+  <p class="lead">ボイス提供、動画の企画・制作、バナナアート、Webゲーム・Webサイト制作などのご相談は、X（旧Twitter）のDMからお気軽にどうぞ。ご依頼内容・納期・ご予算の目安を添えていただくとスムーズです。</p>
   <div class="btns"><a class="btn dark" id="dm" href="https://x.com/VirtualBa7" target="_blank" rel="noopener">XのDMで相談する</a><a class="btn" href="https://www.foriio.com/virtualbanana/" target="_blank" rel="noopener">ポートフォリオを見る</a></div>
   <div class="links">
     <a href="https://www.youtube.com/@VirtualBa7" target="_blank" rel="noopener">YouTube</a>
@@ -312,8 +359,12 @@ const CONFIG = {
   // 手入力の数字（nullなら非表示）。YouTubeはキーを入れると自動取得されます
   manual: { ytSubs: "6,341", ytViews: "369万", tiktok: "4,610", x: "11,800" },  // YouTubeはAPI取得に失敗した時の予備値。TikTok・Xは手入力（更新したら下の日付も変更）
   manualAsOf: "2026年11月",
-  extraStats: [                      // 好きなだけ追加（受賞・CM・掲載の件数は実績リストから自動計算）
-    { n: "300+", l: "声真似レパートリー" }
+  extraStats: [],
+  streak: { since: "2023-02-25" },                 // 毎日ショート動画投稿の開始日（画面の数字は固定の「1,300+」。日数の自動計算は使っていません）
+  tiktokHits: [                                    // views に "12万" のように入れると再生数も表示、note で一言追加
+    { url: "https://www.tiktok.com/@virtualba7/video/7642997380358606101", date: "2026-05-23", views: null, note: "" },
+    { url: "https://www.tiktok.com/@virtualba7/video/7593501218035666197", date: "2026-01-10", views: null, note: "" },
+    { url: "https://www.tiktok.com/@virtualba7/video/7582886528498535701", date: "2025-12-12", views: null, note: "" }
   ],
   achievements: [
     { d:"2026-08-29", s:1, c:"受賞", t:"メタコミアワード 2026「ショート動画コンテスト」受賞", u:"https://metacomi.net/contests/award.html" },
@@ -352,11 +403,11 @@ const CONFIG = {
 const fmt = n => typeof n === "string" ? n : n >= 10000 ? (n/10000).toFixed(n>=100000?0:1).replace(/\.0$/,'') + "万" : n.toLocaleString("ja-JP");
 const $ = s => document.querySelector(s);
 
-// 活動年数
+
+// 連続投稿
 (function(){
-  const [y,m] = CONFIG.debut.split("-").map(Number), now = new Date();
-  let yrs = now.getFullYear() - y - (now.getMonth()+1 < m ? 1 : 0);
-  $("#years").textContent = yrs + "年目"; $("#badgeyr").textContent = yrs + "年";
+  const st = CONFIG.streak;
+  $("#hits").innerHTML = CONFIG.tiktokHits.map(h => `<a class="hit" href="${h.url}" target="_blank" rel="noopener"><small>TikTok</small><strong>${h.views ? fmt(h.views) + "回再生" : "伸びた動画"}</strong><span>${h.date.replace(/-/g,".")}${h.note ? " ｜ " + h.note : ""}</span></a>`).join("");
 })();
 
 // 動画
@@ -387,8 +438,8 @@ async function loadStats(){
   if (m.x != null)       items.push({ n: fmt(m.x),       l: "Xフォロワー" });
   items.push(...CONFIG.extraStats);
   const cnt = c => CONFIG.achievements.filter(a => a.c === c).length;
-  items.push({ n: cnt("受賞") + "回", l: "受賞・入賞" }, { n: cnt("CM放映") + "回", l: "CM放映" }, { n: cnt("メディア") + "件", l: "メディア掲載" });
-  $("#stats").innerHTML = items.map(i => `<div class="stat"><strong>${i.n}</strong><span>${i.l}</span></div>`).join("");
+  items.push({ n: cnt("受賞") + "回", l: "受賞・入賞" }, { n: cnt("CM放映") + "回", l: "CM放映" }, { n: cnt("メディア") + "件", l: "メディア掲載" }, { cta: true });
+  $("#stats").innerHTML = items.map(i => i.cta ? `<a class="stat statcta" href="#achv"><strong>実績一覧</strong><span>受賞・出演・メディア</span></a>` : `<div class="stat"><strong>${i.n}</strong><span>${i.l}</span></div>`).join("");
   const notes = [];
   if (live) notes.push("YouTubeの数字はページを開いた時点の最新値です。");
   if (m.tiktok != null || m.x != null) notes.push(`TikTok・Xは${CONFIG.manualAsOf}時点の数字です。`);
