@@ -1,8 +1,9 @@
 import { useEffect, useRef, useState } from 'react'
 import { Link } from 'react-router-dom'
-import { CountUp, Icon, Marquee, SecHead, VideoCard, img, dot, tilt } from '../components.jsx'
+import { CountUp, Icon, Marquee, PlaylistCard, SecHead, VideoCard, img, dot, tilt } from '../components.jsx'
+import { useLatest } from '../useYouTube.js'
 import {
-  KEY_STATS, FEATURED, PLAYLISTS, VIDEOS, CHARACTERS, SERVICES, LINKS, dailyDay, countBy,
+  KEY_STATS, FEATURED, PLAYLISTS, CHARACTERS, SERVICES, LINKS, dailyDay, countBy,
 } from '../data.js'
 
 export default function Home() {
@@ -65,7 +66,7 @@ function Hero({ day }) {
     <section className="hero" ref={sec} onPointerMove={onMove}>
       <div className="wrap hero__grid">
         <div className="hero__text">
-          <p className="hero__kicker"><span>声真似VTuber</span>since 2018</p>
+          <p className="hero__kicker"><span>声真似VTuber</span>since 2018年3月</p>
           <h1 className="hero__title">
             <span className="vh">バーチャルバナナ</span>
             <span aria-hidden="true" className="hero__line">{[...'バーチャル'].map((c, i) => <span key={i} className="ch" style={{ '--i': i }}>{c}</span>)}</span>
@@ -140,7 +141,8 @@ function Featured() {
 
 /* ---------- 2. 動画を探す ---------- */
 function FindVideos() {
-  const latest = [...VIDEOS].sort((a, b) => b.date.localeCompare(a.date)).slice(0, 3)
+  const { items, status } = useLatest()
+  const latest = items.slice(0, 3)
   return (
     <section className="sec sec--cream">
       <div className="wrap">
@@ -148,19 +150,19 @@ function FindVideos() {
         <h3 className="subhead">再生リスト</h3>
         <ul className="grid grid--plist">
           {PLAYLISTS.map((p, i) => (
-            <li key={p.t} className="reveal">
-              <a className="card plist" href={p.u} target="_blank" rel="noopener noreferrer">
-                <span className="plist__top"><span className="plist__no">{String(i + 1).padStart(2, '0')}</span><span>{p.en}</span></span>
-                <strong>{p.t}</strong>
-                <span className="plist__go">再生リストを開く<Icon.ext /></span>
-              </a>
-            </li>
+            <li key={p.t} className="reveal"><PlaylistCard p={p} i={i} /></li>
           ))}
         </ul>
-        <h3 className="subhead">おすすめ動画</h3>{/* 手選びの数本なので「新着」とは呼ばない。最新を自動で出すなら新着に戻す */}
-        <ul className="grid grid--videos hscroll">
-          {latest.map(v => <li key={v.id}><VideoCard v={v} /></li>)}
-        </ul>
+        <h3 className="subhead">最新動画</h3>
+        {latest.length > 0 ? (
+          <ul className="grid grid--videos hscroll">
+            {latest.map(v => <li key={v.id}><VideoCard v={v} /></li>)}
+          </ul>
+        ) : (
+          <p className="latest-empty" aria-busy={status === 'loading'}>
+            {status === 'loading' ? '最新の動画を読み込んでいます…' : '最新の動画を読み込めませんでした。動画一覧またはYouTubeからご覧ください。'}
+          </p>
+        )}
         <div className="btns btns--center">
           <Link className="btn btn--ink" to="/videos">動画一覧へ<Icon.arrow /></Link>
         </div>

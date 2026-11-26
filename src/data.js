@@ -12,6 +12,10 @@ export const LINKS = {
   arcade: 'https://virtualbanana877.github.io/VirtualBananaArcade/',
 }
 
+// YouTubeチャンネルID（「動画：最新」の取得に使う）。最新動画の表示件数もここ
+export const CHANNEL_ID = 'UCF-VYfBjb7uupcdELrrB58A'
+export const LATEST_COUNT = 15
+
 // 毎日投稿の開始日。ここから今日までの日数を「◯日目」として表示する
 export const DAILY_START = '2023-02-25'
 
@@ -35,14 +39,17 @@ export const FEATURED = {
   date: '2026-09-13',
 }
 
+// 再生リストのID（URLの list= の値）。最初の動画のサムネイルをAPIで探すのに使う
+export const playlistId = u => new URL(u).searchParams.get('list')
+// v: 再生リストの一番上の動画ID（APIが使えないときの予備。APIが使えるときはAPIの結果を優先。省略可）
 export const PLAYLISTS = [
-  { t: '声真似講座', en: 'LESSON', u: 'https://www.youtube.com/playlist?list=PL3gFxXuE5n5-PvnewDowQEjVqiP4A9YY5' },
-  { t: 'オリジナル曲', en: 'SONG', u: 'https://www.youtube.com/playlist?list=PL3gFxXuE5n59yglV73pzzHqhX0lLzI1vo' },
-  { t: 'パロディ', en: 'PARODY', u: 'https://www.youtube.com/playlist?list=PL3gFxXuE5n5-pdZG9F5msX2iDPGbYEPEs' },
-  { t: 'バナナアート', en: 'ART', u: 'https://www.youtube.com/playlist?list=PL3gFxXuE5n58jAKFwu13jQtDQ5MzE4AYv' },
+  { t: '声真似講座', en: 'LESSON', u: 'https://www.youtube.com/playlist?list=PL3gFxXuE5n5-PvnewDowQEjVqiP4A9YY5', v: '1NwfEJEDZWw' },
+  { t: 'オリジナル曲', en: 'SONG', u: 'https://www.youtube.com/playlist?list=PL3gFxXuE5n59yglV73pzzHqhX0lLzI1vo', v: 'xpB0ZNW6l3w' },
+  { t: 'パロディ', en: 'PARODY', u: 'https://www.youtube.com/playlist?list=PL3gFxXuE5n5-pdZG9F5msX2iDPGbYEPEs', v: 'BDl-E6jP-GM' },
+  { t: 'バナナアート', en: 'ART', u: 'https://www.youtube.com/playlist?list=PL3gFxXuE5n58jAKFwu13jQtDQ5MzE4AYv', v: 'LJukm-vG7hU' },
 ]
 
-// 動画タブの種類。tag がこれ以外の動画は「その他」に入る。rec:false で「おすすめ」から外れる
+// 動画タブの種類。tag がこれ以外の動画は「その他」に入る。（タブの先頭「最新」はYouTubeから自動取得なのでここには書かない）
 export const VIDEO_GENRES = ['パロディ', 'オリジナル曲', '講座']
 export const VIDEOS = [
   { id: 'akBp5lKW7ho', tag: 'パロディ', date: '2021-03-19', title: 'ピンを抜くゲーム広告になってみた' },
@@ -52,11 +59,12 @@ export const VIDEOS = [
   { id: 'PwBh4UhAnnU', tag: 'ピックアップ', date: '2020-09-11', title: '2分で分かる！3Dになったバーチャルバナナ 自己紹介（2020年版）' },
 ]
 
-// TikTokで伸びた動画。views に "12万" のように入れると再生数を表示、note で一言追加
+// TikTokで伸びた動画。views に "12万" のように入れると再生数を表示、note で一言追加。
+// thumb: 表紙画像のファイル名（public/images/tiktok/ に置く。例: 'tt-2026-05.jpg'）、title: 動画のタイトル。どちらも空なら今までのアイコン表示
 export const TIKTOK_HITS = [
-  { url: 'https://www.tiktok.com/@virtualba7/video/7642997380358606101', date: '2026-05-23', views: null, note: '' },
-  { url: 'https://www.tiktok.com/@virtualba7/video/7593501218035666197', date: '2026-01-10', views: null, note: '' },
-  { url: 'https://www.tiktok.com/@virtualba7/video/7582886528498535701', date: '2025-12-12', views: null, note: '' },
+  { url: 'https://www.tiktok.com/@virtualba7/video/7642997380358606101', date: '2026-05-23', views: '8.6万', note: '', thumb: 'tt-2026-05.jpg', title: '才ーストリアに来なさい' },
+  { url: 'https://www.tiktok.com/@virtualba7/video/7593501218035666197', date: '2026-01-10', views: '11.8万', note: '', thumb: 'tt-2026-01.jpg', title: 'ヘタリアの色んな国でお返事まだカナ💦❓おじさん構文😁❗' },
+  { url: 'https://www.tiktok.com/@virtualba7/video/7582886528498535701', date: '2025-12-12', views: '19.1万', note: '', thumb: 'tt-2025-12.jpg', title: 'Q：地声に一番近い声真似って何？' },
 ]
 
 // c(種別): 受賞 / 出演 / CM / メディア。s:1 は主な実績。l があれば日付の代わりに表示

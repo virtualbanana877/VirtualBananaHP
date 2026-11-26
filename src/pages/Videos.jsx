@@ -1,20 +1,32 @@
-import { useRef, useState } from 'react'
-import { Icon, PageHero, SecHead, TikTokCard, VideoCard } from '../components.jsx'
+import { useLayoutEffect, useMemo, useRef, useState } from 'react'
+import { Icon, PageHero, PlaylistCard, SecHead, TikTokCard, VideoCard } from '../components.jsx'
 import { LINKS, PLAYLISTS, TIKTOK_HITS, VIDEOS, VIDEO_GENRES } from '../data.js'
+import { useLatest } from '../useYouTube.js'
 
-const GROUPS = {
-  'おすすめ': VIDEOS.filter(v => v.rec !== false),
-  ...Object.fromEntries(VIDEO_GENRES.map(g => [g, VIDEOS.filter(v => v.tag === g)])),
-  'TikTok': TIKTOK_HITS,
-  'その他': VIDEOS.filter(v => !VIDEO_GENRES.includes(v.tag)),
-}
-const TABS = Object.keys(GROUPS).filter(k => GROUPS[k].length)
+const LATEST = '最新'
+const PAGE = 6   // 「最新」は最初の6件だけ表示（3列×2段）。残り（全部で15件）は「もっと見る」で開く
 
 export default function Videos() {
-  const [tab, setTab] = useState(TABS[0])
+  const [tab, setTab] = useState(LATEST)
+  const { items: latest, status } = useLatest()   // 最新: ビルド時のRSS（予備）→ APIで取れたら置き換わる。トップと共有
+  const [more, setMore] = useState(false)
   const list = useRef(null)
+  const moreBtn = useRef(null)
+  const beforeTop = useRef(null)
+
+  const groups = useMemo(() => ({
+    [LATEST]: latest,
+    ...Object.fromEntries(VIDEO_GENRES.map(g => [g, VIDEOS.filter(v => v.tag === g)])),
+    TikTok: TIKTOK_HITS,
+    'その他': VIDEOS.filter(v => !VIDEO_GENRES.includes(v.tag)),
+  }), [latest])
+  const tabs = Object.keys(groups).filter(k => k === LATEST || groups[k].length)   // 「最新」は読み込み中でも常に先頭
+  const items = groups[tab]
+  const visible = tab === LATEST && !more ? items.slice(0, PAGE) : items
+
   const pick = (t, e) => {
     setTab(t)
+    setMore(false)
     // 一覧の先頭が固定フィルタのすぐ下に見えていなければ、そこまで移動（読み進めた後に押した場合も先頭へ戻る）
     const top = list.current.getBoundingClientRect().top
     const under = e.currentTarget.closest('.filter').getBoundingClientRect().bottom
@@ -30,15 +42,25 @@ export default function Videos() {
     }
   }
 
+  // 「閉じる」を押したとき、ボタンが画面の同じ位置に残るようにスクロールを補正する
+  const toggleMore = () => { beforeTop.current = moreBtn.current.getBoundingClientRect().top; setMore(m => !m) }
+  useLayoutEffect(() => {
+    if (beforeTop.current !== null && !more && moreBtn.current) {
+      const d = moreBtn.current.getBoundingClientRect().top - beforeTop.current
+      if (d) scrollBy(0, d)
+    }
+    beforeTop.current = null
+  }, [more])
+
   return (
     <>
       <PageHero en="VIDEOS" title="動画" lead="声真似、パロディ、オリジナル曲。気になったものから見てください。" />
 
       <div className="filter">
         <div className="wrap filter__in" role="group" aria-label="動画のジャンル">
-          {TABS.map(t => (
+          {tabs.map(t => (
             <button key={t} type="button" aria-pressed={tab === t} onClick={e => pick(t, e)}>
-              {t}<small>{GROUPS[t].length}</small>
+              {t}{groups[t].length > 0 && <small>{groups[t].length}</small>}
             </button>
           ))}
         </div>
@@ -48,28 +70,38 @@ export default function Videos() {
         <div className="wrap">
           <SecHead en="PLAYLIST" title="再生リスト" />
           <ul className="grid grid--plist">
-            {PLAYLISTS.map((p, i) => (
-              <li key={p.t}>
-                <a className="card plist" href={p.u} target="_blank" rel="noopener noreferrer">
-                  <span className="plist__top"><span className="plist__no">{String(i + 1).padStart(2, '0')}</span><span>{p.en}</span></span>
-                  <strong>{p.t}</strong>
-                  <span className="plist__go">再生リストを開く<Icon.ext /></span>
-                </a>
-              </li>
-            ))}
+            {PLAYLISTS.map((p, i) => <li key={p.t}><PlaylistCard p={p} i={i} /></li>)}
           </ul>
         </div>
       </section>
 
-      <section className="sec sec--cream" ref={list} id="list">
+      <section className="sec sec--cream" ref={list} id="list" style={{ overflowAnchor: 'none' }}>
         <div className="wrap">
           <SecHead en="ALL VIDEOS" title={`動画一覧：${tab}`} />
-          <p className="vh" role="status">{tab}の動画 {GROUPS[tab].length}件</p>{/* 一覧を丸ごと読み上げず件数だけ伝える */}
-          <ul className="grid grid--videos">
-            {tab === 'TikTok'
-              ? GROUPS.TikTok.map(h => <li key={h.url}><TikTokCard h={h} /></li>)
-              : GROUPS[tab].map(v => <li key={v.id}><VideoCard v={v} /></li>)}
-          </ul>
+          <p className="vh" role="status">{tab}の動画 {items.length}件</p>{/* 一覧を丸ごと読み上げず件数だけ伝える */}
+          {tab === LATEST && items.length === 0 ? (
+            <div className="latest-empty" aria-busy={status === 'loading'}>
+              {status === 'loading'
+                ? <p>最新の動画を読み込んでいます…</p>
+                : <>
+                    <p>最新の動画を読み込めませんでした。YouTubeで見られます。</p>
+                    <div className="btns"><a className="btn btn--ink" href={LINKS.youtube} target="_blank" rel="noopener noreferrer"><Icon.youtube />YouTubeで見る</a></div>
+                  </>}
+            </div>
+          ) : (
+            <ul className="grid grid--videos">
+              {tab === 'TikTok'
+                ? visible.map(h => <li key={h.url}><TikTokCard h={h} /></li>)
+                : visible.map(v => <li key={v.id}><VideoCard v={v} /></li>)}
+            </ul>
+          )}
+          {tab === LATEST && items.length > PAGE && (
+            <div className="btns btns--center">
+              <button ref={moreBtn} type="button" className="btn btn--white" aria-expanded={more} onClick={toggleMore}>
+                {more ? '閉じる' : `もっと見る（残り${items.length - PAGE}件）`}
+              </button>
+            </div>
+          )}
         </div>
       </section>
 

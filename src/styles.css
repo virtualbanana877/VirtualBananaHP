@@ -369,6 +369,11 @@ li:nth-child(even) > .card { --rot: 1.2deg; }
 }
 .ttcard__icon { width: 52px; height: 52px; border-radius: 14px; background: var(--y); color: var(--ink); display: grid; place-items: center; font-size: 26px; margin-bottom: 8px; }
 .ttcard strong { font-size: 18px; }
+.ttcard { overflow: hidden; }
+.ttcard__thumb { position: relative; display: block; aspect-ratio: 1; margin: -24px -24px 14px; border-bottom: 2px solid var(--ink); overflow: hidden; background: var(--ink); }
+.ttcard__thumb img { width: 100%; height: 100%; object-fit: cover; object-position: 50% 30%; }
+.ttcard__badge { position: absolute; right: 12px; bottom: 12px; width: 40px; height: 40px; border-radius: 12px; background: var(--y); color: var(--ink); display: grid; place-items: center; font-size: 20px; }
+.latest-empty { padding: 28px 0; font-weight: 700; }
 .ttcard__go { margin-top: 12px; color: var(--y); font-weight: 900; display: inline-flex; align-items: center; gap: 6px; }
 
 /* 再生リスト */
@@ -378,6 +383,10 @@ li:nth-child(even) > .card { --rot: 1.2deg; }
   padding: 14px 16px 12px; background: var(--ink); color: var(--y);
   font-family: var(--display); font-size: 12px; letter-spacing: .12em;
 }
+.plist__top { position: relative; aspect-ratio: 16 / 9; align-items: flex-start; overflow: hidden; }
+.plist__top img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+.plist__top::after { content: ''; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(26,26,26,.72), rgba(26,26,26,0) 62%); pointer-events: none; }
+.plist__top > span { position: relative; z-index: 1; }
 .plist__no { font-size: clamp(30px, 4vw, 44px); line-height: 1; letter-spacing: 0; }
 @media (max-width: 479px) { .plist__top { padding-inline: 12px; letter-spacing: .06em; } }
 .plist strong { padding: 16px 16px 4px; font-size: clamp(17px, 1.8vw, 20px); font-weight: 900; }

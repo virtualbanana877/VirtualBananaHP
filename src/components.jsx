@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from 'react'
 import { Link, NavLink, useLocation } from 'react-router-dom'
-import { LINKS } from './data.js'
+import { LINKS, playlistId } from './data.js'
+import { usePlaylistFirst } from './useYouTube.js'
 
 export const img = f => `${import.meta.env.BASE_URL}images/${f}`
 export const dot = d => d.replace(/-/g, '.')
@@ -222,7 +223,7 @@ export function VideoCard({ v }) {
         <span className="vcard__play"><Icon.play /></span>
       </div>
       <div className="vcard__body">
-        <span className="chip">{v.tag}</span>
+        {v.tag && <span className="chip">{v.tag}</span>}
         <h3>{v.title}</h3>
         <time dateTime={v.date}>{dot(v.date)}</time>
       </div>
@@ -233,9 +234,11 @@ export function VideoCard({ v }) {
 export function TikTokCard({ h }) {
   return (
     <a className="card ttcard" href={h.url} target="_blank" rel="noopener noreferrer">
-      <span className="ttcard__icon"><Icon.tiktok /></span>
-      <strong>{h.views ? `${h.views}回再生` : 'TikTokで伸びた動画'}</strong>
-      <span><time dateTime={h.date}>{dot(h.date)}</time>{h.note && ` ｜ ${h.note}`}</span>
+      {h.thumb
+        ? <span className="ttcard__thumb"><img src={img(`tiktok/${h.thumb}`)} alt="" width="640" height="640" loading="lazy" /><span className="ttcard__badge"><Icon.tiktok /></span></span>
+        : <span className="ttcard__icon"><Icon.tiktok /></span>}
+      <strong>{h.title || (h.views ? `${h.views}回再生` : 'TikTokで伸びた動画')}</strong>
+      <span>{h.title && h.views ? `${h.views}回再生 ｜ ` : ''}<time dateTime={h.date}>{dot(h.date)}</time>{h.note && ` ｜ ${h.note}`}</span>
       <span className="ttcard__go">TikTokで見る <Icon.ext /></span>
     </a>
   )
@@ -252,4 +255,22 @@ export const tilt = {
     e.currentTarget.style.setProperty('--rx', '0deg')
     e.currentTarget.style.setProperty('--ry', '0deg')
   },
+}
+
+/* 再生リスト：最初の動画のサムネイルを上の帯に出す（取れなければ今までの黒い帯） */
+export function PlaylistCard({ p, i }) {
+  const first = usePlaylistFirst()
+  const vid = first[playlistId(p.u)] || p.v
+  const [n, setN] = useState(0)   // 0: mqdefault → 1: hqdefault → 画像なし
+  const src = vid && n < 2 ? `https://i.ytimg.com/vi/${vid}/${n === 0 ? 'mqdefault' : 'hqdefault'}.jpg` : null
+  return (
+    <a className="card plist" href={p.u} target="_blank" rel="noopener noreferrer">
+      <span className="plist__top">
+        {src && <img src={src} alt="" width="320" height="180" loading="lazy" onError={() => setN(x => x + 1)} />}
+        <span className="plist__no">{String(i + 1).padStart(2, '0')}</span><span>{p.en}</span>
+      </span>
+      <strong>{p.t}</strong>
+      <span className="plist__go">再生リストを開く<Icon.ext /></span>
+    </a>
+  )
 }

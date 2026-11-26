@@ -5,6 +5,8 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
+    "latest": "node scripts/fetch-latest.mjs",
+    "prebuild": "node scripts/fetch-latest.mjs",
     "build": "vite build",
     "preview": "vite preview",
     "test": "node --test"

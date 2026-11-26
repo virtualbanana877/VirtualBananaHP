@@ -7,8 +7,8 @@ import Character from './pages/Character.jsx'
 import Works from './pages/Works.jsx'
 import Services from './pages/Services.jsx'
 import Links from './pages/Links.jsx'
+import { applyMeta } from './meta.js'
 
-const TITLES = { '/': 'バーチャルバナナ｜声真似VTuber 公式サイト', '/videos': '動画', '/character': 'キャラクター', '/works': '実績', '/services': 'できること', '/links': 'リンク' }
 
 export default function App() {
   const { pathname, hash } = useLocation()
@@ -18,8 +18,7 @@ export default function App() {
 
   // ページ移動時: #があればその位置へ、なければ先頭へ。タイトルもページごとに
   useEffect(() => {
-    const t = TITLES[path]
-    document.title = path === '/' ? t : `${t || 'ページが見つかりません'}｜バーチャルバナナ`
+    applyMeta(document, path)   // title・description・canonical・OGPのURLをページごとに
     const el = hash && document.getElementById(decodeURIComponent(hash.slice(1)))
     if (el) el.scrollIntoView()
     else window.scrollTo(0, 0)
