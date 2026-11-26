@@ -49,7 +49,8 @@ export const PLAYLISTS = [
   { t: 'バナナアート', en: 'ART', u: 'https://www.youtube.com/playlist?list=PL3gFxXuE5n58jAKFwu13jQtDQ5MzE4AYv', v: 'LJukm-vG7hU' },
 ]
 
-// 動画タブの種類。tag がこれ以外の動画は「その他」に入る。（タブの先頭「最新」はYouTubeから自動取得なのでここには書かない）
+// ※ VIDEO_GENRES と VIDEOS は、いまは画面で使っていません（動画のタブは「最新」と「TikTok」だけ。ジャンル別は再生リストから）。
+//   手選びの動画データとして残してあるので、また使いたくなったら Videos.jsx で読み込めばそのまま使えます。
 export const VIDEO_GENRES = ['パロディ', 'オリジナル曲', '講座']
 export const VIDEOS = [
   { id: 'akBp5lKW7ho', tag: 'パロディ', date: '2021-03-19', title: 'ピンを抜くゲーム広告になってみた' },

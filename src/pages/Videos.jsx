@@ -1,6 +1,6 @@
 import { useLayoutEffect, useMemo, useRef, useState } from 'react'
 import { Icon, PageHero, PlaylistCard, SecHead, TikTokCard, VideoCard } from '../components.jsx'
-import { LINKS, PLAYLISTS, TIKTOK_HITS, VIDEOS, VIDEO_GENRES } from '../data.js'
+import { LINKS, PLAYLISTS, TIKTOK_HITS } from '../data.js'
 import { useLatest } from '../useYouTube.js'
 
 const LATEST = '最新'
@@ -14,13 +14,9 @@ export default function Videos() {
   const moreBtn = useRef(null)
   const beforeTop = useRef(null)
 
-  const groups = useMemo(() => ({
-    [LATEST]: latest,
-    ...Object.fromEntries(VIDEO_GENRES.map(g => [g, VIDEOS.filter(v => v.tag === g)])),
-    TikTok: TIKTOK_HITS,
-    'その他': VIDEOS.filter(v => !VIDEO_GENRES.includes(v.tag)),
-  }), [latest])
-  const tabs = Object.keys(groups).filter(k => k === LATEST || groups[k].length)   // 「最新」は読み込み中でも常に先頭
+  // タブは「最新」と「TikTok」の2つ。ジャンル別は再生リストから見られる
+  const groups = useMemo(() => ({ [LATEST]: latest, TikTok: TIKTOK_HITS }), [latest])
+  const tabs = Object.keys(groups)   // 「最新」は読み込み中でも常に先頭
   const items = groups[tab]
   const visible = tab === LATEST && !more ? items.slice(0, PAGE) : items
 
@@ -57,7 +53,7 @@ export default function Videos() {
       <PageHero en="VIDEOS" title="動画" lead="声真似、パロディ、オリジナル曲。気になったものから見てください。" />
 
       <div className="filter">
-        <div className="wrap filter__in" role="group" aria-label="動画のジャンル">
+        <div className="wrap filter__in" role="group" aria-label="動画の種類">
           {tabs.map(t => (
             <button key={t} type="button" aria-pressed={tab === t} onClick={e => pick(t, e)}>
               {t}{groups[t].length > 0 && <small>{groups[t].length}</small>}
