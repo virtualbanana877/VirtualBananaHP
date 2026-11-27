@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
-import { LATEST_COUNT, PLAYLISTS, playlistId } from './data.js'
+import { LATEST_COUNT, PLAYLISTS, VIDEO_SERIES, playlistId } from './data.js'
 import snapshot from './latest.snapshot.json'
-import { fetchFirstVideos, fetchLatest } from './youtube.js'
+import { fetchFirstVideos, fetchLatest, fetchVideoInfo } from './youtube.js'
 
 // どちらもページを開いてから1回だけ取得して共有する（トップ→動画一覧に移動しても取り直さない）
 function shared(initial, run) {
@@ -35,4 +35,11 @@ export const usePlaylistFirst = shared({}, set => {
   fetchFirstVideos(PLAYLISTS.map(p => playlistId(p.u)), timeout())
     .then(map => { if (map) set(map) })
     .catch(e => console.warn('再生リストのサムネイルを取得できませんでした:', e))
+})
+
+/** おすすめ動画（シリーズ別）の題名・日付: { [動画ID]: { title, date } } */
+export const useVideoInfo = shared({}, set => {
+  fetchVideoInfo(VIDEO_SERIES.flatMap(s => s.ids), timeout())
+    .then(map => { if (map) set(map) })
+    .catch(e => console.warn('動画の情報を取得できませんでした:', e))
 })

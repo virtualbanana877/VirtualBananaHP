@@ -1,6 +1,6 @@
 import { useRef, useState } from 'react'
 import { useSearchParams } from 'react-router-dom'
-import { PageHero, SecHead, img } from '../components.jsx'
+import { Icon, PageHero, SecHead, img } from '../components.jsx'
 import { CHARACTERS } from '../data.js'
 
 const CREDIT_ALT = 'キャラクターデザインのクレジット：英央様、マコミック様、吸血鬼様'
@@ -38,7 +38,12 @@ export default function Character() {
               <h2 className="profile__name">{c.name}</h2>
               <p className="big-lead">{c.lead}</p>
               <dl className="ptable">
-                {c.profile.map(([k, v]) => <div key={k}><dt>{k}</dt><dd>{v}</dd></div>)}
+                {c.profile.map(([k, v, href]) => (
+            <div key={k}>
+              <dt>{k}</dt>
+              <dd>{href ? <a className="textlink" href={href} target="_blank" rel="noopener noreferrer">{v}<Icon.ext /></a> : v}</dd>
+            </div>
+          ))}
               </dl>
             </div>
           </div>

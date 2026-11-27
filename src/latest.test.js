@@ -1,6 +1,6 @@
 import test from 'node:test'
 import assert from 'node:assert/strict'
-import { firstVideoId, fromPlaylistItems, jstDate } from './latest.js'
+import { firstVideoId, fromPlaylistItems, fromVideos, jstDate } from './latest.js'
 
 test('日本時間の日付に直す（UTCの夜は翌日）', () => {
   assert.equal(jstDate('2026-11-24T16:00:00Z'), '2026-11-25')
@@ -39,4 +39,10 @@ test('再生リストの最初の公開動画のID（非公開・削除は飛ば
   assert.equal(firstVideoId(json), 'r')
   assert.equal(firstVideoId({ items: [] }), null)
   assert.equal(firstVideoId(null), null)
+})
+
+test('videos.list → 動画IDごとの題名と日付（日本時間）', () => {
+  const json = { items: [{ id: 'a', snippet: { title: 'A', publishedAt: '2026-11-24T16:00:00Z' } }, { id: 'b', snippet: {} }, { snippet: { title: 'x' } }] }
+  assert.deepEqual(fromVideos(json), { a: { title: 'A', date: '2026-11-25' } })
+  assert.deepEqual(fromVideos(null), {})
 })

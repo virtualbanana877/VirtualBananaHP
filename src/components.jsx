@@ -216,16 +216,19 @@ export function PageHero({ en, title, lead }) {
 
 /* ---------- 動画カード ---------- */
 export function VideoCard({ v }) {
+  const [n, setN] = useState(0)   // 0: hqdefault → 1: mqdefault → 画像なし（題名を表示）
+  const src = n < 2 ? `https://i.ytimg.com/vi/${v.id}/${n === 0 ? 'hqdefault' : 'mqdefault'}.jpg` : null
   return (
     <a className="card vcard" href={`https://www.youtube.com/watch?v=${v.id}`} target="_blank" rel="noopener noreferrer">
       <div className="vcard__thumb">
-        <img src={`https://i.ytimg.com/vi/${v.id}/hqdefault.jpg`} alt="" width="480" height="360" loading="lazy" />
+        <span className="vcard__ph" aria-hidden="true">{v.title}</span>
+        {src && <img src={src} alt="" width="480" height="360" loading="lazy" onError={() => setN(x => x + 1)} />}
         <span className="vcard__play"><Icon.play /></span>
       </div>
       <div className="vcard__body">
         {v.tag && <span className="chip">{v.tag}</span>}
         <h3>{v.title}</h3>
-        <time dateTime={v.date}>{dot(v.date)}</time>
+        {v.date && <time dateTime={v.date}>{dot(v.date)}</time>}
       </div>
     </a>
   )

@@ -1,7 +1,7 @@
 import { useLayoutEffect, useMemo, useRef, useState } from 'react'
 import { Icon, PageHero, PlaylistCard, SecHead, TikTokCard, VideoCard } from '../components.jsx'
-import { LINKS, PLAYLISTS, TIKTOK_HITS } from '../data.js'
-import { useLatest } from '../useYouTube.js'
+import { LINKS, PLAYLISTS, TIKTOK_HITS, VIDEOS, VIDEO_SERIES } from '../data.js'
+import { useLatest, useVideoInfo } from '../useYouTube.js'
 
 const LATEST = '最新'
 const PAGE = 6   // 「最新」は最初の6件だけ表示（3列×2段）。残り（全部で15件）は「もっと見る」で開く
@@ -9,13 +9,21 @@ const PAGE = 6   // 「最新」は最初の6件だけ表示（3列×2段）。�
 export default function Videos() {
   const [tab, setTab] = useState(LATEST)
   const { items: latest, status } = useLatest()   // 最新: ビルド時のRSS（予備）→ APIで取れたら置き換わる。トップと共有
+  const info = useVideoInfo()   // おすすめ（シリーズ別）の題名・日付
   const [more, setMore] = useState(false)
   const list = useRef(null)
   const moreBtn = useRef(null)
   const beforeTop = useRef(null)
 
-  // タブは「最新」と「TikTok」の2つ。ジャンル別は再生リストから見られる
-  const groups = useMemo(() => ({ [LATEST]: latest, TikTok: TIKTOK_HITS }), [latest])
+  // タブ: 最新（YouTubeから自動）／ おすすめ（シリーズ別・再生リストにないもの）／ TikTok
+  const groups = useMemo(() => ({
+    [LATEST]: latest,
+    ...Object.fromEntries(VIDEO_SERIES.map(s => [s.t, s.ids.map((id, i) => {
+      const known = VIDEOS.find(x => x.id === id)
+      return { id, title: (info[id] || known || {}).title || `${s.t} ${i + 1}`, date: (info[id] || known || {}).date || '' }
+    })])),
+    TikTok: TIKTOK_HITS,
+  }), [latest, info])
   const tabs = Object.keys(groups)   // 「最新」は読み込み中でも常に先頭
   const items = groups[tab]
   const visible = tab === LATEST && !more ? items.slice(0, PAGE) : items

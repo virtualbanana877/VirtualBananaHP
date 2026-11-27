@@ -348,7 +348,8 @@ li:nth-child(even) > .card { --rot: 1.2deg; }
 /* 動画カード */
 .vcard { overflow: hidden; height: 100%; display: flex; flex-direction: column; }
 .vcard__thumb { position: relative; aspect-ratio: 16 / 9; background: var(--ink); border-bottom: 2px solid var(--ink); overflow: hidden; }
-.vcard__thumb img { width: 100%; height: 100%; object-fit: cover; transition: transform .4s; }
+.vcard__ph { position: absolute; inset: 0; display: grid; place-items: center; padding: 12px; text-align: center; color: var(--y); font-weight: 900; font-size: 14px; line-height: 1.5; }
+.vcard__thumb img { position: relative; width: 100%; height: 100%; object-fit: cover; transition: transform .4s; }
 .vcard:hover .vcard__thumb img { transform: scale(1.06); }
 .vcard__play {
   position: absolute; right: 12px; bottom: 12px;
@@ -995,3 +996,7 @@ a.ccard:hover { transform: perspective(900px) rotateX(var(--rx, 0deg)) rotateY(v
 .links__home { margin-top: 36px; display: inline-flex; align-items: center; gap: 6px; font-weight: 900; text-decoration: none; border-bottom: 2px solid var(--ink); }
 .links__home:hover { background: var(--white); }
 .links__copy { margin-top: 16px; font-size: 12px; font-weight: 700; opacity: .7; }
+
+.textlink { color: inherit; text-decoration: underline; text-decoration-thickness: 2px; text-underline-offset: 4px; }
+.textlink svg { margin-left: .3em; vertical-align: -.1em; }
+.textlink:hover { background: var(--y); }

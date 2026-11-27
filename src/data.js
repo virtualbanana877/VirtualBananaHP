@@ -49,9 +49,15 @@ export const PLAYLISTS = [
   { t: 'バナナアート', en: 'ART', u: 'https://www.youtube.com/playlist?list=PL3gFxXuE5n58jAKFwu13jQtDQ5MzE4AYv', v: 'LJukm-vG7hU' },
 ]
 
-// ※ VIDEO_GENRES と VIDEOS は、いまは画面で使っていません（動画のタブは「最新」と「TikTok」だけ。ジャンル別は再生リストから）。
-//   手選びの動画データとして残してあるので、また使いたくなったら Videos.jsx で読み込めばそのまま使えます。
-export const VIDEO_GENRES = ['パロディ', 'オリジナル曲', '講座']
+// おすすめ動画（再生リストにはないシリーズ別）。ids は最大3本。タイトル・日付はYouTubeから自動取得し、
+// 取れないときは下の VIDEOS に載っている動画はその情報、それ以外は「シリーズ名 番号」を表示する
+export const VIDEO_SERIES = [
+  { t: '頭のバナナを食べて声真似', ids: ['Qg41knwoHIo', 'nMJQ7HWn28w', 'bhashj3k_n8'] },
+  { t: '調査報告', ids: ['1TvCZbN47PA', '-X3MlkT8nZo', '_Wl5QDPqjEU'] },
+  { t: '〇〇に来なさい', ids: ['Jncn6ODAPfw', 'a-4JrfHEBrs', '7XW1mNmliic'] },
+  { t: '自己紹介', ids: ['PwBh4UhAnnU', 'g606DiiJdzs', 'rqdUw7SZEuM'] },
+]
+// 動画の情報（API が使えないときの予備）。tag は今は使っていない
 export const VIDEOS = [
   { id: 'akBp5lKW7ho', tag: 'パロディ', date: '2021-03-19', title: 'ピンを抜くゲーム広告になってみた' },
   { id: 'xpB0ZNW6l3w', tag: 'オリジナル曲', date: '2020-11-10', title: 'バーチャルバナナのうた（Virtual banana song）' },
@@ -142,7 +148,7 @@ export const CHARACTERS = [
       ['年齢', '20歳'],
       ['身長', '168cm'],
       ['立ち位置', 'バナナくんの相方'],
-      ['活動', '自チャンネルでシチュエーションボイスも投稿'],
+      ['活動', '自チャンネルでシチュエーションボイスも投稿', 'https://www.youtube.com/@vtuber1985'],   // 3つ目はリンク先（省略可）
     ],
     gallery: [],
   },

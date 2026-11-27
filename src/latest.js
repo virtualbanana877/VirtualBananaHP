@@ -32,3 +32,13 @@ export function firstVideoId(json) {
   }
   return null
 }
+
+/** videos.list の返事 → { [動画ID]: { title, date } }（日付は日本時間） */
+export function fromVideos(json) {
+  const out = {}
+  for (const it of json && Array.isArray(json.items) ? json.items : []) {
+    const title = it.snippet && it.snippet.title
+    if (it.id && title) out[it.id] = { title, date: jstDate(it.snippet.publishedAt) }
+  }
+  return out
+}
