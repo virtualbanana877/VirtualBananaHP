@@ -81,7 +81,7 @@ export default function Videos() {
 
       <section className="sec sec--cream" ref={list} id="list" style={{ overflowAnchor: 'none' }}>
         <div className="wrap">
-          <SecHead en="ALL VIDEOS" title={`動画一覧：${tab}`} />
+          <SecHead en={tab === LATEST ? 'LATEST' : 'PICK UP'} title={tab === LATEST ? '動画一覧：最新' : `おすすめ動画：${tab}`} />
           <p className="vh" role="status">{tab}の動画 {items.length}件</p>{/* 一覧を丸ごと読み上げず件数だけ伝える */}
           {tab === LATEST && items.length === 0 ? (
             <div className="latest-empty" aria-busy={status === 'loading'}>
