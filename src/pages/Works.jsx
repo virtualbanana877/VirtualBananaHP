@@ -8,6 +8,7 @@ const LABEL = { 受賞: '受賞・入賞', 出演: '出演', CM: 'CM放映', メ
 
 export default function Works() {
   const [params] = useSearchParams()   // /works?type=CM#achievements のように、種別を指定して開ける
+  const [allHistory, setAllHistory] = useState(false)   // 歩み: 転機だけ／節目も
   const [type, setType] = useState(() => ACH_TYPES.includes(params.get('type')) ? params.get('type') : 'すべて')
   const list = type === 'すべて' ? SORTED : SORTED.filter(a => a.c === type)
   const day = dailyDay()
@@ -64,13 +65,18 @@ export default function Works() {
       <section className="sec sec--white">
         <div className="wrap">
           <SecHead en="HISTORY" title="歩み" />
+          <div className="seg" role="group" aria-label="歩みの表示">
+            <button type="button" aria-pressed={!allHistory} onClick={() => setAllHistory(false)}>転機だけ</button>
+            <button type="button" aria-pressed={allHistory} onClick={() => setAllHistory(true)}>節目も見る<small>{HISTORY.filter(h => h.kind === 'mile').length}</small></button>
+          </div>
           <ol className="timeline">
-            {HISTORY.map(h => (
-              <li key={h.d} className="reveal">
+            {(allHistory ? HISTORY : HISTORY.filter(h => h.kind !== 'mile')).map(h => (
+              <li key={h.d} className={`reveal${h.kind === 'mile' ? ' is-mile' : ''}`}>
                 <span className="timeline__d">{h.d}</span>
                 <div>
                   <strong>{h.t}</strong>
                   {h.b && <p>{h.b}</p>}
+                  {h.u && <p><a className="textlink" href={h.u} target="_blank" rel="noopener noreferrer">{h.ul || 'リンク'}<Icon.ext /></a></p>}
                   {h.daily && <p className="daycount">今日で <b>{day.toLocaleString('ja-JP')}</b> 日目</p>}
                 </div>
               </li>

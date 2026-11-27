@@ -1000,3 +1000,12 @@ a.ccard:hover { transform: perspective(900px) rotateX(var(--rx, 0deg)) rotateY(v
 .textlink { color: inherit; text-decoration: underline; text-decoration-thickness: 2px; text-underline-offset: 4px; }
 .textlink svg { margin-left: .3em; vertical-align: -.1em; }
 .textlink:hover { background: var(--y); }
+
+/* 歩み: 転機だけ／節目も見る、節目の行は小さく */
+.seg { display: inline-flex; flex-wrap: wrap; gap: 8px; margin: 0 0 28px; }
+.seg button { min-height: 44px; padding: 8px 18px; border: 3px solid var(--ink); border-radius: 999px; background: var(--w); font: inherit; font-weight: 900; cursor: pointer; }
+.seg button[aria-pressed='true'] { background: var(--ink); color: var(--y); }
+.seg small { display: inline-grid; place-items: center; min-width: 22px; height: 22px; margin-left: 8px; padding: 0 6px; border-radius: 999px; background: var(--y); color: var(--ink); font-size: 12px; }
+.timeline li.is-mile::before { left: -31px; top: 6px; width: 14px; height: 14px; border-width: 2px; background: var(--w); }
+.timeline li.is-mile .timeline__d { font-size: 16px; }
+.timeline li.is-mile strong { font-size: 16px; font-weight: 700; }
