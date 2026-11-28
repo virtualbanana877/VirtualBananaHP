@@ -42,3 +42,13 @@ export function fromVideos(json) {
   }
   return out
 }
+
+/** channels.list(statistics) の返事 → { subs, views }。登録者数が非公開なら subs は null。読めなければ null */
+export function fromChannelStats(json) {
+  const st = json && Array.isArray(json.items) && json.items[0] && json.items[0].statistics
+  if (!st) return null
+  const views = Number(st.viewCount)
+  if (!Number.isFinite(views) || views <= 0) return null
+  const subs = st.hiddenSubscriberCount ? NaN : Number(st.subscriberCount)
+  return { subs: Number.isFinite(subs) && subs > 0 ? subs : null, views }
+}

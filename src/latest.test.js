@@ -1,6 +1,6 @@
 import test from 'node:test'
 import assert from 'node:assert/strict'
-import { firstVideoId, fromPlaylistItems, fromVideos, jstDate } from './latest.js'
+import { firstVideoId, fromChannelStats, fromPlaylistItems, fromVideos, jstDate } from './latest.js'
 
 test('日本時間の日付に直す（UTCの夜は翌日）', () => {
   assert.equal(jstDate('2026-11-24T16:00:00Z'), '2026-11-25')
@@ -45,4 +45,12 @@ test('videos.list → 動画IDごとの題名と日付（日本時間）', () =>
   const json = { items: [{ id: 'a', snippet: { title: 'A', publishedAt: '2026-11-24T16:00:00Z' } }, { id: 'b', snippet: {} }, { snippet: { title: 'x' } }] }
   assert.deepEqual(fromVideos(json), { a: { title: 'A', date: '2026-11-25' } })
   assert.deepEqual(fromVideos(null), {})
+})
+
+test('channels.list → 登録者数と総再生数（登録者数が非公開なら subs は null）', () => {
+  assert.deepEqual(fromChannelStats({ items: [{ statistics: { subscriberCount: '6340', viewCount: '3701234' } }] }), { subs: 6340, views: 3701234 })
+  assert.deepEqual(fromChannelStats({ items: [{ statistics: { hiddenSubscriberCount: true, subscriberCount: '0', viewCount: '3701234' } }] }), { subs: null, views: 3701234 })
+  assert.equal(fromChannelStats({ items: [] }), null)
+  assert.equal(fromChannelStats({ items: [{ statistics: { viewCount: 'x' } }] }), null)
+  assert.equal(fromChannelStats(null), null)
 })

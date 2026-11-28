@@ -19,19 +19,47 @@ export const LATEST_COUNT = 15
 // 毎日投稿の開始日。ここから今日までの日数を「◯日目」として表示する
 export const DAILY_START = '2023-02-25'
 
-// 手入力の数字。更新したら STATS_AS_OF も変える
-export const STATS_AS_OF = '2026年11月'
-export const KEY_STATS = [
+// ---------- 数字（YouTubeは自動取得、TikTokとXは手入力） ----------
+// TikTok・Xは自動で取れないので、数字と asOf（いつ時点か）を手で更新します。やり方は2通り:
+//   ① Cloudflare の環境変数（コードを触らずに更新できる。変えたら再デプロイ）
+//        VITE_TIKTOK_FOLLOWERS=4610 / VITE_X_FOLLOWERS=11800 / VITE_STATS_AS_OF=2026-11-28
+//   ② 環境変数を設定しなければ、下の数字（予備の値）が使われる。これを書き換えてもよい
+//   asOf は '2026-11-28'（日まで）でも '2026-11'（月まで）でも可。画面には「2026年11月28日時点」のように出ます。
+const env = import.meta.env || {}   // Node（テスト・ビルド前の取得）では undefined
+/** '4,610' や ' 11800 ' → 4610 / 11800。数字として読めない・0以下なら null */
+export const parseCount = v => { const n = Number(String(v ?? '').replace(/[,\s]/g, '')); return Number.isFinite(n) && n > 0 ? n : null }
+export const MANUAL_STATS = {
+  asOf: (env.VITE_STATS_AS_OF || '').trim() || '2026-11',
+  tiktok: parseCount(env.VITE_TIKTOK_FOLLOWERS) ?? 4610,
+  x: parseCount(env.VITE_X_FOLLOWERS) ?? 11800,
+}
+// YouTube（登録者・総再生数）はページを開いたときにAPIから取得。取れなかったときに出す予備の数字（asOf 時点）
+export const YOUTUBE_FALLBACK = { subs: 6340, views: 3700000 }
+
+export const fmtFull = n => Number(n).toLocaleString('ja-JP')                                   // 6340 → 6,340
+export const fmtMan = n => (n >= 10000 ? `${Math.round(n / 10000).toLocaleString('ja-JP')}万` : fmtFull(n))   // 3701234 → 370万
+export function asOfLabel(s) {                                                                  // '2026-11-28' → 2026年11月28日 / '2026-11' → 2026年11月
+  const m = /^(\d{4})-(\d{1,2})(?:-(\d{1,2}))?$/.exec(s)
+  return m ? `${m[1]}年${Number(m[2])}月${m[3] ? `${Number(m[3])}日` : ''}` : s
+}
+
+/** トップの数字（yt = { subs, views }） */
+export const keyStats = yt => [
   { n: '300+', l: '声真似レパートリー' },
   { n: '1,300+', l: '毎日ショート投稿' },
-  { n: '370万', l: 'YouTube総再生' },
+  { n: fmtMan(yt.views), l: 'YouTube総再生' },
 ]
-export const REACH_STATS = [
-  { n: '6,340', l: 'YouTube登録者' },
-  { n: '370万', l: 'YouTube総再生' },
-  { n: '4,610', l: 'TikTokフォロワー' },
-  { n: '11,800', l: 'Xフォロワー' },
+/** 実績ページの「数字で見る」 */
+export const reachStats = yt => [
+  { n: fmtFull(yt.subs), l: 'YouTube登録者' },
+  { n: fmtMan(yt.views), l: 'YouTube総再生' },
+  { n: fmtFull(MANUAL_STATS.tiktok), l: 'TikTokフォロワー' },
+  { n: fmtFull(MANUAL_STATS.x), l: 'Xフォロワー' },
 ]
+/** 数字の下の注記。live = YouTubeをAPIから取れているか */
+export const statsNote = live => live
+  ? `YouTubeの数字はページを開いた時点、TikTok・Xは${asOfLabel(MANUAL_STATS.asOf)}時点の数字です。`
+  : `${asOfLabel(MANUAL_STATS.asOf)}時点の数字です。`
 
 export const FEATURED = {
   id: '_4Xt-d4_Eec',

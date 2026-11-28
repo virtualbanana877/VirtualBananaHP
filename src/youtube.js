@@ -1,5 +1,5 @@
 import { CHANNEL_ID } from './data.js'
-import { firstVideoId, fromPlaylistItems, fromVideos } from './latest.js'
+import { firstVideoId, fromChannelStats, fromPlaylistItems, fromVideos } from './latest.js'
 
 // APIキーは .env の VITE_YOUTUBE_API_KEY に入れる（.env.example を参照）。Cloudflare Pages では「ビルド時の環境変数」に同じ名前で設定する。
 // ビルド時に埋め込まれるため、Google Cloud 側で「HTTPリファラー制限（https://virtual-banana.com/*）」と「YouTube Data API v3 のみ」の制限を必ずかけること。
@@ -60,4 +60,16 @@ export async function fetchVideoInfo(ids, signal) {
   const json = await res.json()
   if (json.error) throw new Error(json.error.message || 'API error')
   return fromVideos(json)
+}
+
+/** チャンネルの登録者数・総再生数 → { subs, views }。キー未設定なら null、失敗したら例外 */
+export async function fetchChannelStats(signal) {
+  if (!KEY) return noKey()
+  const res = await fetch(`${API}/channels?part=statistics&id=${encodeURIComponent(CHANNEL_ID)}&key=${encodeURIComponent(KEY)}`, { signal })
+  if (!res.ok) throw await failure(res)
+  const json = await res.json()
+  if (json.error) throw new Error(json.error.message || 'API error')
+  const stats = fromChannelStats(json)
+  if (!stats) throw new Error('チャンネルの数字を読み取れません')
+  return stats
 }

@@ -1,9 +1,9 @@
 import { useEffect, useRef, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { CountUp, Icon, Marquee, PlaylistCard, SecHead, VideoCard, img, dot, tilt } from '../components.jsx'
-import { useLatest } from '../useYouTube.js'
+import { useChannelStats, useLatest } from '../useYouTube.js'
 import {
-  KEY_STATS, FEATURED, PLAYLISTS, CHARACTERS, SERVICES, LINKS, dailyDay, countBy,
+  keyStats, FEATURED, PLAYLISTS, CHARACTERS, SERVICES, LINKS, dailyDay, countBy,
 } from '../data.js'
 
 export default function Home() {
@@ -27,6 +27,7 @@ export default function Home() {
 
 /* ---------- 0. ヒーロー ---------- */
 function Hero({ day }) {
+  const yt = useChannelStats()   // YouTubeの総再生数は最新の数字（取れなければ予備）
   const sec = useRef(null)
   const chara = useRef(null)
   const [talk, setTalk] = useState({ n: 0, line: null })
@@ -75,7 +76,7 @@ function Hero({ day }) {
           <div className="hero__sheet">{/* スマホ・タブレットでは下端の白いシートになる */}
             <p className="hero__catch">声真似・パロディを軸に、動画制作・バナナアート・オリジナル曲・Webゲームやサイト制作まで幅広く手がけるVTuberです。</p>
             <ul className="hero__stats">
-              {KEY_STATS.map(s => <li key={s.l}><strong><CountUp value={s.n} /></strong><span>{s.l}</span></li>)}
+              {keyStats(yt).map(s => <li key={s.l}><strong><CountUp value={s.n} /></strong><span>{s.l}</span></li>)}
             </ul>
             <div className="btns">
               <Link className="btn btn--ink" to="/videos"><Icon.play />動画を見る</Link>

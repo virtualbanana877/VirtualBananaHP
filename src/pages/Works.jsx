@@ -1,7 +1,8 @@
 import { useState } from 'react'
 import { Link, useSearchParams } from 'react-router-dom'
 import { CountUp, Icon, PageHero, SecHead, dot } from '../components.jsx'
-import { ACHIEVEMENTS, ACH_TYPES, HISTORY, REACH_STATS, STATS_AS_OF, countBy, dailyDay } from '../data.js'
+import { ACHIEVEMENTS, ACH_TYPES, HISTORY, countBy, dailyDay, reachStats, statsNote } from '../data.js'
+import { useChannelStats } from '../useYouTube.js'
 
 const SORTED = [...ACHIEVEMENTS].sort((a, b) => b.d.localeCompare(a.d))
 const LABEL = { 受賞: '受賞・入賞', 出演: '出演', CM: 'CM放映', メディア: 'メディア掲載' }
@@ -12,6 +13,7 @@ export default function Works() {
   const [type, setType] = useState(() => ACH_TYPES.includes(params.get('type')) ? params.get('type') : 'すべて')
   const list = type === 'すべて' ? SORTED : SORTED.filter(a => a.c === type)
   const day = dailyDay()
+  const yt = useChannelStats()   // YouTubeの登録者数・総再生数は最新の数字（取れなければ予備）
 
   return (
     <>
@@ -21,9 +23,9 @@ export default function Works() {
         <div className="wrap">
           <SecHead en="NUMBERS" title="数字で見る" />
           <ul className="nums nums--4">
-            {REACH_STATS.map(s => <li key={s.l}><strong><CountUp value={s.n} /></strong><span>{s.l}</span></li>)}
+            {reachStats(yt).map(s => <li key={s.l}><strong><CountUp value={s.n} /></strong><span>{s.l}</span></li>)}
           </ul>
-          <p className="note">※{STATS_AS_OF}時点の数字です。</p>
+          <p className="note">※{statsNote(yt.live)}</p>
           <ul className="nums nums--3 nums--ink">
             {['受賞', 'CM', 'メディア'].map(c => (
               <li key={c}><strong><CountUp value={`${countBy(c)}${c === 'メディア' ? '件' : '回'}`} /></strong><span>{LABEL[c]}</span></li>

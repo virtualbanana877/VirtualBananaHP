@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
-import { LATEST_COUNT, PLAYLISTS, VIDEO_SERIES, playlistId } from './data.js'
+import { LATEST_COUNT, PLAYLISTS, VIDEO_SERIES, YOUTUBE_FALLBACK, playlistId } from './data.js'
 import snapshot from './latest.snapshot.json'
-import { fetchFirstVideos, fetchLatest, fetchVideoInfo } from './youtube.js'
+import { fetchChannelStats, fetchFirstVideos, fetchLatest, fetchVideoInfo } from './youtube.js'
 
 // どちらもページを開いてから1回だけ取得して共有する（トップ→動画一覧に移動しても取り直さない）
 function shared(initial, run) {
@@ -42,4 +42,11 @@ export const useVideoInfo = shared({}, set => {
   fetchVideoInfo(VIDEO_SERIES.flatMap(s => s.ids), timeout())
     .then(map => { if (map) set(map) })
     .catch(e => console.warn('動画の情報を取得できませんでした:', e))
+})
+
+/** YouTubeの登録者数・総再生数: { subs, views, live }。最初は予備の数字、APIで取れたら最新に置き換わる（live = true） */
+export const useChannelStats = shared({ ...YOUTUBE_FALLBACK, live: false }, set => {
+  fetchChannelStats(timeout())
+    .then(s => { if (s) set({ subs: s.subs ?? YOUTUBE_FALLBACK.subs, views: s.views, live: true }) })
+    .catch(e => console.warn('YouTubeの登録者数・再生数を取得できませんでした（予備の数字を表示します）:', e))
 })
